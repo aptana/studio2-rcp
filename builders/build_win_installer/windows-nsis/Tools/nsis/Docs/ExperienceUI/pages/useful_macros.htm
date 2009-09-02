@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+	  <h1>Useful macros</h1>
+	  <p style="margin-left: 0.20in">
+	  <font face=Verdana style=font-size:8pt color=#000000>
+	  Of course, there are macros that the ExperienceUI uses for its system that are great in your script.  Here are a few:<br>
+	  <br>
+	  <b>XPUI_SET</b> <font color=#294F75>Symbol Value</font> - Defines a symbol, and sets it to the value specified.  If the symbol is
+	  already defined, its value will be overwritten.<br>
+	  <br>
+	  <b>XPUI_UNSET</b> <font color=#294F75>Symbol</font> - !undefs a symbol if it is defined.  This is a safer way to undefine a symbol,
+	  because if you try to undefine a symbol using !undef, and it isn't defined, MakeNSIS will stop compiling your script.<br>
+	  <br>
+	  <b>XPUI_DEFAULT</b> <font color=#294F75>Symbol Value</font> - Defines a symbol.  If the symbol is already defined, its value will
+	  <b>not</b> be overwritten.<br>
+	  <br>
+	  <b>XPUI_INNERDIALOG_TEXT</b> <font color=#294F75>Text Control_ID</font> - Sets control Control_ID to Text on the inner dialog (RECT
+	  1018).<br>
+	  <br>
+	  <b>XPUI_PAGECOLOR_INIT</b> <font color=#294F75>Control_ID</font> - Sets Control_ID on the <b>inner child window</b> to the XPUI
+	  dialog colors.<br>
+	  <br>
+	  <b>XPUI_PAGEBG_INIT</b> <font color=#294F75></font> - Sets control 1005 on the inner dialog to the background color.<br>
+	  <br>
+	  <b>XPUI_SET_BG</b> <font color=#294F75></font> - Initializes the background image.  Use this if you have a) a custom skin, and b)
+	  if you have custom pages that occur before the first ExperienceUI-native page.<br>
+	  <br>
+	  </font>
+	  </p>
+	  
+	</td>
+	
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+	
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

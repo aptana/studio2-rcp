@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+        
+          <h1>The ExperienceUI's Patching System</h1>
+    
+            <p style=margin-left:0.2in><font face=Verdana style=font-size:8pt color=#000000>
+              Like all computer programs, the ExperienceUI has its bugs.  Since version 1.02, however, the ExperienceUI has included a patching
+              system that can update any file that is related to the ExperienceUI or any NSIS component.  The patch files are simply ZIP archives
+              with a special file, CONTENT.DAT, that tells where everything goes.  This method of distributing updates allows for very small files;
+              files that do not require a setup program, just a shell extension in the Registry.  The patching system also allows installation of
+              new components, such as extra features or skins.  There is even a separate format made just for skins!<br>
+              <br>
+              Installing a patch or skin is very easy.  All you have to do is click on the file in Windows Explorer, and the installer handles the rest.
+              You can also write your own patches or skins.  See the next section for more information.
+            </font></p>
+            
+          <a name=write id=write></a>
+          <h1>Writing patch files</h1>
+          
+            <p style=margin-left:0.2in><font face=Verdana style=font-size:8pt color=#000000>
+              Writing an ExperienceUI patch or skin is very simple.  If you have WinZip® or even Windows 98/ME/XP's integrated ZIP features and a
+              basic text editor, you have the tools required to build a patch or skin for the ExperienceUI. Here's how:<br>
+              <br>
+              <ol type=1>
+                <li><b>Gather up your files.</b><br>
+                    <br>
+                    Make a new ZIP file, and put all of the files you want to install into the archive's root directory.<br><br></li>
+                <li><b>Create a CONTENT.DAT information file.</b><br>
+                    <br>
+                    Create a new text file, call it CONTENT.DAT, and open it in Notepad, WordPad, emacs, or any other text editor.<br><br></li>
+                <li><b>List your patch's files.</b><br>
+                    <br>
+                    Type [EUI-Patch] or [EUI-Skin] (including the brackets) at the top of your file.  Hit enter.<br><br>
+                    Now type <b>NumFiles=#</b> and replace # with the number of files in your patch, <b>not</b> including CONTENT.DAT.<br><br>
+                    Make a few more new lines, and then type <b>File1=&lt;filename&gt;</b> and replace &lt;filename&gt; with the first file
+                    in your patch/skin.  Hit Enter.<br><br>
+                    Type in <b>File1 Path=MyPath</b> for the folder to extract the file to.  If you are extracting the file to the ExperienceUI's
+                    installation root directory, create this field, but leave it blank.  Hit Enter one more time.<br>
+                    If you're writing a patch, type <b>File1 Desc=My Description String</b> and replace My Description String with a description
+                    of the file.  This key does not apply to skins.<br><br>
+                    Now, add one more <b>File1</b>/<b>File1 Path</b>/<b>File1 Desc</b> section to the install script file (aka CONTENT.DAT) for
+                    each file in your patch/skin, each time replacing the 1 with a number one higher than the previous file entry.<br>
+                    <br>
+                    When you're done, the file should look somewhat like this:<br>
+                    <br>
+                    <code>
+                    [EUI-Patch]<br>
+                    NumFiles=3<br>
+                    <br>
+                    File1=XPUI.NSH<br>
+                    File1 Path=<br>
+                    File1 Desc=ExperienceUI main script<br>
+                    <br>
+                    File2=English.NSH<br>
+                    File2 Path=Language Files<br>
+                    File2 Desc=English Language string table<br>
+                    <br>
+                    File3=Plus.bmp<br>
+                    File3 Path=Readme\Images<br>
+                    File3 Desc=Documentation section expand button, mouse out<br><br>
+                    </code></li>
+                    
+                    <li><b>Add the CONTENT.DAT file to your ZIP archive.</b><br>
+                        <br>
+                        This next step should be a little easier.  Fire up your zip utility, and
+                        add the CONTENT.DAT file you just created to the ZIP file.<br><br></li>
+                        
+                    <li><b>Rename the file.</b><br>
+                        <br>
+                        Open up Command Prompt, usually done by going to Start &gt; Run, typing CMD, and pressing Enter, and change to the
+                        directory where your ZIP file is.  Type in the command <b>REN &lt;file&gt;.zip
+                        &lt;file&gt;.eup</b> for a patch or <b>REN &lt;file&gt;.zip &lt;file&gt;.eus</b> for a skin.<br>
+                        <br>
+                        <b>That's it! To test your skin/patch, just double-click it.  After testing it, you'll be ready to distribute it over
+                        the Web.
+              </ol>
+            </font></p>
+          
+        </td>
+        
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

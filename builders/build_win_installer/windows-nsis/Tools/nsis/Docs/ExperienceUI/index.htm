@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+    <title>ExperienceUI Documentation</title>
+    
+    <script type="text/javascript">
+    <!--
+      var params=new Object();var aParams=document.location.search.substr(1).split('&');for (i=0;i<aParams.length;i++) {var aParam=aParams[i].split('=');var sParamName=aParam[0];var sParamValue=aParam[1];params[sParamName]=sParamValue;}
+    
+    function on(img) {
+      document.getElementById(img).src="pages/browser/"+img+"_o.bmp"
+    }
+    
+    function off(img) {
+      document.getElementById(img).src="pages/browser/"+img+".bmp"
+    }
+                                                                    
+    function checkUrl() {
+      if(params['start']) {
+        document.getElementById("content").src="pages/"+unescape(params['start']);
+      }
+    }
+    
+    function ht() {
+      document.getElementById("tb").style.display = "none";
+      document.getElementById("tb_h").style.display = "block";
+      document.getElementById("tb_h").align = "center";
+      document.getElementById("tree").width = "22";
+      document.getElementById("treeframe").style.display = "none";
+    }
+    
+    function st() {
+      document.getElementById("tb").style.display = "block";
+      document.getElementById("tb_h").style.display = "none";
+      document.getElementById("tree").width = "25%";
+      document.getElementById("treeframe").style.display = "block";
+    }
+    
+    function getHeight() {
+        var myHeight = 0;
+        if( typeof( window.innerWidth ) == 'number' ) {
+          myHeight = window.innerHeight;
+        } else if( document.documentElement &&
+            ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+          myHeight = document.documentElement.clientHeight;
+        } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+          myHeight = document.body.clientHeight;
+        }
+        return myHeight;
+      }
+    
+    // -->
+    
+    </script>
+    
+    <style type="text/css">
+    
+      .version {
+        font-family: Verdana;
+        font-size: 8pt;
+        text-decoration: none;
+        color: #000000;
+        background-color: #C0D0E0;
+        border-left: #E4E4FF 1px solid;
+        border-top: #E4E4FF 1px solid;
+        border-right: #E4E4FF 1px solid;
+        border-bottom: #E4E4FF 1px solid;
+        padding-left: 10px;
+        padding-right: 10px;
+        PADDING-BOTTOM: 10px;
+        PADDING-TOP: 10px;
+        width: 118px;
+      }
+    
+    </style>
+    
+  </head>
+  
+  <body bgcolor="#6060C0" style="margin:0px;padding:0px;padding-right:0px" onload="checkUrl();">
+  
+    <script type="text/javascript">var header='%3Ctable id=header border=0 width=100% style="height:100px"%3E%3Ctr height=100%3E%3Ctd%3E%3Cdiv style="position:absolute;left:7px;top:20px"%3E%3Cfont face=Verdana size=7 color="#B0B0F0"%3EExperienceUI%3C\/font%3E%3C\/div%3E%3Cdiv style="position:absolute;left:120px;top:50px"%3E%3Cfont face=Verdana size=6 color="#FFFFFF"%3EDocumentation%3C\/font%3E%3C\/div%3E%3C\/td%3E%3Ctd align=right style="padding-right:10px"%3E%3Cdiv class=version align=center%3E%3Cb%3EVersion:%3C\/b%3E%3Cbr%3E1.1 %3C\/div%3E%3C\/td%3E%3C\/tr%3E%3C\/table%3E';if(params['banner']!="no"){document.write(unescape(header));}</script>
+  
+    <table id=maintable border=0 width="100%">
+      
+      <tr style="height:16px">
+      
+        <td bgcolor="#B0B0B0" colspan=2 width="1%" style="padding-top:6px;padding-left:4px;">
+        
+        <script type="text/javascript">
+          function res1() {
+          var ht=getHeight();
+          if(params['banner']!="no") {
+            ht=ht-150
+            ht=parseInt(ht);
+          }
+          document.getElementById("maintable").style.height=ht+"px";
+          }
+        </script>
+	
+	  <div id=tb>
+          <a href="javascript:history.back(1)" target=content><img border=0 alt=Back src=pages/browser/back.bmp id=back onmouseup="on('back')" onmousedown="off('back')" onmouseover="on('back')" onmouseout="off('back')"></a>
+          <a href="javascript:history.forward(1)" target=content><img border=0 alt=Forward src=pages/browser/forward.bmp id=forward onmouseup="on('forward')" onmousedown="off('forward')" onmouseover="on('forward')" onmouseout="off('forward')"></a>
+          <a href="javascript:location.reload()" target=content><img border=0 alt=Refresh src=pages/browser/refresh.bmp id=refresh onmouseup="on('refresh')" onmousedown="off('refresh')" onmouseover="on('refresh')" onmouseout="off('refresh')"></a>
+          <a href="pages/welcome.htm" target=content><img border=0 alt=Home src=pages/browser/home.bmp id=home onmouseup="on('home')" onmousedown="off('home')" onmouseover="on('home')" onmouseout="off('home')"></a>
+	  &nbsp;&nbsp;
+	  <a href="javascript:ht();"><img border=0 alt="Hide Navigation Tree" src=pages/browser/hide.bmp id=hide onmouseup="on('hide')" onmousedown="off('hide')" onmouseover="on('hide')" onmouseout="off('hide')"></a>
+	  </div>
+	  
+	  <div id=tb_h style=display:none>
+	  <a href="javascript:st();"><img border=0 alt="Show Navigation Tree" src=pages/browser/go.bmp id=go onmouseup="on('go')" onmousedown="off('go')" onmouseover="on('go')" onmouseout="off('go')"></a>
+	  </div>
+	  
+	</td>
+	
+        <td id=maintd rowspan=2 width="83%" valign=top style="margin: 0px; padding: 0px" bgcolor="#FFFFFF">
+          <iframe id=content name=content src=pages/welcome.htm width="100%" frameborder=0>
+          </iframe>
+          
+          <script type="text/javascript">
+            function res2() {
+            var ht=getHeight();
+            if(params['banner']!="no") {
+              ht=ht-110;
+              ht=parseInt(ht);
+            } else {
+              ht=ht-10;
+            }
+            document.getElementById("content").style.height=ht+"px";
+            document.getElementById("maintd").style.height=ht+"px";
+            }
+          </script>
+          
+        </td>
+	
+      </tr>
+    
+      <tr>
+      
+        <td id=tree width="25%" bgcolor="#6060C0">
+          <iframe id=treeframe src="toc.htm" width="100%" height="100%" frameborder=0>
+            ERROR: Your browser doesn't handle in-line frames.  Please upgrade.
+          </iframe>
+          
+          <script type="text/javascript">
+            function res3() {
+            var ht=getHeight();
+            if(params['banner']!="no") {
+              ht=ht-148;
+            } else {
+              ht=ht-43;
+            }
+            //document.getElementById("treeframe").style.height=ht+"px";
+            document.getElementById("tree").style.height=ht+"px";
+            }
+            function res(){res1();res2();res3();}
+            window.onresize=res;
+            res();
+          </script>
+          
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

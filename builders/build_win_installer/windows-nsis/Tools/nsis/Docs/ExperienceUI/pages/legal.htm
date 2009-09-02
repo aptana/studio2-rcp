@@ -1,0 +1,166 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+    
+    <script type=text/javascript>
+      var parentparams=new Object();
+      var aParams=parent.window.location.search.substr(1).split('&');
+      for (i=0;i<aParams.length;i++) {
+        var aParam=aParams[i].split('=');
+        var sParamName=aParam[0];
+        var sParamValue=aParam[1];
+        parentparams[sParamName]=sParamValue;
+      }
+    </script>
+    
+    <script type=text/javascript>
+    
+      function loadBrowser(url) {
+        if(parentparams['banner']) {
+          parent.window.location="browser.htm?url="+url+"&return=legal.htm%23links&banner="+parentparams['banner'];
+        } else {
+          parent.window.location="browser.htm?url="+url+"&return=legal.htm%23links";
+        }
+      }
+    
+    </script>
+    
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+	  <h1>License Agreement</h1>
+	
+          <p style=margin-left:0.2in>
+	
+	  <font face="Trebuchet MS" style="font-size: 10pt"><strong>
+	  ExperienceUI for NSIS (Open Source)<br>
+	  License Agreement<br>
+	  Copyright &copy; 2004-2005 Dashboard Software Ltd.</strong></font><br>
+	  <br>
+	  <font face="Verdana" style="font-size: 8pt">
+	  This license applies to everything in the ExperienceUI package, except where otherwise noted.<br>
+	  <br>
+	  This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.<br>
+	  <br>
+	  Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:<br>
+	  <ol type=1>
+	  <li>The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgement in the product documentation would be appreciated but is not required.<br><br></li>
+	  <li>Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.<br><br></li>
+	  <li>This notice may not be removed or altered from any source distribution.<br><br></li>
+	  </ol>
+	  
+	  </p>
+	  
+	  <a name=ack id=ack></a>
+	  
+	  <h1>Acknowledgements</h1>
+	  
+	  <p style=margin-left:0.2in>
+	  
+	  <font face=Verdana style=font-size:8pt color=#000000>
+	    The first person I would like to thank for this whole thing is Amir Szekely, aka KiCHiK.  He's done so much awesome work on NSIS,
+	    he's always got a great idea for a new feature, and, heck, he can code like crazy!<br>
+	    <br>
+	    I also want to thank Joost Verburg for writing the Modern UI, which is where I got the section descriptions, multi-language
+	    support, and lots of NSIS knowledge.<br>
+	    <br>
+	    Of course, I want to say thanks to ZmAn3, who created the computer graphic (Left Logo) that is used by default in all ExperienceUI
+	    installers.<br>
+	    <br>
+	    Next on the list is MacroVision, for the inspiration to make this thing.  They've always got great ideas for us third-party
+	    imitators to copy.  InstallShield® might be slow, but if it didn't look so good, this text would probably be buried somewhere
+	    in the Modern UI readme right now.<br>
+	    <br>
+	    Finally, hats off to Afrow UK for hosting the download site until I could get something going.<br>
+	    <br>
+	    Windows is a registered trademark of Microsoft Corporation.<br> 
+	    InstallShield is a registered trademark of MacroVision, Inc.<br>
+	    WinZip is a registered trademark of WinZip Computing, Inc.
+	    
+	    </p>
+	    
+	  </font>
+	  
+	  <a name=copy id=copy></a>
+	  
+	  <h1>Copyright</h1>
+	  
+	  <p style=margin-left:0.2in>
+	  
+	  <font face=Verdana style=font-size:8pt color=#000000>
+	  The ExperienceUI for NSIS is copyright &copy; 2004-2005 Dan Fuhry.  As stated in the license agreement, you are free to modify/distribute/make
+	  fun of this software as much as you want, and you can use it in your own software, but <i>please</i> don't tell everyone you wrote the original
+	  thing.  And, if you use the ExperienceUI in your own software, I would appreciate an acknowledgement in the documentation, but this
+	  is not required.
+	  </font>
+	  
+	  </p>
+	  
+	  <a name=links id=links></a>
+	  
+	  <h1>Web Links</h1>
+	  
+	  <p style=margin-left:0.2in>
+	  
+	  <font face=Verdana style=font-size:8pt color=#000000>
+	  I used the following software to create the ExperienceUI:<br>
+	  <br>
+	  <b><a href="javascript:loadBrowser('http://nsis.sourceforge.net')">NSIS</a></b> - Oh, NSIS where would we be without you? Probably using Inno Setup or InstallShield and wishing for a more flexible/faster
+	  scripting platform.<br>
+	  <br>
+	  <b><a href="javascript:loadBrowser('http://hmne.sourceforge.net')">HM NIS Edit</a></b> - The best NSIS editor on the planet, hands down.  HMNE is great for beginners and advanced programmers alike,
+	  and it has an integrated compiler.<br>
+	  <br>
+	  <b><a href="javascript:loadBrowser('http://www.jedit.org')">jEdit 4.2</a></b> - I used jEdit to create the page you're reading right now, and I would recommend it to any programmer that needs
+	  an editor with support for lots of languages.  jEdit saves open files, markers, and even caret positions when you close it, so
+	  you'll never be looking for where you left off again.  Make sure you have Java.<br>
+	  <br>
+	  <b><a href="javascript:loadBrowser('http://www.knopper.net/knoppix')">KNOPPIX Linux</a></b> - I was on vacation and needed a laptop to keep up with my work, but the only one available didn't have a hard disk (go figure).  I simply popped my KNOPPIX LiveCD into the laptop and loaded my config from my USB pen drive, and I was good to go!  The download is 700MB, so make sure you have at least DSL, and preferably T1.  Oh, yeah, you can also buy a CD.  Like most Linux distros, you can't write to NTFS very well, so try to have a FAT or FAT32 partition to store shared files on.  I used the Kate editor to hand-modify this readme.<br>
+	  <br>
+	  <b><a href="javascript:loadBrowser('http://www.aha-soft.com')">IconLover</a></b> - IconLover might be intended for use as an icon editor, but it's soooooo powerful...if you need an alternative
+	  to Paint (who doesn't?) this should be your first stop.<br>
+	  <br>
+	  <b><a href="javascript:loadBrowser('http://www.gimp.org')">The GIMP</a></b> - If you haven't heard of this open-source alternative to Photoshop, you must be extremely new to the Internet.  I used the GIMP to create some of the more impressive images in the ExperienceUI.<br>
+	  <br>
+	  <b><a href="javascript:loadBrowser('http://sourceforge.net')">SourceForge.net</a></b> - "Everybody loves SourceForge" is the best thing since Linux.  They'll host your open-source projects for absolutely free (open source coding doesn't exactly pay too well), and SourceForge provides you with all the admin tools you could possibly want.<br>
+	  <br>
+	  <b><a href="javascript:loadBrowser('http://www.opencube.com')">OpenCube Tree Menus</a></b> - The menu tree on the left of the window was based on code by OpenCube.<br>
+	  <br>
+	  <table align=center width=100% border=0><tr><td align=center>
+	  <a href="javascript:loadBrowser('http://sourceforge.net')"><img border=0 src=../Images/sourceforge.gif alt="Go to sourceforge.net"></a>
+	  </td><td align=center>
+	  <a href="javascript:loadBrowser('http://xpui.sourceforge.net')"><img border=0 src=../Images/XPUILogo.png alt="Go to the ExperienceUI Website"></a>
+	  </td></tr><tr><td colspan=2 align=center>
+	  <a href="javascript:loadBrowser('http://nsis.sourceforge.net')"><img border=0 src=../Images/nsis.gif alt="Go to the NSIS web site"></a>
+	  </td></tr></table>
+	  </font>
+	  
+	  </p>
+	  
+	</td>
+	
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=javascript:void(0) style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+	
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

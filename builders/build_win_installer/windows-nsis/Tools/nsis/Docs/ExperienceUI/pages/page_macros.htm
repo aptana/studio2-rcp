@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+    <script type=text/javascript src=cmd.js></script>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+          <h1>Page Macros</h1>
+	
+	  <p style="margin-left: 0.20in">
+	    <b>All of the pages listed here <i>except</i> the NSIS-Style uninstall confirmation page can be used in either the installer or the uninstaller.</b><br>
+	    <br>
+            <script type="text/javascript">
+              macro("XPUI_PAGEMODE_INST", "", "Sets all of the pages inserted after this macro to be inserted into the installer. This macro can be used multiple times and is inserted automatically at the end of the header file.");
+              macro("XPUI_PAGEMODE_UNINST", "", "Sets all of the pages inserted after this macro to be inserted into the uninstaller. This macro can be used multiple times.");
+              macro("XPUI_PAGE_WELCOME", "", "Inserts the welcome page into your installer.  This welcome page looks like Joost Verburg's Modern UI, without the bitmap on the left.");
+              macro("XPUI_PAGE_WELCOME2", "", "Inserts the alternative welcome page into your installer.  This page looks like the welcome page in the latest InstallShield® setup programs.");
+              macro("XPUI_PAGE_LICENSE", "text/rtf_file", "Inserts the license page into your installer.  The license page displays an agreement between the software maker and the end user, and asks the user to accept the agreement before installing the program.");
+              macro("XPUI_PAGE_COMPONENTS", "", "Inserts the component selection page into your installer.  The components page asks the user what parts of the program he/she wants to install.");
+              macro("XPUI_PAGE_DIRECTORY", "", "Inserts the folder selection page into your installer.  The directory page asks the user what folder he/she wants the main program files copied to.");
+              macro("XPUI_PAGE_STARTMENU", "page_id var", "Inserts the start menu folder selection page into your installer.  The start menu page asks the user what Start Menu program group the shortcuts to the program should be placed in.  page_id can be any text value (no spaces) and var should be $0, $1, etc.  It is recommended that you declare a user variable (<code>Var SMFOLDER</code> etc.) for <b>var</b> so that its value is not overwritten between the Start Menu page and the InstFiles page.");
+              macro("XPUI_PAGE_INSTCONFIRM", "", "Inserts the installation confirmation page into your installer.  The install confirm page asks the user to confirm the installation or maintenance operation.");
+              macro("XPUI_PAGE_INSTFILES", "", "Inserts the file copy page into your installer.  The files page is where the program's files are copied to the user's hard disk and a log is displayed in a list box.");
+              macro("XPUI_PAGE_INSTSUCCESS", "", "Inserts the installation success page into your installer.  The install success page alerts the user that the program was successfully copied to his/her computer's hard disk.");
+              macro("XPUI_PAGE_FINISH", "", "Inserts the finish page into your installer.  The finish page alerts the user that the program was successfully copied to his/her computer's hard disk, and asks the user if he/she wants to run the program, view the documentation, or reboot the computer.");
+              macro("XPUI_PAGE_UNINSTCONFIRM_NSIS", "", "Inserts the classic NSIS-style uninstall confirmation page into your installer.  The NSIS-style uninstall confirmation page asks the user to confirm that he/she wants to uninstall the program, and shows the folder that the program is installed in.");
+              macro("", "", "");
+            </script>
+            <font face=Verdana style="font-size:8pt">
+	    <b>A note on page defines:</b> When you define a custom string, it is usually applied to the installer only.  To make a custom string that applies to the uninstaller, define the string as normal, but add UN after the XPUI_ part of the define.  An example would be XPUI_COMPONENTSPAGE_TITLE becomes XPUI_<b>UN</b>COMPONENTSPAGE_TITLE.  Note that this does not apply to macros; to insert, for example, the welcome page into your uninstaller, insert XPUI_PAGEMODE_UNINST and then XPUI_PAGE_WELCOME.</m2><br>
+            </font>
+	    <br>
+	  </p>
+	  
+	</td>
+	
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+	
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

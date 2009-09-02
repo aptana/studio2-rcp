@@ -1,0 +1,137 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+          <h1>ExperienceUI Skin Support</h1>
+            <p style="margin-left: 0.20in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              Of course, the main feature of the ExperienceUI is that is changes your normal, boring-looking setup wizard into a
+              user-friendly, themed environment for installing a program - a functional, fast, and pretty alternative to InstallShield®
+              and WISE® Installer.  But, if the ExperienceUI had only one look that gets boring after awhile, who would want to use it,
+              when InstallShield® has tons of free downloadable skins?  That's where the skinning support comes in.  The ExperienceUI
+              allows you to use several preset skins, or even create your own, even if you have little or no scripting knowledge.<br>
+              <br>
+              &nbsp;&nbsp;&nbsp;If you have read the <a href=visual_settings.htm>Global Defines &gt; Basic Settings</a> section, you already know
+              how to use a skin; it only needs <b>one line of code</b>.  But, you can write your own skins, too.  You can integrate
+              the skin file into your script, or create a redistributable skin file that can be downloaded off of the Web and installed
+              just by being clicked on.  See the next section for more information.
+            </p>
+	  
+	  <a name=write id=write></a>
+          
+	  <h1>Writing Skins</h1>
+	  
+              <p style="margin-left: 0.20in">
+                   <font face=Verdana style=font-size:8pt color=#000000><b>How to write your own custom skins</b></font>
+                   <font face=verdana color=#000000 style="font-family: "Verdana; font-size: 10pt; color: #000000; font-weight: medium> step-by-step</font><br>
+          
+                   <p style="margin-left: 0.25in">
+                   <font face=verdana color=#000000 style="font-family: "Verdana; font-size: 10pt; color: #000000; font-weight: medium>
+          
+                   <b>Tip: </b>To make your skin easily customizable, use <code>!insertmacro XPUI_DEFAULT</code> instead of <code>!define</code>.<br>
+                   <b>Another Tip: </b>If you still need help, look at the example skins.
+                   </font>
+          
+                   <p style="margin-left: 0.30in">
+          
+                     <font face=verdana color=#000000 style="font-family: "Verdana; font-size: 10pt; color: #000000; font-weight: medium>
+          
+                       <b>1. Define XPUI_CUSTOMSKIN</b>
+          
+                         <p style="margin-left: 0.50in">
+                         The first thing you need to do is define XPUI_CUSTOMSKIN. This notifies the XPUI header file that you are using a non-default skin for your installer.<br><br>
+          
+                       <p style="margin-left: 0.30in">
+                       <b>2. Define Colors and BGGradient Options</b>
+                         <p style="margin-left: 0.50in">
+                         Next, you need to <a href="visual_settings.htm#colors">define the custom colors</a> for your skin.<br><br>
+          
+                       <p style="margin-left: 0.30in">
+                       <b>3. Create header/footer images and the Left Logo</b>
+                         <p style="margin-left: 0.50in">
+                         Fire up your favorite image editor and whip up a header image, a Left Logo (the picture on the left of the installer), and a footer image if you want one.  Then, put the images in (NSIS Directory)\Contrib\ExperienceUI\Skins\(Skin name).<br>
+			 <br>
+			 <a style="color: #294F75;" href=javascript:void(0) onmouseover="this.style.color='#DA6500'" onmouseout="this.style.color='#294F75'" onclick="alert('ExperienceUI recommended picture dimensions:\n\nLeft Logo: 240x349\nHeader Image: 693x57\nBottom Image: 693x70');">Click here</a> for the recommended dimensions.
+          
+                     <p style="margin-left: 0.30in">
+                     <b>4. Define the Image locations</b>
+          
+                       <p style="margin-left: 0.50in">
+                       Next, you need to tell the ExperienceUI script where to find the pictures you created.  It is recommended that you put the bitmap files in &lt;ExperienceUI Install Dir&gt;\Skins\&lt;skin name&gt;.
+          
+                     <p style="margin-left: 0.30in">
+                     <b>5. Create an XPUI_SET_BG macro</b>
+                       <p style="margin-left: 0.50in">
+		       <b>NOTE:</b> This step is now optional.<br>
+		       <br>
+		       You no longer need to create this macro, but if you want to, you can.  Any code that is used here should be compatible with the NSIS .onGUIInit function.  Use the following code example for your background:</font><br>
+                         <p style="margin-left: 0.50in">
+                         <font face="Courier New" style="color: #008000; font-family: 'Courier New'; font-decoration: none; font-size=8pt">!macro </font><font face="Courier New" style="color: #000000; font-family: 'Courier New'; font-decoration: none; font-size=8pt">XPUI_SET_BG</font><br><br>
+          
+                         <font face="Courier New" style="color: #008000; font-family: 'Courier New'; font-decoration: none; font-size=8pt">  !ifndef </font><font face="Courier New" style="color: #000000; font-family: 'Courier New'; font-decoration: none; font-size=8pt">XPUI_SET_BG_INSERTED</font><br>
+                         <font face="Courier New" style="color: #008000; font-family: 'Courier New'; font-decoration: none; font-size=8pt">    !define </font><font face="Courier New" style="color: #000000; font-family: 'Courier New'; font-decoration: none; font-size=8pt">XPUI_SET_BG_INSERTED</font><br>
+                         <font face="Courier New" style="color: #0000FF; font-family: 'Courier New'; font-decoration: none; font-size=8pt; font-weight: bold">      [your code here...]</font><br>
+                         <font face="Courier New" style="color: #008000; font-family: 'Courier New'; font-decoration: none; font-size=8pt">  !endif<br><br>!macroend</font>
+          
+                     <font face=verdana color=#000000 style="font-family: "Verdana; font-size: 10pt; color: #000000; font-weight: medium>
+                     <p style="margin-left: 0.30in">
+                     <b>6. Create an XPUI_BGFILES_DELETE macro</b>
+                       <p style="margin-left: 0.50in">
+                       You will need to create a macro that deletes any files in the user's TEMP folder and call any finishing plugin calls here.
+                       Use the following code example:</p>
+                       <p style="margin-left: 0.50in">
+                       <font face="Courier New" style="color: #008000; font-family: 'Courier New'; font-decoration: none; font-size=8pt">!macro </font><font face="Courier New" style="color: #000000; font-family: 'Courier New'; font-decoration: none; font-size=8pt">XPUI_BGFILES_DELETE</font><br>
+          
+                       <font face="Courier New" style="color: #0000FF; font-family: 'Courier New'; font-decoration: none; font-size=8pt; font-weight: bold">  [your code here...]</font><br>
+                       <font face="Courier New" style="color: #008000; font-family: 'Courier New'; font-decoration: none; font-size=8pt">!macroend</font>
+                       </p>
+          
+                     <p style="margin-left: 0.30in">
+                     <b>7. Save the File</b>
+                       <p style="margin-left: 0.50in">
+          
+                       Save the file as "${NSISDIR}\Contrib\ExperienceUI\Skins\skin_name.XPUIskin".<br>
+                       Then, to use the skin in your script, simply use the following line:<br>
+                         <p style="margin-left: 0.50in">
+                         <font face="Courier New" style="color: #008000; font-family: 'Courier New'; font-decoration: none; font-size=8pt">!define </font><font face="Courier New" style="color: #000000; font-family: 'Courier New'; font-decoration: none; font-size=8pt">XPUI_SKIN </font><font face="Courier New" style="color: #4A9595; font-family: 'Courier New'; font-decoration: none; font-size=8pt">"skin_name"</font><br>
+                       <font face=Verdana style=font-size:8pt color=#000000>
+                       <p style="margin-left: 0.50in">
+          
+                       Remember <b>not</b> to add the .XPUIskin at the end of the define.  This is done automatically for you.<br>
+          
+                     </font>
+                     <p style="margin-left: 0.30in">
+                     <b>
+                     Congratulations!  You just wrote your own skin for the ExperienceUI!
+                     </b><br>
+          
+          
+        </td>
+        
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

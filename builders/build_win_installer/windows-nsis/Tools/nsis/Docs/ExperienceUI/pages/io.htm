@@ -1,0 +1,140 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+    
+    <script type=text/javascript>
+    
+      function expand(sec) {
+      
+        if(document.getElementById(sec+"_d").style.display=="none") {
+	  document.getElementById(sec+"_d").style.display="block";
+	  document.getElementById(sec+"_i").src="../Images/minus.gif";
+	} else {
+	  document.getElementById(sec+"_d").style.display="none";
+	  document.getElementById(sec+"_i").src="../Images/plus.gif";
+	}
+      
+      }
+      
+      var parentparams=new Object();
+      var aParams=parent.window.location.search.substr(1).split('&');
+      for (i=0;i<aParams.length;i++) {
+        var aParam=aParams[i].split('=');
+        var sParamName=aParam[0];
+        var sParamValue=aParam[1];
+        parentparams[sParamName]=sParamValue;
+      }
+      
+      function goioDocs() {
+        if(parentparams['banner']) {
+          parent.window.location="browser.htm?return=io.htm&url=%2E%2E%2F%2E%2E%2FInstallOptions/Readme.html&banner="+parentparams['banner'];
+        } else {
+          parent.window.location="browser.htm?return=io.htm&url=%2E%2E%2F%2E%2E%2FInstallOptions/Readme.html";
+        }
+      }
+    
+    </script>
+    
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+          <h1>Create custom pages</h1>
+	  
+	  <p style="margin-left:0.2in">
+	  
+	    <font face=Verdana style=font-size:8pt>
+	    
+	      <b>You can create custom pages with the ExperienceUI.</b>  The new plugin system, introduced in NSIS 2.0, allows insertion of
+	      custom pages at any point in the installer.  If you can't find a page that does what you need it to do, you can write a
+	      custom page using <a href="javascript:goioDocs();">InstallOptions</a> and use the ExperienceUI to extract and call it.<br>
+	      <br>
+	      Creating a custom ExperienceUI page takes even less effort than writing the NSIS code to display it yourself.  See the macros
+	      below for more information.
+	      
+	    </font>
+	      
+	  </p>
+	  
+	  <h1>InstallOptions Macros</h1>
+	  
+	  <p style=margin-left:0.2in>
+	  
+	    <font face=Verdana style=font-size:8pt>
+	    
+	      <p style=margin-left:0.2in><b>XPUI_INSTALLOPTIONS_EXTRACT</b> <font color=#294F75><i>ini_file</i></font><p style=margin-left:0.4in>Extracts the INI file "ini_file" to the plugins directory.  This enables the file to be initialized by the ExperienceUI.</p>
+	      <p style=margin-left:0.2in><b>XPUI_INSTALLOPTIONS_EXTRACT_AS</b> <font color=#294F75><i>old_ini new_ini</i></font><p style=margin-left:0.4in>Extracts "old_ini" to the plugins directory as "new_ini".</p>
+	      <p style=margin-left:0.2in><b>XPUI_INSTALLOPTIONS_DISPLAY</b> <font color=#294F75><i>ini_file</i></font><p style=margin-left:0.4in>Shows the custom InstallOptions page in "ini_file" in the installer window.  If you need the HWND of the dialog, it is stored in $XPUI_HWND.  When you call this, all of the dialog controls are automatically skinned.</p>
+	      <p style=margin-left:0.2in><b>XPUI_INSTALLOPTIONS_INITDIALOG</b> <font color=#294F75><i>ini_file</i></font><p style=margin-left:0.4in>Initializes InstallOptions by creating the dialog in "ini_file", but does not show the window.  When you call this, all of the dialog controls are automatically skinned.  Just like a regular InstallOptions call, either the HWND of the window or an error string will be returned on the top of the stack.</p>
+	      <p style=margin-left:0.2in><b>XPUI_INSTALLOPTIONS_SHOW</b> <font color=#294F75><i></i></font><p style=margin-left:0.4in>Shows the dialog initialized with XPUI_INSTALLOPTIONS_INITDIALOG.  Not anything more than a glorified "InstallOptions::show"</p>
+	      <p style=margin-left:0.2in><b>XPUI_INSTALLOPTIONS_READ</b> <font color=#294F75><i>$VAR "ini.file" "INI Section" Value</i></font><p style=margin-left:0.4in>Reads value "Value" from section "INI Section" in INI file "ini.file" into $VAR.</p>
+	      <p style=margin-left:0.2in><b>XPUI_INSTALLOPTIONS_WRITE</b> <font color=#294F75><i>"ini.file" "INI Section" ValueName String</i></font><p style=margin-left:0.4in>Sets value "ValueName" from section "INI Section" in file "ini.file" to "String".</p>
+	    
+	    </font>
+	  
+	  </p>
+	      
+	      
+	      <a href="javascript:expand('example');"><img src=../Images/plus.gif id=example_i border=0 width=9 height=9><font face=Verdana style=font-size:8pt>  Example Custom Page</font></a>
+	      
+	      <div id=example_d style=display:none;margin-left:0.2in>
+	       
+	        <h2 style=margin-left:0.2in>Example InstallOptions Page</h2>
+		
+
+<div style=margin-left:0.4in>
+<pre>
+<code><span style="font: 10pt Courier New;"><span class="nsis1-reservedword">Page</span><span class="nsis1-space"> </span><span class="nsis1-parameter">custom</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;init&quot;</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;verify&quot;
+
+</span><span class="nsis1-reservedword">Function</span><span class="nsis1-space"> init
+
+  </span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_INSTALLOPTIONS_EXTRACT </span><span class="nsis1-string">&quot;Custom.ini&quot;
+</span><span class="nsis1-space">  </span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_INSTALLOPTIONS_DISPLAY </span><span class="nsis1-string">&quot;Custom.ini&quot;
+</span><span class="nsis1-space">  
+</span><span class="nsis1-reservedword">FunctionEnd
+
+Function</span><span class="nsis1-space"> Verify
+
+  </span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_INSTALLOPTIONS_READ </span><span class="nsis1-variable">$0</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;Custom.ini&quot;</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;Field 1&quot;</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;State&quot;
+</span><span class="nsis1-space">  </span><span class="nsis1-function">StrCmp</span><span class="nsis1-space"> </span><span class="nsis1-variable">$0</span><span class="nsis1-space"> </span><span class="nsis1-number">1</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;&quot;</span><span class="nsis1-space"> +</span><span class="nsis1-number">3
+</span><span class="nsis1-space">    </span><span class="nsis1-function">MessageBox</span><span class="nsis1-space"> </span><span class="nsis1-parameter">MB_OK</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;Please uncheck the check box.&quot;
+</span><span class="nsis1-space">    </span><span class="nsis1-function">Abort
+
+FunctionEnd
+</span></span>
+</code></pre>
+</div>
+
+	      
+	      </div>
+	      
+	    </font>
+	  
+	  </p>
+          
+        </td>
+        
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

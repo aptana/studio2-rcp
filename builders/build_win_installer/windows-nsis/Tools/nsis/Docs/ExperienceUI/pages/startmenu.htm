@@ -1,0 +1,149 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+    <script type=text/javascript src=cmd.js></script>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+          <h1>Start Menu Page</h1>
+          
+          <p style=margin-left:0.2in>
+          
+            <font face=Verdana style=font-size:8pt>
+            
+              The Start Menu page was redesigned in ExperienceUI 1.1 to work like the Modern UI system.  The new Start Menu page was largely
+              based on the Modern UI, so it works the same way.
+            
+            </font>
+          
+          </p>
+          
+          <font face=Verdana style=font-size:8pt>
+          
+            <script type=text/javascript>
+            
+              define('XPUI_STARTMENUPAGE_TITLE', '"Header Top"', 'The top layer of text on the header.', '"Select Start Menu Folder"');
+              define('XPUI_STARTMENUPAGE_SUBTITLE', '"Header Bottom"', 'The bottom layer of text on the header.', '"Select the folder in which to create shortcuts to &lt;NAME&gt;"');
+              define('XPUI_STARTMENUPAGE_CAPTION', '": Text"', 'The text added to the window caption.', '": Start Menu Folder"');
+              define('XPUI_STARTMENUPAGE_TEXT', '"Page Top"', 'The text at the top  of the page.', '"Select the Start Menu folder in which to create shortcuts to &lt;NAME&gt;:"');
+              define('XPUI_STARTMENUPAGE_CHECKBOX', '"Check Box"', 'The text at on the check box that indicates not to create a Start Menu folder.', '"Don\'t create a Start Menu folder"');
+              define('XPUI_STARTMENUPAGE_FOLDER', '"Folder Name"', 'The default name of the folder to create Start Menu shortcuts in.', '"&lt;NAME&gt;"');
+              // define('', '', '', '');
+              
+              var parentparams=new Object();
+              var aParams=parent.window.location.search.substr(1).split('&');
+              for (i=0;i<aParams.length;i++) {
+                var aParam=aParams[i].split('=');
+                var sParamName=aParam[0];
+                var sParamValue=aParam[1];
+                parentparams[sParamName]=sParamValue;
+              }
+            
+            </script>
+          
+          </font>
+          
+          <h1>Component Manager Compatibility</h1>
+          
+            <p style="margin-left:0.2in">
+              <font face=Verdana style=font-size:8pt>
+                If you use <a href="javascript:if(parentparams['banner']){parent.window.location='browser.htm?url=http://xpui.sourceforge.net/compmgr/&return=startmenu.htm&banner=no'}else{parent.window.location='browser.htm?url=http://xpui.sourceforge.net/compmgr/&return=startmenu.htm'};">Component Manager</a> in your installer, the Start Menu shortcut
+                feature needs to know the appropriate page ID and variable, and it needs to call the ExperienceUI start menu creation macro.
+                The problem is, the Start Menu page has to be inserted <i>before</i> Component Manager calls XPUI_STARTMENU_WRITE_BEGIN.
+                Inserting XPUI_PAGE_STARTMENU and then CM_SYSTEM would work, but the Component Manager maintenance pages would be after the
+                Start Menu page.  These macros allow you to define any necessary settings for the Start Menu page, but delay calling it
+                until where it would normally appear.
+                
+              </font>
+            </p>
+            
+            <script type=text/javascript>
+            
+              macro('XPUI_PAGE_STARTMENU_INIT', 'page_id var', 'Inserts a new start menu page into the installer and creates any related functions, but does not actually call the page.  This macro has to be used before inserting ${StartMenu} commands in Component Manager and before inserting CM_SYSTEM.  Inserting XPUI_PAGE_STARTMENU and then CM_SYSTEM would work, but the maintenance page system would be after the Start Menu page.');
+              macro('XPUI_PAGE_STARTMENU_SHOW', 'page_id', 'Shows a Start Menu page created with XPUI_PAGE_STARTMENU_INIT.  Use this where you would normally insert XPUI_PAGE_STARTMENU.');
+              
+            </script>
+
+<div style="margin-left: 0.2in">
+<font face=Verdana style=font-size:8pt>
+<b>Example:</b>
+</font>
+</div>
+<div style="margin-left: 0.4in">
+<pre>
+<code><span style="font: 10pt Courier New;"><span class="nsis1-directive">!include</span><span class="nsis1-space"> CM.nsh
+</span><span class="nsis1-directive">!include</span><span class="nsis1-space"> XPUI.nsh
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_LANGUAGE </span><span class="nsis1-string">&quot;English&quot;
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_PAGE_STARTMENU_INIT MyApp </span><span class="nsis1-variable">$R0
+
+</span><span class="nsis1-space"> </span><span class="nsis1-comment"># ...
+
+</span><span class="nsis1-variable">${Section}</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;Start Menu Shortcuts&quot;</span><span class="nsis1-space"> SecSM </span><span class="nsis1-string">&quot;Creates Start Menu Shortcuts&quot;
+</span><span class="nsis1-space">  </span><span class="nsis1-variable">${StartMenu}</span><span class="nsis1-space"> MyApp </span><span class="nsis1-variable">$R0
+</span><span class="nsis1-space">    </span><span class="nsis1-variable">${CreateShortcut}</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;Start the Program&quot;</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;</span><span class="nsis1-variable">$INSTDIR</span><span class="nsis1-string">\MyApp.exe&quot;
+</span><span class="nsis1-space">  </span><span class="nsis1-variable">${StartMenuEnd}
+${SectionEnd}
+
+</span><span class="nsis1-space"> </span><span class="nsis1-comment"># ...
+
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> CM_SYSTEM
+ </span><span class="nsis1-comment"># ...
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_PAGE_STARTMENU_SHOW MyApp
+</span></span>
+</code></pre>
+</div>
+
+          
+          <h1>Get the return</h1>
+          
+          <p style=margin-left:0.2in>
+          
+            <font face=Verdana style=font-size:8pt>
+            
+              Of course, you need to have a way to read which folder the user selected, or if the user decided not to create shortcuts.  Reading the
+              return from the Start Menu page is now automated.
+            
+            </font>
+          
+          </p>
+          
+          <h2>Macros</h2>
+          
+          <font face=Verdana style=font-size:8pt>
+            
+            <script type=text/javascript>
+            
+              macro('XPUI_STARTMENU_WRITE_BEGIN', 'page_id', 'Insert this macro to have the ExperienceUI read the user\'s Start Menu folder selection.  After you insert this macro, you should create any shortcuts (or do any other related operations) and then insert XPUI_STARTMENU_WRITE_END.  page_id should be the text you specified when you inserted XPUI_PAGE_STARTMENU.  After you insert this macro, the variable you specified when you inserted XPUI_PAGE_STARTMENU will contain the user\'s folder selection (if any).');
+              macro('XPUI_STARTMENU_WRITE_END', '', 'Finishes a block started with XPUI_STARTMENU_WRITE_BEGIN.  If you fail to include this in the same section or function where you started the block, MakeNSIS will halt.');
+            
+            </script>
+          
+          </font>
+          
+        </td>
+        
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

@@ -1,0 +1,109 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+    
+    <script type=text/JavaScript>
+    function printemail(email) {
+      var domain = "users.sourceforge.net";
+      document.write('<a href="mailto:' + email +'@users.sourceforge.net?subject=ExperienceUI comments">');
+      document.write(email +'@users.sourceforge.net</a>');
+    }
+    </script>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+	
+	<h1>Multiple Languages</h1>
+    
+	<p style=margin-left:0.2in>
+	  
+	<font face=Verdana style=font-size:8pt color=#000000>
+          Since version 1.04, the ExperienceUI features support for multiple languages.  The platform is based on that of the Modern UI's
+          (Joost does it again!) with a few modifications to make it work with the XPUI.  To use multiple languges in your installer, simply
+          insert the XPUI_LANGUAGE macro, with 1 parameter, which should be the filename, minus the extension, of the language.
+          (ex: !insertmacro XPUI_LANGUAGE Spanish)<br>
+          <br>
+          To write a language file, you can follow the English language file included with the XPUI, and, if necessary, write an NLF (Nullsoft
+          Language File; the NSIS side of the XPUI multi-language system) and make sure that your .NSH file has the same name as the NLF
+          file.<br>
+          <br>
+	  </p>
+          
+          <h1>Translating the ExperienceUI</h1>
+          <p style=margin-left:0.2in>
+	  
+	  <font face=Verdana style=font-size:8pt color=#000000>
+          If you are fluent a language other than English, I would greatly appreciate it you would spend some time translating the ExperienceUI into your native language.  You can edit the strings in <code>&lt;NSIS&gt;\Contrib\ExperienceUI\Language Files\English.nsh</code>, and save them in a new file.  If you translate the ExperienceUI, I (and the many people that speak your native language) would sincerely appreciate it if you e-mail it to me.  <br>
+          <br>
+          Any language you can help with would be appreciated, but the languages I am looking for the most right now are Spanish, French, German, Chinese (Simplified and Traditional), Arabic, and Portuguese.  The ExperienceUI already has a Brazilian Portuguese translation, courtesy of Jenner Modesto.<br>
+          <br>
+          You can send translated language files to me at <script language=JavaScript>printemail('dandaman32');</script>.
+          </font></p>
+          
+	  <a name=cmd id=cmd></a>
+          
+	  <h1>Language Commands</h1>
+    
+	  <p style=margin-left:0.2in>
+	  
+	  <font face=Verdana style=font-size:8pt color=#000000>
+          <b>Macros</b><br>
+          <br>
+          <b>XPUI_LANGUAGE</b> <font color=#294F75>Langfile(no_ext)</font> - Adds a language to your installer.  Don't insert the same
+          language twice. (ex: <code>!insertmacro XPUI_LANGUAGE French</code>)<br>
+          <br>
+          <b>XPUI_LANGDLL_DISPLAY</b> <font face=#294F75></font> - Shows the language selection dialog.  Use this in .onInit.  This should
+          eventually be a page.<br>
+          <br>
+          <b>XPUI_LANGPAGE_DISPLAY</b> <font face=#294F75></font> - Insert this macro in your .onInit function to show a page that asks the user
+          which language to use.  At compile time, a custom EXE is built and any visual settings you use are carried over.  At runtime this
+          custom EXE is extracted and run.  If you insert this anywhere except in .onInit, the page will compile and show but the selected
+          language will not be changed because of limitations in NSIS.  To manually change settings with the language page, edit &lt;NSIS&gt;\Contrib\ExperienceUI\LangPage.nsi.
+          <b>Because of a bug in this page, you must only use languages that have 4-digit identifiers.  Most languages have 4-digit IDs, but a few
+          do not. The only known language that uses a 5-digit ID is currently Breton.  An example of a language with a 4-digit ID is English, whose
+          ID is 1033.</b><br>
+          <br>
+          <b>XPUI_UNGETLANGUAGE</b> - Retrieves the saved language from the user's Registry, and, if the language is invalid, asks the user
+          to select his/her preferred language.<br>
+          <br>
+          <b>Defines</b><br>
+          <br>
+            <p style="margin-left: 0.30in">
+            <b>XPUI_LANGDLL_REGISTRY_ROOT</b> <font color=#294F75>(HKCR|HKLM|HKCC|HKCU|HKU|HKDD)</font> - The registry root to store the user's
+            language preference in. (ex: HKLM)<br>
+            <br>
+            <b>XPUI_LANGDLL_REGISTRY_KEY</b> <font color=#294F75>My\Registry\Key</font> - The registry key to store the user's
+            language preference in. (ex: SOFTWARE\MyProgram\Setup)<br>
+            <br>
+            <b>XPUI_LANGDLL_REGISTRY_VALUE</b> <font color=#294F75>MyRegValue</font> - The registry value to store the user's
+            language preference in. (ex: LanguagePrefID)<br>
+            <br>
+          </font>
+	  </p>
+          
+        </td>
+        
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

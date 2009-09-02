@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+          <a name=abort id=abort></a>
+          
+          <h1>Abort Page</h1>
+            
+            <p style="margin-left: 0.20in">
+              <m2><b>XPUI_USERABORT</b> - Invokes the abort page immediately.  Use this in .onUserAbort or any time after the GUI has been initialized.  Please note that you cannot call this macro in .onInit or any other function when the installer GUI has not yet been drawn.  Here is an example .onUserAbort function that utilizes the ExperienceUI Abort Page:</m2>
+              <p style=margin-left:0.60in>
+                <font face="Courier New" style="font-size: 8pt">
+                  <font color=#0000FF><b>Function&nbsp;</b></font><font color=#000000>.onUserAbort</font><br>
+                  &nbsp;&nbsp;<font color=#0000FF><b>StrCmp</b>&nbsp;</font><font color=#800000><i>$NOABORTWARNING</i></font>&nbsp;<font color=#008080>1</font>&nbsp;<font color=#000000>AbortMe</font><br>
+                  &nbsp;&nbsp;<font color=#0000FF><b>MessageBox&nbsp;</b><font color=#FF8040>MB_YESNO</font><font color=#000000>|</font><font color=#FF8040>MB_ICONQUESTION</font>&nbsp;<font color=#008080>"Are&nbsp;you&nbsp;sure&nbsp;you&nbsp;want&nbsp;to&nbsp;cancel&nbsp;Setup?"</font>&nbsp;<font color=#FF8040>IDNO</font>&nbsp;<font color=#000000>NoAbort</font><br>
+                  &nbsp;&nbsp;<font color=#008000>!insertmacro&nbsp;</font><font color=#000000>XPUI_USERABORT</font><br>
+                  &nbsp;&nbsp;<font color=#000000>NoAbort:<br>
+                  &nbsp;&nbsp;<font color=#0000FF><b>Abort</b></font><br>
+                  &nbsp;&nbsp;<font color=#000000>AbortMe:</font><br>
+                  <font color=#0000FF><b>FunctionEnd</b></font>
+                </font>
+              </font>
+            </font>
+          
+          <a name=reserve id=reserve></a>
+          
+            <h1>Reserve Files</h1>
+            
+            <p style="margin-left: 0.20in">
+              <m2><b>XPUI_RESERVEFILE_HEADERIMAGE</b> - Adds the header image to the earlier data blocks of the installer.  This can speed up loading in larger setups.  Insert this before the XPUI_FUNCTION_GUIINIT macro and before <b>any</b> file commands.</m2><br>
+              <br>
+              <m2><b>XPUI_RESERVEFILE_LEFTBRANDINGIMAGE</b> - Adds the left branding image (the bitmap on the left of the installer) to the earlier data blocks of the installer.  This can speed up loading in larger setups.  Insert this before the XPUI_FUNCTION_GUIINIT macro and before <b>any</b> file commands.</m2><br>
+              <br>
+              <m2><b>XPUI_RESERVEFILE_BOTTOMIMAGE</b> - Adds the bottom button panel image to the earlier data blocks of the installer.  This can speed up loading in larger setups.  Insert this before the XPUI_FUNCTION_GUIINIT macro and before <b>any</b> file commands.</m2><br>
+              <br>
+            </p>
+          
+          <a name=left id=left></a>
+          
+            <h1>Information Panel</h1>
+            
+            <p style="margin-left: 0.20in">
+              <m2><b>XPUI_LEFT_BLANK</b> - Blanks out the information panel.  You can insert this in the PRE function of the Abort page.  After XPUI_LEFT_MESSAGE is called, this is called automatically.</m2><br>
+              <br>
+              <m2><b>XPUI_LEFT_SETTIME</b></m2><font color=#294F75> "# Minutes"</font><m2> - Sets the text on the information panel to "# Minutes".  You can call this anytime after .GUIInit is called by the NSIS core.  You can also insert XPUI_LEFT_SETTIME "Less than 1 minute" or XPUI_LEFT_SETTIME "Sometime in the next millennium" or whatever you want.</m2><br>
+              <br>
+              <m2><b>XPUI_LEFT_MESSAGE</b></m2><font color=#294F75> "Text at top" "Body Text" Type#</font><m2> - Shows a color-theme aware message box on the left info panel.  This must be used in a custom page function.  Replace Type# with 1 (OK button), 2 (OK/Cancel buttons), or 3 (Yes/No buttons).  To get the return, use <code>ReadINIStr $var $TEMP\MBSide.ini Settings State</code>.  The return value will be either 1 (OK for Type 1), 2 (OK for type 2 or Yes), or 3 (Cancel or No).  After you get the return value, you need to delete the file manually.  Example:</m2><br>
+              <p style=margin-left:0.60in>
+                <font style="font-family: 'Courier New'; font-size: 8pt; font-weight: 'bold'; color: #0000FF" face="Courier New" color="#0000FF">Page </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #FF8040" face="Courier New" color="#FF8040">custom </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #000000" face="Courier New" color="#000000">MessageBox MBFin </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #008080" face="Courier New" color="#008080">": My Message Box"</font><br>
+                <br>
+                <font style="font-family: 'Courier New'; font-size: 8pt; font-weight: 'bold'; color: #0000FF" face="Courier New" color="#0000FF">Function </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #000000" face="Courier New" color="#000000">MessageBox</font><br>
+                <font style="font-family: 'Courier New'; font-size: 8pt; color: #008000" face="Courier New" color="#008000">!insertmacro </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #000000" face="Courier New" color="#000000">XPUI_LEFT_MESSAGE </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #008080" face="Courier New" color="#008080">"Just so you know..." "The XPUI can do message boxes too!" 2</font><br>
+                <font style="font-family: 'Courier New'; font-size: 8pt; font-weight: 'bold'; color: #0000FF" face="Courier New" color="#0000FF">FunctionEnd</font><br>
+                <br>
+                <font style="font-family: 'Courier New'; font-size: 8pt; font-weight: 'bold'; color: #0000FF" face="Courier New" color="#0000FF">Function </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #000000" face="Courier New" color="#000000">MBFin</font><br>
+                <font style="font-family: 'Courier New'; font-size: 8pt; font-weight: 'bold'; color: #0000FF" face="Courier New" color="#0000FF">ReadINIStr </font><font style="font-family: 'Courier New'; font-size: 8pt; font-weight: 'bold'; color: #0000FF" face="Courier New" color="#0000FF"></font><font style="font-family: 'Courier New'; font-size: 8pt; color: #800000" face="Courier New" color="#800000"><i>$R0 $TEMP</i></font><font style="font-family: 'Courier New'; font-size: 8pt; color: #000000" face="Courier New" color="#000000">\MBSide.ini</font><font style="font-family: 'Courier New'; font-size: 8pt; color: #008080" face="Courier New" color="#008080"> "Settings" </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #000000" face="Courier New" color="#000000">State</font><br>
+                <font style="font-family: 'Courier New'; font-size: 8pt; font-weight: 'bold'; color: #0000FF" face="Courier New" color="#0000FF">StrCmp </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #800000" face="Courier New" color="#800000"><i>$R0 </i></font><font style="font-family: 'Courier New'; font-size: 8pt; color: #008080" face="Courier New" color="#008080">2 "" +2</font><br>
+                <font style="font-family: 'Courier New'; font-size: 8pt; font-weight: 'bold'; color: #0000FF" face="Courier New" color="#0000FF">MessageBox </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #FF8040" face="Courier New" color="#FF8040">MB_OK </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #008080" face="Courier New" color="#008080">"You clicked OK, user!" </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #FF8040" face="Courier New" color="#FF8040">IDOK </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #000000" face="Courier New" color="#000000">+</font><font style="font-family: 'Courier New'; font-size: 8pt; color: #008080" face="Courier New" color="#008080">2</font><br>
+                <font style="font-family: 'Courier New'; font-size: 8pt; font-weight: 'bold'; color: #0000FF" face="Courier New" color="#0000FF">MessageBox </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #FF8040" face="Courier New" color="#FF8040">MB_OK </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #008080" face="Courier New" color="#008080">"You clicked Cancel, user!"</font><br>
+                <font style="font-family: 'Courier New'; font-size: 8pt; font-weight: 'bold'; color: #0000FF" face="Courier New" color="#0000FF">Delete </font><font style="font-family: 'Courier New'; font-size: 8pt; color: #800000" face="Courier New" color="#800000"><i>$TEMP</i></font><font style="font-family: 'Courier New'; font-size: 8pt; color: #000000" face="Courier New" color="#000000">\MBSide.ini</font><br></font>
+                <font style="font-family: 'Courier New'; font-size: 8pt; font-weight: 'bold'; color: #0000FF" face="Courier New" color="#0000FF">FunctionEnd</font><br><br>
+              </p>
+            </p>
+          
+        </td>
+        
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

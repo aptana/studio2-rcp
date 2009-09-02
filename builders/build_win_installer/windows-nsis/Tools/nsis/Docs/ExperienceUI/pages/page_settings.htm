@@ -1,0 +1,282 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+    <script type=text/javascript src=cmd.js></script>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+	    <font face=Verdana style=font-size:8pt>
+	    
+	      <!-- READ ME FIRST -->
+	      <a name=read1st id=read1st></a>
+	      <p style=margin-left:0.00in>
+	      <h1>Uninstaller Strings</h1>
+	      </p>
+	      <p style=margin-left:0.20in>
+	      When you define a custom string, it is usually applied to the installer (i. e. not the uninstaller) only.  To make a custom string that applies to the uninstaller, define the string as normal, but add UN after the XPUI_ part of the define.  An example would be XPUI_COMPONENTSPAGE_TITLE becomes XPUI_<b>UN</b>COMPONENTSPAGE_TITLE.  Note that this does not apply to macros; to insert, for example, the welcome page into your uninstaller, insert XPUI_PAGEMODE_UNINST and then XPUI_PAGE_WELCOME.<br>
+              <br>
+              Starting with ExperienceUI 1.1, you can define a string before inserting a language to change the default text for every page.  Defining a string and then inserting the associated page will change the text only for that page.  In other words, if you define "XPUI_DIRECTORYPAGE_TITLE" and then insert the English language, every directory page in the installer will use that define.  But, if you define "XPUI_DIRECTORYPAGE_TITLE" and the insert the directory page, only that instance of the directory page will have the custom title.  The UN prefix still applies to per-page settings.<br>
+              <br>
+              Some settings are per-page-only.  These settings are only reflected in one instance of a page, and the default settings are either static or can only be changed with a different command.  Example: XPUI_COMPONENTSPAGE_TEXT_INSTTYPE, when defined, only changes the text next to the install type combo box on the first instance of the components page that is inserted after the define.  On subsequent components pages, this new setting will be ignored (in fact, after the first components page that is inserted, this setting will be !undef'ed).  Of course, you can define the setting for as many components pages as you want.
+	      <br>
+	      </p>
+	      </div>
+	    
+	      <!-- WELCOME PAGE -->
+	      <a name=welcome id=welcome></a>
+	      <p style=margin-left:0.00in>
+	      <h1>Welcome Page Settings</h1>
+	      </p>
+              <script type=text/javascript>
+                define('XPUI_WELCOMEPAGE_TITLE', '"Header Top"', 'The top layer of text on the header.', '"Welcome"');
+                define('XPUI_WELCOMEPAGE_SUBTITLE', '"Header Bottom"', 'The bottom layer of text on the header.', '"Welcome top &lt;NAME&gt; Setup."');
+                define('XPUI_WELCOMEPAGE_CAPTION', ': Text', 'The text added to the window caption.', '" " [blank string]');
+                define('XPUI_WELCOMEPAGE_TEXT_TOP', '"Page Top"', 'The text at the top of the page, shown in large text.', '"Welcome to the &lt;NAME&gt; Setup wizard"');
+                define('XPUI_WELCOMEPAGE_TEXT', '"Page Main"', 'The text on the body of the page.', '<div style=margin-left:0.6in;>This wizard will guide you through the installation of &lt;NAME&gt;$\\n<br>$\\n<br>It is recommended that you close all other applications before starting Setup.  This will make it possible to update relevant system files without having to reboot your computer.")</div>');
+              </script>
+	      </div>
+	      
+	      <!-- WELCOME PAGE 2 -->
+	      <a name=welcome2 id=welcome2></a>
+	      <p style=margin-left:0.00in>
+	      <h1>InstallShield®-style Welcome Page Settings</h1>
+	      </p>
+              
+              <script type=text/javascript>
+                define('XPUI_WELCOMEPAGESTYLE2_TITLE', '"Header Top"', 'The top layer of text on the header.', '"Welcome"');
+                define('XPUI_WELCOMEPAGESTYLE2_SUBTITLE', '"Header Bottom"', 'The bottom layer of text on the header.', '"Welcome top &lt;NAME&gt; Setup."');
+                define('XPUI_WELCOMEPAGESTYLE2_CAPTION', ': Text', 'The text added to the window caption.', '" " [blank string]');
+                define('XPUI_WELCOMEPAGESTYLE2_TEXT_TOP', '"Page Top"', 'The text at the top of the page, shown in bold face.', '"Welcome to the NSIS Setup Wizard for &lt;NAME&gt;."');
+                define('XPUI_WELCOMEPAGESTYLE2_TEXT', '"Page Main"', 'The text on the body of the page.', '"Welcome to &lt;NAME&gt; Setup.  This will install &lt;NAME&gt; on your computer."');
+              </script>
+	      </div>
+	      
+	      <!-- LICENSE PAGE -->
+	      <a name=license id=license></a>
+	      <p style=margin-left:0.00in>
+	      <h1>License Page Settings</h1>
+	      </p>
+              
+              <script type=text/javascript>
+                define('XPUI_LICENSEPAGE_TITLE', '"Header Top"', 'The top layer of text on the header.', '"License Agreement"');
+                define('XPUI_LICENSEPAGE_SUBTITLE', '"Header Bottom"', 'The bottom layer of text on the header.', '"Please review the license agreement before installing &lt;NAME&gt;."');
+                define('XPUI_LICENSEPAGE_CAPTION', ': Text', 'The text added to the window caption.', '": License Agreement');
+                define('XPUI_LICENSEPAGE_TEXT_TOP', '"Page Top"', 'The text at the top of the page.', '"Press Page Down to see the rest of the agreement."');
+                define('XPUI_LICENSEPAGE_TEXT_BOTTOM', '"Page Main"', 'The text at the bottom of the page.', '"If you accept all the terms of the agreement, click on I Agree to continue.  You must accept the agreement to install &lt;NAME&gt;."');
+              </script>
+              
+	      <a name=licensefs id=licensefs></a>
+		<h2 style=margin-left:0.2in>Force Selection options</h2>
+	        <script type=text/javascript>
+                  define('XPUI_LICENSEPAGE_CHECKBOX', 'No parameters (true/false define)', 'Define this to require the user to select a check box to indicate that he/she accepts the license agreement.', 'true/<b>false</b>');
+                </script>
+		<div style=margin-left:0.60in>
+                <script type=text/javascript>
+                  define('XPUI_LICENSEPAGE_CHECKBOX_TEXT', '"Checkbox Text"', 'The text for the "I Agree" check box.', '"I accept the terms in the license agreement"');
+                </script>
+		</div>
+                <script type=text/javascript>
+                  define('XPUI_LICENSEPAGE_RADIOBUTTONS', 'No parameters (true/false define)', 'Define this to require the user to select a radio button to indicate that he/she accepts the license agreement.', 'true/<b>false</b>');
+                </script>  
+		<div style=margin-left:0.60in>
+                  <script type=text/javascript>
+                    define('XPUI_LICENSEPAGE_RADIOBUTTONS_TEXT_AGREE', '"Agree Button Text"', 'The text for the "I Agree" radio button.', '"I accept the terms in the License agreement"');
+                    define('XPUI_LICENSEPAGE_RADIOBUTTONS_TEXT_DECLINE', '"Decline Button Text"', 'The text for the "I do not agree" radio button.', '"I do not accept the terms in the license agreement."');
+                  </script>
+		</div>
+                <script type=text/javascript>
+                  define('XPUI_LICENSEPAGE_RESET', 'No parameters (true/false define)', 'Define this to reset the checkbox or radio buttons every time the license page is run (for example, when the user clicks Back.)', 'true/<b>false</b>');
+                </script>
+	      
+	      <!-- COMPONENTS PAGE -->
+	      <a name=components id=components></a>
+	      <p style=margin-left:0.00in>
+	      <h1>Components Page Settings</h1>
+	      </p>
+              <script type=text/javascript>
+                define('XPUI_COMPONENTSPAGE_TITLE', '"Header Top"', 'The top layer of text on the header.', '"Choose Components"');
+                define('XPUI_COMPONENTSPAGE_SUBTITLE', '"Header Bottom"', 'The bottom layer of text on the header.', '"Choose which components of &lt;NAME&gt; should be installed."');
+                define('XPUI_COMPONENTSPAGE_CAPTION', ': Text', 'The text added to the window caption.', '": Select Components');
+                define('XPUI_COMPONENTSPAGE_NODESC', 'No parameters (true/false define)', 'Don\'t show the description area on the Components page.  The ExperienceUI doesn\'t require a separate UI for this, it just uses ShowWindow to hide controls 1042 and 1043.', 'not definesd');
+                define('XPUI_COMPONENTSPAGE_TEXT_DESCRIPTION_TITLE', '"GroupBox Text"', 'The text on the group box around the description area', '"Description"');
+                define('XPUI_COMPONENTSPAGE_TEXT_DESCRIPTION_INFO', '"Description Idle Text"', 'The text that shows when the user\'s cursor is not over a component.', '"Hover your mouse over a component to see its description."');
+                define('XPUI_COMPONENTSPAGE_TEXT_TOP', '"Text"', 'The text at the top of the Components Page.  <b>This is a per-page-only define.</b>', '$(^ComponentsText)');
+                define('XPUI_COMPONENTSPAGE_TEXT_INSTTYPE', '"Text"', 'The text next to the "install type" combo box.  <b>This is a per-page-only define.</b>', '$(^ComponentsSubText1)');
+                define('XPUI_COMPONENTSPAGE_TEXT_SECLIST', '', 'The text next to the list of sections.  <b>This is a per-page-only define.</b>', '$(^ComponentsSubText2)');
+                define('XPUI_COMPONENTSPAGE_TEXT_SECLIST_NOINSTTYPE', '', 'The text next to the list of sections.  This string is used only when there are no InstTypes.  <b>This is a per-page-only define.</b>', '$(^ComponentsSubText2)');
+              </script>
+              <p style=margin-left:0.2in>
+	        <b>NOTE:</b> Use the ComponentText command to set the <b>default</b> main text on every components page.<br>
+              </p>
+	      <br>
+              
+	      <!-- DIRECTORY PAGE -->
+	      <a name=directory id=directory></a>
+	      <p style=margin-left:0.00in>
+	      <h1>Directory Page Settings</h1>
+	      </p>
+              <script type=text/javascript>
+                define('XPUI_DIRECTORYPAGE_TITLE', '"Header Top"', 'The top layer of text on the header.', '"Choose installation location"');
+                define('XPUI_DIRECTORYPAGE_SUBTITLE', '"Header Bottom"', 'The bottom layer of text on the header.', '"Choose the folder in which to install &lt;NAME&gt;"');
+                define('XPUI_DIRECTORYPAGE_CAPTION', '": Text"', 'The text added to the window caption.', '": Select Installation Folder"');
+                define('XPUI_DIRECTORYPAGE_TEXT_TOP', '"Page Top"', 'The text at the top of the page.', '<div style=margin-left:0.6in>Setup will install &lt;NAME&gt; in the following folder.  To install in this folder, leave the text below as-is.  To install in a different folder, enter one below, or click Browse.  $_CLICK<sup>1</sup></div>');
+                define('XPUI_DIRECTORYPAGE_TEXT_DESTINATION', '"Group Box Text"', 'The text on the group box around the folder text box and the Browse button.', '"Installation Directory"');
+                define('XPUI_DIRECTORYPAGE_TEXT_BROWSE', '"Browse Btn Text"', 'The text on the Browse button.', '"Browse"');
+                define('XPUI_DIRECTORYPAGE_TEXT_BROWSEDIALOG', '"Browse Dialog Text"', 'The text on the graphical folder selection dialog.', '"Please select a folder:"');
+              </script>
+	      <p style=margin-left:0.20in>
+                <font size=1><sup>1</sup>$_CLICK is an internal NSIS variable that changes to say, "Click Next to continue" or "Click Install to start the installation" depending on whether the InstFiles page is next or not.</font>
+	      </p>
+	      
+	      <!-- START MENU PAGE -->
+	      <a name=startmenu id=startmenu></a>
+	      <p style=margin-left:0.00in>
+	      <h1>Start Menu Page Settings</h1>
+	      </p>
+              
+              <p style=margin-left:0.2in>
+              
+                For information on the Start Menu page, please see the <a href=startmenu.htm>Start Menu Page documentation</a>.
+              
+              </p>
+              
+	      <!-- INSTCONFIRM PAGE -->
+	      <a name=instconfirm id=instconfirm></a>
+	      <p style=margin-left:0.00in>
+	      <h1>Install Confirm Page Settings</h1>
+	      </p>
+              
+              <script type=text/javascript>
+                define('XPUI_INSTCONFIRMPAGE_TITLE', '"Header Top"', 'The top layer of text on the header.', '"Confirm Installation"');
+                define('XPUI_INSTCONFIRMPAGE_SUBTITLE', '"Header Bottom"', 'The bottom layer of text on the header.', '"Setup has finished gathering information and is ready to install &lt;NAME&gt;."');
+                define('XPUI_INSTCONFIRMPAGE_CAPTION', '": Text"', 'The text added to the window caption.', '": Confirm Installation"');
+                define('XPUI_INSTCONFIRMPAGE_TEXT_TOP', '"Page Top"', 'The text at the top of the page.', '"Setup is ready to install &lt;NAME&gt; on your computer."');
+                define('XPUI_INSTCONFIRMPAGE_TEXT_BOTTOM', '"Page Main"', 'The text on the body of the page.', '$_CLICK');
+              </script>
+	      
+	      <!-- INSTFILES PAGE -->
+	      <a name=instfiles id=instfiles></a>
+	      <p style=margin-left:0.00in>
+	      <h1>InstFiles Page Settings</h1>
+	      </p>
+              
+              <script type=text/javascript>
+                define('XPUI_INSTFILESPAGE_TITLE', '"Header Top"', 'The top layer of text on the header.', '"Installing"');
+                define('XPUI_INSTFILESPAGE_SUBTITLE', '"Header Bottom"', 'The bottom layer of text on the header.', '"Please wait while &lt;NAME&gt; is being installed."');
+                define('XPUI_INSTFILESPAGE_CAPTION', '": Text"', 'The text added to the window caption.', '": Copying Files"');
+              </script>
+
+	      <!-- INSTSUCCESS PAGE -->
+	      <a name=instsuccess id=instsuccess></a>
+	      <p style=margin-left:0.00in>
+	      <h1>Install Success Page Settings</h1>
+	      </p>
+              
+              <script type=text/javascript>
+                define('XPUI_INSTSUCCESSPAGE_TITLE', '"Header Top"', 'The top layer of text on the header.', '"Installation Complete"');
+                define('XPUI_INSTSUCCESSPAGE_SUBTITLE', '"Header Bottom"', 'The bottom layer of text on the header.', '"Setup has successfully installed &lt;NAME&gt; on your computer."');
+                define('XPUI_INSTSUCCESSPAGE_CAPTION', '": Text"', 'The text added to the window caption.', '": Installation Successful"');
+                define('XPUI_INSTSUCCESSPAGE_TEXT_TOP', '"Page Top"', 'The text at the top of the page.', '"Setup has successfully installed &lt;NAME&gt; on your computer."');
+                define('XPUI_INSTSUCCESSPAGE_TEXT_BOTTOM', '"Page Main"', 'The text on the body of the page.', '"Click Close to exit."');
+              </script>
+              	      
+	      <!-- FINISH PAGE -->
+	      <a name=finish id=finish></a>
+	      <p style=margin-left:0.00in>
+	      <h1>Finish Page Settings</h1>
+	      </p>
+	      <script type=text/javascript>
+	      define('XPUI_FINISHPAGE_TITLE', '"Header Top"', 'The top layer of text on the header.', '"Installation Complete"');
+	      define('XPUI_FINISHPAGE_SUBTITLE', '"Header Bottom"', 'The bottom layer of text on the header. (Default:"Setup has successfully installed &lt;NAME&gt; on your computer."');
+	      define('XPUI_FINISHPAGE_CAPTION', '": Your Text Here"', 'The text added to the window caption.', '": Installation Successful"');
+	      define('XPUI_FINISHPAGE_TEXT_TOP', '"Page Top"', 'The text at the top of the page.', '"Completing the &lt;NAME&gt; Setup Wizard"');
+	      define('XPUI_FINISHPAGE_TEXT', '"Page Main"', 'The text on the body of the page.', '<br><br><div style=margin-left:0.6in>Setup has successfully installed &lt;NAME&gt; on your computer.$\\n<br>$n<br>Please click &lt;XPUI_BUTTONTEXT_CLOSE&gt; to exit.</div>');
+	      define('XPUI_FINISHPAGE_TEXT_USE_TOP_ALT', 'No parameters (true/false define)', 'Define this to use the alternative text style at the top of the page.', 'true/<b>false</b>');
+	      define('XPUI_FINISHPAGE_TEXT_TOP_ALT', '"Text"', 'The text used at the top of the page for the alternative style.', '"NSIS Setup Wizard Complete"');
+	      
+	      define('XPUI_FINISHPAGE_RUN', 'No parameters (true/false define)', 'Define this setting to have the installer run a program after the user closes the finish page.', 'true/<b>false</b>');
+	      document.write('<div style=margin-left:0.3in>');
+	        define('XPUI_FINISHPAGE_TEXT_RUN', '"Text"', 'The text used on the main page when both run support <i>and</i> documentation support options are turned on.', '"Setup has successfully installed &lt;NAME&gt; on your computer.$\\n<br>$\\n<br>Which actions do you want to perform?"');
+	        define('XPUI_FINISHPAGE_CHECKBOX_RUN', '"Text"', 'The text used for the "Run Program Now" checkbox.', '"Run &lt;NAME&gt; now"');
+		define('XPUI_FINISHPAGE_RUN_FILE', '$INSTDIR\\Path_to_your_program.exe', 'The file that is run.', '&lt;no default setting&gt;');
+		define('XPUI_FINISHPAGE_RUN_FUNCTION', 'Function_name', 'The function that is called after the finish page.  You do not need to define an on/off value for this; it is done automatically.', '&lt;no default value&gt;');
+		define('XPUI_FINISHPAGE_RUN_NOTCHECKED', 'No parameters (true/false define)', 'Define this to not check the Run Program checkbox by default.', 'true/<b>false</b>');
+	      document.write('</div>');
+	      define('XPUI_FINISHPAGE_DOCS', '"Text"', 'Define this setting to have the installer show a documentation file after the user closes the finish page.', 'true/<b>false</b>');
+	      document.write('<div style=margin-left:0.3in>');
+	        define('XPUI_FINISHPAGE_CHECKBOX_DOCS', '"Text"', 'The text used for the "Show Readme Now" checkbox.', '"View the documentation for &lt;NAME&gt; now"');
+	        define('XPUI_FINISHPAGE_DOCS_FILE', '$INSTDIR\\Path_to_your_docs.htm', 'The file that is opened.', '&lt;no default value&gt;');
+		define('XPUI_FINISHPAGE_DOCS_FUNCTION', 'Function_name', 'The function that is called after the finish page.  You do not need to define an on/off value for this; it is done automatically.', '&lt;no default value&gt;');
+		define('XPUI_FINISHPAGE_DOCS_NOTCHECKED', 'No parameters (true/false define)', 'Define this to not check the Show Documentation checkbox by default.', 'true/<b>false</b>');
+	      document.write('</div>');
+	      document.write('<p style=margin-left:0.20in><b>Reboot Support</b></p>');
+	      document.write('<div style=margin-left:0.3in>');
+	      define('XPUI_FINISHPAGE_REBOOT_FORCE', 'No parameters (true/false define)', 'Define this to force the finish page to prompt the user for a reboot.', 'true/<b>false</b>');
+	      define('XPUI_FINISHPAGE_NOREBOOT', 'No parameters (true/false define)', 'Define this to keep the installer from asking for a reboot even if the reboot flag is set.  Otherwise, the installer will ask for a reboot if the flag is set, and continue normally if it is not.', 'true/<b>false</b>');
+	      define('XPUI_FINISHPAGE_TEXT_REBOOT', '"Text"', 'The text shown on the page when a reboot is required.', '<div style=margin-left:0.4in>"Setup has finished copying files to your computer.$\\n<br>$\\n<br>To finish the installation, you must restart your computer.  Do you want to restart your computer now?"</div>');
+	      define('XPUI_FINISHPAGE_REBOOT_MESSAGEBOX', '"Text"', 'The text shown on the message box that asks for reboot confirmation.', '<div style=margin-left:0.4in>"Setup is about to reboot your computer.$\\n<br>$\\n<br>Please save and close all open files and documents, and click OK to reboot your computer."</div>');
+	      document.write('</div><p style=margin-left:0.20in><b>Link Support</b></p>');
+	      document.write('<div style=margin-left:0.3in>');
+	      define('XPUI_FINISHPAGE_LINK', 'No parameters (true/false define)', 'Shows a link at the bottom of the Finish page.', 'true/<b>false</b>');
+	      define('XPUI_FINISHPAGE_LINK_TEXT', '"Text"', 'The text shown for the link at the bottom of the page.', '&lt;no default value&gt;');
+	      define('XPUI_FINISHPAGE_LINK_FUNCTION', 'Function_name', 'The function called when the link is clicked.  Use this to open your install directory, go to a web site, etc.', '""');
+	      document.write('</div>');
+	      </script>
+	      
+	      <!-- ABORT PAGE -->
+	      <a name=abort id=abort></a>
+	      <p style=margin-left:0.00in>
+	      <h1>Abort Page Settings</h1>
+	      </p>
+              
+              <script type=text/javascript>
+                define('XPUI_ABORTPAGE_TITLE', '"Header Top"', 'The top layer of text on the header.', '"Installation Aborted"');
+                define('XPUI_ABORTPAGE_SUBTITLE', '"Header Bottom"', 'The bottom layer of text on the header.', '"&lt;NAME&gt; Setup was not completed successfully."');
+                define('XPUI_ABORTPAGE_CAPTION', '": Text"', 'The text added to the window caption.', '": Installation Cancelled"');
+                define('XPUI_ABORTPAGE_TEXT_TOP', '"Page Top"', 'The text at the top of the page.', '"NSIS Setup Wizard Complete"');
+                define('XPUI_ABORTPAGE_TEXT', '"Page Main"', 'The text on the body of the page.', '<div style=margin-left:0.6in;>"The wizard was interrupted before $(^Name) could be completely installed.$\\n<br>$\\n<br>Your system has not been modified.  To install this program at a later time, please run this wizard again.$\n<br>$\\n<br>$\\n<br>$\\n<br>$\\n<br>Please click Close to exit the Setup Wizard."</div>');
+              </script>
+              
+	      <!-- NSIS UNINSTCONFIRM PAGE -->
+	      <a name=nsisunc id=nsisunc></a>
+	      <p style=margin-left:0.00in>
+	      <h1>Uninstall Confirm Page Settings</h1>
+	      </p>
+              
+              <script type=text/javascript>
+                define('XPUI_UNINSTCONFIRMPAGE_NSIS_TITLE', '"Header Top"', 'The top layer of text on the header.', '"Uninstall &lt;NAME&gt;"');
+                define('XPUI_UNINSTCONFIRMPAGE_NSIS_SUBTITLE', '"Header Bottom"', 'The bottom layer of text on the header.', '"Remove &lt;NAME&gt; from your computer"');
+                define('XPUI_UNINSTCONFIRMPAGE_NSIS_CAPTION', '": Text"', 'The text added to the window caption.', '": Confirm Uninstall"');
+                define('XPUI_UNINSTCONFIRMPAGE_NSIS_TEXT_TOP', '"Page Top"', 'The text at the top of the page.', '"&lt;NAME&gt; will be uninstalled from the following folder.  Click Uninstall to start the uninstallation."');
+                define('XPUI_UNINSTCONFIRMPAGE_NSIS_TEXT_FOLDER', '"Group Box Text"', 'The text next to the folder indicator text box.', '"Uninstalling from:"');
+              </script>
+	      
+	    </font>
+	  
+	</td>
+	
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+	
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site digestURL="site.xml.digest">
+   <description url="http://update.aptana.com/update">
+      Aptana Update Central. Version {version.full}
+   </description>
+    <feature url="features/com.aptana.ide.feature.rcp_{version.full}.jar" id="com.aptana.ide.feature.rcp" version="{version.full}">
+      <category name="Aptana Studio RCP"/>
+   </feature>
+   <category-def name="Aptana Studio RCP" label="Aptana Studio RCP">
+      <description>
+         Updates for Aptana as a standalone installation.
+      </description>
+   </category-def>
+</site>

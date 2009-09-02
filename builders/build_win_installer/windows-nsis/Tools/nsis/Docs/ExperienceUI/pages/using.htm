@@ -1,0 +1,148 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+<h1>Using the ExperienceUI</h1>
+
+<font face=Verdana style=font-size:8pt>
+Implementing the ExperienceUI into your NSIS script is very easy.  Many people that use the ExperienceUI will be creating new script files,
+but for those who are upgrading a Modern UI, UltraModernUI, or InstallSpider UI script to the ExperienceUI, all you'll need to do is change
+the include to the ExperienceUI header file.<br>
+<br>
+The ExperienceUI uses a define/macro system.  This allows you to define custom colors, bitmaps, and user interface files, but the defaults
+will be used if you don't define anything.  You don't need to know that much about NSIS to use the ExperienceUI, because all of the code
+that controls the user interface has been written for you.
+You shouldn't use settings like Icon, CheckBitmap, or ChangeUI, because the ExperienceUI uses its own GUI settings.<br>
+<br>
+If you haven't done so, I recommend that you read the <a href=syntax.htm><b>syntax</b> page</a> before diving into this.
+<br>
+  <p style=margin-left:0.20in>
+  <b>If you are creating a new script</b> or upgrading a script from the standard UI<br>
+  <br>
+  <ul type=1 style=margin-left:0.40in>
+    <li><b>Include the header file.</b><br>
+        <br>
+	Include the header file with:<br><br>
+	<font face="Courier New"><font color=#008000>!include </font>XPUI.nsh</font>.<br><br>
+	This notifies NSIS that you want to use the ExperienceUI.  The XPUI.nsh file is in &lt;NSIS Folder&gt;\Include, so you don't need
+	to specify a path.<br>
+	<br></li>
+    <li><b>GUI Settings</b><br>
+        <br>
+	Next, define any settings that apply to the entire installer, like XPUI_ICON, XPUI_TEXT_COLOR and such.  You can really define 
+	settings like these anywhere before you insert the first language file.<sup>1</sup><br>
+        <br></li>
+    <li><b>Language Files</b><br>
+    	<br>
+	Insert languages into your installer.  The only languages included with the ExperienceUI so far are English and Brazilian
+        Portuguese (PortugueseBR), but others will be available if you chose to copy any installed Modern UI languages to the ExperienceUI
+	folder during installation.<br>
+	<br>
+	You must insert at least one language into your installer in order for the ExperienceUI to work properly.<br>
+	<br>
+	<font face="Courier New"><font color=#008000>!insertmacro </font>XPUI_LANGUAGE <font color=#008080>"English"</font><br>
+	<font face="Courier New"><font color=#008000>!insertmacro </font>XPUI_LANGUAGE <font color=#008080>"PortugueseBR"</font></font></font><br>
+	<br>
+	You don't need to insert XPUI_FUNCTION_GUIINIT anymore, because it is now inserted the first time you insert a language.<br>
+        <br></li>
+    <li><b>Installer Pages</b><br>
+    	<br>
+	Insert <a href=page_macros.htm>pages</a> into the script.  
+	<a href=page_settings.htm>Read about page settings...</a><br>
+        <br></li>
+    <li><b>Your own sections and functions</b><br>
+        <br>
+	Now, insert your own code into the script.  This is usually your own sections, functions, and such. For more information about
+	sections and functions, please refer to the NSIS users manual.<br>
+        <br></li>
+    <li><b>Custom code for ExperienceUI pages</b><br>
+        <br>
+	You can add your own code to the ExperienceUI page macros.  For each page in the installer, you can insert three functions, one
+	before the page is initialized, one when the page is about to be shown, and one after the page is finished.  <a href=custfunc.htm>More about custom functions...</a><br>
+	<br></li>
+    <li><b>Your own pages</b><br>
+        <br>
+	NSIS 2 features a plugin system that allows you to insert your own pages.  Refer to the NSIS users' guide for information on how
+	to use <b>InstallOptions</b> to create custom pages.<br>
+	<br>
+	To insert a custom page, use the Page command between ExperienceUI page macros at the point where you want your page to appear.
+	Then, use the ExperienceUI's <a href=io.htm>InstallOptions Macros</a> to display the page.<br>
+        <br>
+	Here is an example custom page:<br>
+	<br>
+	<font face="Courier New">
+	<font color=#008000>!insertmacro </font>XPUI_PAGE_WELCOME<br>
+	<font color=#008000>!insertmacro </font>XPUI_PAGE_COMPONENTS<br>
+	<font color=#000080><b>; this page will be in between the Components and Install Confirm pages</b></font><br>
+	<font color=#0000FF><b>Page </b></font><font color=#FF8040>custom </font>CstmPage <font color=#008080>"" " - Custom Page!" </font><br>
+	<font color=#008000>!insertmacro </font>XPUI_PAGE_INSTCONFIRM<br>
+	<br>
+	<font color=#0000FF><b>Function </b></font>CstmPage<br>
+	&nbsp;&nbsp;<font color=#008000>!insertmacro </font>XPUI_INSTALLOPTIONS_EXTRACT MyPage.ini<br>
+	&nbsp;&nbsp;<font color=#008000>!insertmacro </font>XPUI_INSTALLOPTIONS_SHOW <font color=#008080>"MyPage.ini"</font><br>
+	<font color=#0000FF><b>FunctionEnd</b></font>
+	</font>
+	
+	<br>
+	<br></li>
+    <li><b>Section Descriptions</b><br>
+        <br>
+	Now, you can insert section descriptions.  If you are using a components page, you can set a description of each component to appear when the
+        user positions the mouse over an item in the list.  <a href=secdesc.htm>Read more...</a><br>
+        <br></li>
+  </ul>
+    <p style=margin-left:0.20in><font size=1><sup>1</sup>NOTE: You need to define XPUI_UI, XPUI_UI_IDDINST, XPUI_UI_BOTTOMIMAGE, and XPUI_WANSIS_UI before including XPUI.nsh.  This is because the page macros make use of the SetBrandingImage command, which requires the custom UI file to already be set.  While this may be fixed in the future, any fixes will probably be unstable.</font></p>
+  </p>
+  <p style=margin-left:0.20in><b>Converting a Modern UI, UltraModern UI, or InstallSpider UI script</b></p>
+  <p style=margin-left:0.40in>
+    You can use an existing script that uses the Modern UI, UltraModern UI, or InstallSpider UI with the ExperienceUI.  The ExperienceUI
+    includes special code that converts all known Modern UI defines to ExperienceUI-compatible settings.  This is much like WINE for Linux.
+    WINE is not Windows, it just can look that way because of special code.  The ExperienceUI works the same way.  While the ExperienceUI
+    can understand Modern UI-compatible scripts, its underlying architecture is completely different.<br>
+    <br>
+    I can do this using a feature known as dummy macros.  If you insert, for example, MUI_PAGE_WELCOME, the ExperienceUI will automatically
+    substitute XPUI_PAGE_WELCOME (or XPUI_PAGE_WELCOME2 if UMUI_USE_ALTERNATE_PAGE is defined)<br>
+    <br>
+    To use the ExperienceUI in a Modern UI, UltraModern UI, or InstallSpider UI script, just change the include.  Example:<br>
+    <br>
+    Old:<br>
+    <font face="Courier New"><font color=#008000>!include </font><font color=#008080>"MUI.nsh"</font> <font color=#000080><b>; or UMUI.nsh or ISUI.nsh...</b></font>
+    </font><br>
+    <br>
+    New:<br>
+    <font face="Courier New"><font color=#008000>!include </font><font color=#008080>"XPUI.nsh"</font>
+    </font><br>
+    <br>
+  </p>
+</font>
+
+	  
+	</td>
+	
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+	
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

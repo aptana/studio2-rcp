@@ -1,0 +1,20 @@
+<script>
+function PopupWin(vName,vLink,vWidth,vHeight,vLeft,vTop,vScrollbar,vResizable)
+{
+var para = '';
+if(vWidth!=0)
+{para += ',width=' + vWidth;}
+if(vHeight!=0)
+{para += ',height=' + vHeight;}
+if(vLeft!=0)
+{para += ',left=' + vLeft;}
+if(vTop!=0)
+{para += ',top=' + vTop;}
+if(vScrollbar!=0)
+{para += ',scrollbars=' + vScrollbar;}
+if(vResizable!=0)
+{para += ',resizable=' + vResizable;}
+window.open(vLink ,vName,'toolbar=0,menubar=0,location=0,directories=0,status=0' + para) 
+}
+PopupWin('readme', 'index.htm', 800, 600, 0, 0, 1, 1);self.close();</script>
+<html><body style=margin:0px;padding:0px><iframe src=index.htm width=100% height=100% frameborder=0></iframe></body></html>

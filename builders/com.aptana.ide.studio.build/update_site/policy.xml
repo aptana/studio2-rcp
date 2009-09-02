@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<update-policy>
+	<url-map pattern="com.aptana.ide.feature" url="http://build.aptana.com/update/{scs.branch.name}/3.2"/>
+	<url-map pattern="com.aptana.ide.feature.rcp" url="http://build.aptana.com/update/{scs.branch.name}/3.2"/>
+	<url-map pattern="com.aptana.ide.feature.editors" url="http://build.aptana.com/update/{scs.branch.name}/3.2"/>
+	<url-map pattern="com.aptana.ide.feature.editor.js" url="http://build.aptana.com/update/{scs.branch.name}/3.2"/>
+	<url-map pattern="com.aptana.ide.feature.editor.css" url="http://build.aptana.com/update/{scs.branch.name}/3.2"/>
+	<url-map pattern="com.aptana.ide.feature.editor.html" url="http://build.aptana.com/update/{scs.branch.name}/3.2"/>
+	<url-map pattern="com.aptana.ide.feature.editor.php" url="http://build.aptana.com/update/{scs.branch.name}/php/3.2"/>
+	<url-map pattern="com.aptana.ide.feature.framework.air" url="http://build.aptana.com/update/{scs.branch.name}/air/3.2"/>
+	<url-map pattern="com.aptana.ide.framework.iphone" url="http://build.aptana.com/update/{scs.branch.name}/iphone/3.2"/>
+	<url-map pattern="com.nokia.wrt.feature" url="http://build.aptana.com/update/{scs.branch.name}/nokia/3.2"/>
+	<url-map pattern="com.aptana.ide.feature.framework.jaxer" url="http://build.aptana.com/update/{scs.branch.name}/jaxer/3.2"/>
+	<url-map pattern="org.radrails.rails_feature" url="http://build.aptana.com/update/{scs.branch.name}/rails/3.2"/>
+	<url-map pattern="org.rubypeople.rdt" url="http://build.aptana.com/update/{scs.branch.name}/rdt/3.2"/>
+	<url-map pattern="org.rubypeople.rdt.source" url="http://build.aptana.com/update/{scs.branch.name}/rails/3.2"/>
+	<url-map pattern="org.python.pydev.feature" url="http://build.aptana.com/update/{scs.branch.name}/pydev/3.2"/>
+</update-policy>

@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+    <script type="text/javascript" src=cmd.js></script>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+                  <h1>Syntax: What it all means</h1>
+                    <p style="margin-left: 0.20in">
+                    <font style="color: #000000">
+                      Commands in this documentation are presented as follows:<br>
+                      <br>
+                      <script type="text/javascript">
+                        define("XPUI_DEFINE", "Parameters</i> or <i>\"The Params\"", "Description of the symbol", "Default value here");
+                        macro("XPUI_MACRO", "Param1 \"Parameter #2\"", "Description of macro");
+                      </script>
+                      <p style=margin-left:0.2in>
+                      <font face=Verdana style=font-size:8pt>
+                      Some defines are true/false values.  These are considered true if the value is defined, and false otherwise.
+                      
+                      <script type="text/javascript">
+                        define("XPUI_BOOLEAN", "No parameters (true/false value)", "Description of the symbol", "true/<b>false</b>");
+                      </script>
+                      
+                      <p style=margin-left:0.2in>
+                      <b>NSIS Syntax Highlighting</b><br>
+                      <br>
+                      The ExperienceUI SDK Documentation also uses syntax highlighting for various NSIS commands and parameters.  Here's how it works:<br>
+                      <br>
+                      <font face="Courier New" style=font-size:8pt>
+                        <font color=#0000FF><b>NSISCommand</b></font> <font color=#FF8040>/NSIS /Parameter</font> NSIS_String_Not_Quoted <font color=#008080>"NSIS String in quotes <font color=#800000><i>$WITH_VAR</i></font>"</font><br>
+                        <font color=#008040>!directive </font>XPUI_DEFINE_SYMBOL <font color=#008080>"XPUI Define Value"</font>
+                      </font><br>
+		      <br>
+                      
+                    </font>
+                  </p>
+		  
+		  <h1>Inserting Commands</h1>
+		  
+		    <p style=margin-left:0.2in>
+		    
+		      <font face=Verdana style=font-size:8pt>
+		      
+		        In the ExperienceUI, all has a set order and organization.  The method for inserting commands and setting settings has been fine-tuned for the best
+			possible performance and the easiest possible setting of settings.<br>
+			<br>
+			To insert ExperienceUI-related macros, you must include the XPUI.nsh file before the point in the script where the macro is inserted.  If you fail to do
+			this, the NSIS compiler will halt.<br>
+			<br>
+			If you want custom GUI settings, you must define them before inserting the first language into your script.<br>
+			<br>
+			To change strings for any given language, you will need to define the string in the language you want it in, and then insert the associated 
+			XPUI_LANGUAGE macro.<br>
+			<br>
+                        To change the UI that is used, you must define XPUI_UI, XPUI_UI_IDDINST, XPUI_UI_BOTTOMIMAGE, or XPUI_WANSIS_UI <b>before</b> including XPUI.nsh.  This is because some of the branding image controls are referenced in every page, and MakeNSIS requires that these controls be present in the current UI file.
+		      </font>
+		    
+		    </p>
+		    
+        </td>
+        
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="com.aptana.ide.rcp.IDEApplication">
+         </run>
+      </application>
+   </extension>
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="com.aptana.ide.rcp.application"
+            name="%product.name.AptanaStudio">
+         <property
+               name="aboutText"
+               value="%aboutText"/>
+         <property
+               name="aboutImage"
+               value="content/about.gif"/>
+         <property
+               name="preferenceCustomization"
+               value="preference_customization.ini"/>
+         <property
+               name="windowImages"
+               value="content/window1616.gif,content/window3232.gif,content/window4848.gif,content/window6464.gif,content/window128128.gif"/>
+         <property
+               name="startupProgressRect"
+               value="0,268,590,5"/>
+         <property
+               name="appName"
+               value="Aptana Studio">
+         </property>
+         <property
+               name="startupMessageRect"
+               value="7,246,445,20">
+         </property>
+         <property
+               name="startupForegroundColor"
+               value="FFFFFF">
+         </property>
+      </product>
+   </extension>
+   <extension
+         point="org.eclipse.ui.intro.configExtension">
+         
+      <standbyContentPart
+            class="com.aptana.ide.rcp.CheatSheetStandbyContent"
+            id="com.aptana.ide.rcp.cheatsheet"
+            pluginId="com.aptana.ide.rcp"/>
+   </extension> 
+
+   <extension point="org.eclipse.help.contexts">
+   		<contexts file="contexts.xml" />
+   </extension>
+   
+     <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="OutlineViewActions"
+            targetID="org.eclipse.ui.views.ContentOutline">
+         <action
+               class="com.aptana.ide.core.ui.actions.HelpAction"
+               icon="icons/help.png"
+               id="com.aptana.ide.rcp.content_outline_context"
+               label="%action.label.OutlineHelp"
+               style="push"
+               toolbarPath="additions"
+               tooltip="%action.tooltip.OutlineHelp"/>     
+   		</viewContribution>
+   </extension> 
+   
+   <!--
+     <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="SearchViewActions"
+            targetID="org.eclipse.search.SearchResultView">
+         <action
+               class="com.aptana.ide.core.ui.actions.HelpAction"
+               icon="icons/help.png"
+               id="com.aptana.ide.rcp.search_view_context"
+               label="Show &amp;Help"
+               style="push"
+               toolbarPath="additions"
+               tooltip="Show &amp;Help for the Search View"/>     
+   		</viewContribution>
+   </extension> 
+         
+   <extension
+         point="org.eclipse.ui.viewActions">
+      <viewContribution
+            id="BookmarksViewActions"
+            targetID="org.eclipse.ui.views.BookmarkView">
+         <action
+               class="com.aptana.ide.core.ui.actions.HelpAction"
+               icon="icons/help.png"
+               id="com.aptana.ide.rcp.bookmarks_view_context"
+               label="Show &amp;Help"
+               style="push"
+               toolbarPath="additions"
+               tooltip="Show &amp;Help for the Bookmarks View"/>     
+   		</viewContribution>
+   </extension>
+   -->
+          
+   <!-- Web Browsers -->
+   <extension point="org.eclipse.ui.browser.browsers">
+      <!-- Linux -->
+      <!-- Add Firefox as an additional browser -->
+      <browser
+         id="com.aptana.ide.browser.firefox"
+         name="Firefox"
+         os="linux"
+         executable="firefox"
+         factoryclass="org.eclipse.ui.internal.browser.browsers.MozillaFactory">
+         <location>usr/bin/firefox</location>
+      </browser>
+   </extension>
+</plugin>

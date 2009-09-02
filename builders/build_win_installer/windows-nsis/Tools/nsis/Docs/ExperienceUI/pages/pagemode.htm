@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+	
+	  <h1>Page Mode Support</h1>
+	  
+	  <p style=margin-left:0.2in>
+    
+          <font face=Verdana style=font-size:8pt color=#000000>
+            Since version 1.04, the ExperienceUI supports page modes.  This term may be new to you, but it's XPUI-jargon for using identical
+            pages in both the installer and the uninstaller.  The Modern UI also supports this, but it is very difficult to use.  The
+            ExperienceUI allows you to insert any page you want into just the installer, just the uninstaller, or both.  How does it work?
+            When you insert an XPUI_PAGEMODE macro, three defines are assigned values: XPUI_UN, XPUI_UNFUNC, and XPUI_UNINST.  In the
+            Install page mode, these three are blank values.  In the Uninstall page mode, however, they are assigned the values "UN", "un.",
+            and "UNINST", respectively.  Then, to add a page to the uninstaller, all I have to do is:<br>
+            <br>
+            <code>PageEx ${XPUI_UNFUNC}components<br>
+            &nbsp;...<br>
+            PageExEnd</code><br>
+            <br>
+            Of course, there is also the little detail about strings.  You don't want the uninstaller to tell you to "accept the license
+            agreement before installing &lt;NAME&gt;", so I also used this technique with the strings.  The language files have string tables
+            for all 21 pages (10 installer, 11 uninstaller, including the NSIS uninstConfirm page) and the language strings have the
+            ${XPUI_UN} symbol in them.  This allows for completely different install/uninstall strings.  The code is basically like this:<br>
+            <code>
+            !insertmacro XPUI_HEADER_TEXT "$(XPUI_${XPUI_UN}COMPONENTSPAGE_TITLE)" "$(XPUI_${XPUI_UN}COMPONENTSPAGE_SUBTITLE)"
+            </code>
+            </font>
+	    
+	    </p>
+          
+	    <a name=using id=using></a>
+	    <h1>Using Page Modes</h1>
+	    
+	    <p style=margin-left:0.2in>
+	    
+	      <font face=Verdana style=font-size:8pt color=#000000>
+              Using the page mode system is very simple.  Simply insert the page-mode macro and then your pages.  An example of this can be
+              found in the Setup.NSI file in the XPUI installation directory.  For more information, please see the <a href=page_macros.htm>Page Macros</a> section of
+              this document.<br>
+              <br>
+              If you created your scripts for XPUI versions 1.03 or earlier, you may have to change them for versions &gt;1.04.
+              </font>
+	    
+	    </p>
+          
+        </td>
+        
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

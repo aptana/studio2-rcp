@@ -1,0 +1,146 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+          <h1>Skin the entire installer</h1>
+          
+          <p style=margin-left:0.2in>
+          
+            <font face=Verdana style=font-size:8pt>
+            
+              <b>The ExperienceUI includes support for WAnsis</b>, Saivert's skinning plugin.  WAnsis is a plugin for NSIS that uses Winamp
+              2 skins to change the look of the installer completely.  The ExperienceUI natively supports WAnsis, and it is very easy to
+              implement it into your script.<br>
+              <br>
+              <b>NOTES:</b> WAnsis support adds 22KB of overhead to the installer, and the plugin can sometimes be unstable.  If you are
+              very concerned about size, or do not want to take risks concerning stability, you may want to leave WAnsis support out of the
+              installer.
+              
+            </font>
+          
+          </p>
+          
+          <h1>WAnsis Settings</h1>
+          
+          
+          <font face=Verdana style=font-size:8pt>
+          
+            <p style=margin-left:0.2in><b>XPUI_WANSIS</b> <font color=#294F75><i></i></font><p style=margin-left:0.4in>Define this to turn on all WAnsis support in the ExperienceUI. <b>WAnsis has been known to be unstable, so please test your installer thoroughly before you distribute it.</b>  (Default: by default, XPUI_WANSIS is undefined)</p>
+            <p style=margin-left:0.2in><b>XPUI_WANSIS_SKIN</b> <font color=#294F75><i>Skin_folder_name</i></font><p style=margin-left:0.4in>Sets the WAnsis skin to Skin_folder_name, where Skin_folder_name is a folder inside the ExperienceUI's skin directory. (&lt;NSIS&gt;\Contrib\ExperienceUI\Skins)  If you plan to make WAnsis skins, it is different that making standard skins.  Please see the guide below.  (Default: "Forum")</p>
+            <p style=margin-left:0.2in><b>XPUI_WANSIS_HEADERIMAGE</b> <font color=#294F75><i></i></font><p style=margin-left:0.4in>Define this to use a header image in your WAnsis-enabled installer.  If you don't define this, the installer's icon will appear in the spot where the header image would go.  (Default: not defined)</p>
+            <p style=margin-left:0.2in><b>XPUI_WANSIS_HEADERIMAGE_BMP</b> <font color=#294F75><i>BMP_file</i></font><p style=margin-left:0.4in>Uses BMP_file as the header bitmap in a WAnsis installer.  Recommended size: <b>150</b>x<b>57</b>px.  (Default: &lt;NSIS&gt;\Contrib\ExperienceUI\Skins\&lt;WAnsis skin&gt;\Header.bmp)</p>
+            <p style=margin-left:0.2in><b>XPUI_WANSIS_UI</b> <font color=#294F75><i>UI_file</i></font><p style=margin-left:0.4in>Uses UI_file as the UI for a WAnsis-enabled installer.  Don't change this unless you <i>really</i> know what you are doing.  (Default: &lt;NSIS&gt;\Contrib\ExperienceUI\UIs\WAnsis_ui.exe)</p>
+            <p style=margin-left:0.2in><b>XPUI_WANSIS_GEN</b> <font color=#294F75><i>BMP_file</i></font><p style=margin-left:0.4in>The "gen" bitmap used for WAnsis.  Please refer to the WAnsis documentation and the Winamp Skinners' Guide for help on creating WAnsis skins.  (Default: &lt;NSIS&gt;\Contrib\ExperienceUI\Skins\&lt;WAnsis skin&gt;\gen.bmp)</p>
+            <p style=margin-left:0.2in><b>XPUI_WANSIS_GENEX</b> <font color=#294F75><i>BMP_file</i></font><p style=margin-left:0.4in>The "genex" bitmap used for WAnsis.  Please refer to the WAnsis documentation and the Winamp Skinners' Guide for help on creating WAnsis skins.  (Default: &lt;NSIS&gt;\Contrib\ExperienceUI\Skins\&lt;WAnsis skin&gt;\genex.bmp)</p>
+            
+            <p style=margin-left:0.2in>
+            
+              To change the Bottom Image and the Left Logo, use XPUI_BOTTOMIMAGE_BMP and XPUI_LEFTLOGO, respectively.  See <a href=visual_settings.htm>this page</a> for more information.
+            
+            </p>
+
+          </font>
+          
+          <h1>Creating WAnsis Skins</h1>
+          
+          <p style=margin-left:0.2in>
+          
+            <font face=Verdana style=font-size:8pt>
+            
+              You can created your own WAnsis skins, too.  The WAnsis skinning system is a little bit more limited than the standard
+              skinning system, but it makes skin initialization faster and it means you don't need any scripting knowledge to make WAnsis
+              skins.<br>
+              <br>
+              The ExperienceUI WAnsis skinning system has 5 mandatory bitmaps and 1 optional bitmap.  A description of each bitmap can be
+              found below:<br>
+              
+            </font>
+            
+          </p>
+              <ul>
+                <li><b>bottom.bmp</b> &ndash; The bottom image.  The best size is 693x70px, but the last two columns to the right are cut off.  I'm still trying to figure this one out.</li>
+                <li><b>checks.bmp</b> &ndash; The checkbox images used on the Components page.</li>
+                <li><b>gen.bmp</b> &ndash; The bitmap containing window border elements.  See the WAnsis documentation for more information.</li>
+                <li><b>genex.bmp</b> &ndash; The buttons, scrollbars, and color tables for the interior of the window.  Again, see the WAnsis doumentation for more information.</li>
+                <li><b>header.bmp</b> &ndash; Optional Modern UI-cmopatible header bitmap.  Will only be used if XPUI_WANSIS_HEADERIMAGE is defined.  If you don't include this and the user of the skin defines XPUI_WANSIS_HEADERIMAGE, MakeNSIS will halt.</li>
+                <li><b>leftlogo.bmp</b> &ndash; The image shown on the left of the installer window.  Recommended size is 240x349px.</li>
+              </ul>
+              
+          <p style=margin-left:0.2in>
+          
+            <font face=Verdana style=font-size:8pt>
+            
+              To create a new WAnsis skin, navigate to the &lt;NSIS&gt;\Contrib\ExperienceUI\Skins folder and create a new directory.  Name
+              the directory whatever you want your skin's screen name to be.<br>
+              <br>
+              Next, put the bitmap files listed above in the folder you just made.<br>
+              <br>
+              Last, test your skin by using compiling following script:<br>
+            
+          </p>
+              
+              <div style=margin-left:0.4in>
+<pre>
+<code><span style="font: 10pt Courier New;"><span class="nsis1-directive">!define</span><span class="nsis1-space"> XPUI_WANSIS
+</span><span class="nsis1-directive">!define</span><span class="nsis1-space"> XPUI_WANSIS_SKIN </span><span class="nsis1-string">&quot;&lt;Skin name&gt;&quot;
+</span><span class="nsis1-directive">!include</span><span class="nsis1-space"> XPUI.nsh
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_PAGE_WELCOME2
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_PAGE_LICENSE </span><span class="nsis1-string">&quot;</span><span class="nsis1-variable">${NSISDIR}</span><span class="nsis1-string">\Contrib\ExperienceUI\License.rtf&quot;
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_PAGE_COMPONENTS
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_PAGE_DIRECTORY
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_PAGE_INSTCONFIRM
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_PAGE_INSTFILES
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_PAGE_FINISH
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_PAGE_ABORT
+</span><span class="nsis1-directive">!define</span><span class="nsis1-space"> XPUI_ABORTWARNING
+</span><span class="nsis1-directive">!insertmacro</span><span class="nsis1-space"> XPUI_LANGUAGE English
+
+</span><span class="nsis1-reservedword">Name</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;Testing: ExperienceUI WAnsis Skin </span><span class="nsis1-variable">${XPUI_WANSIS_SKIN}</span><span class="nsis1-string">&quot;
+</span><span class="nsis1-reservedword">Caption</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;Testing: ExperienceUI WAnsis Skin </span><span class="nsis1-variable">${XPUI_WANSIS_SKIN}</span><span class="nsis1-string">&quot;
+</span><span class="nsis1-reservedword">OutFile</span><span class="nsis1-space"> </span><span class="nsis1-string">&quot;</span><span class="nsis1-variable">${XPUI_WANSIS_SKIN}</span><span class="nsis1-string"> Test.exe&quot;
+
+</span><span class="nsis1-reservedword">InstallDir</span><span class="nsis1-space"> C:\Test
+
+</span><span class="nsis1-reservedword">Section
+SectionEnd
+</span></span>
+</code></pre>
+
+              </div>
+              
+              Be sure to replace "&lt;Skin name&gt;" with the name of the folder you created.
+              
+            </font>
+          
+          </p>
+          
+          
+        </td>
+        
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

@@ -1,0 +1,156 @@
+<html>
+  <head>
+    <title>ExperienceUI Browser</title>
+    <link rel=stylesheet href=style.css type=text/css>
+    
+    <script type=text/javascript>
+    
+    var params=new Object();
+    var aParams=document.location.search.substr(1).split('&');
+    for (i=0;i<aParams.length;i++) {
+      var aParam=aParams[i].split('=');
+      var sParamName=aParam[0];
+      var sParamValue=aParam[1];
+      params[sParamName]=sParamValue;
+    }
+    
+    function goHome() {document.getElementById('main_frame').src='welcome.htm';}
+    
+    function on(img) {
+      document.getElementById(img).src="browser/"+img+"_o.bmp"
+    }
+    
+    function off(img) {
+      document.getElementById(img).src="browser/"+img+".bmp"
+    }
+    
+    function url(location) {
+      document.getElementById('main_frame').src=unescape(location);
+      document.getElementById("adrbar").value=unescape(location);
+    }
+    
+    function checkURL() {
+    
+    if(params['url']) {
+      if(params['url']=="http://xpui.sourceforge.net/index.php") {
+        if(params['sec']) {
+          url(params['url']+'?sec='+params['sec']);
+          document.getElementById("adrbar").value=params['url']+'?sec='+params['sec'];
+        } else {
+          url(params['url']);
+        }
+      } else {
+      url(params['url']);
+      }
+    }
+    }
+    
+      function exit() {
+        // function for returning to the page from which this came
+        // This is the base URL
+        var url="../index.htm"
+        // separator; value is "?" (first param) or "&" (later params)
+        var sep="?";
+        if(params['return']) {
+          // we do have a url to return to
+          url=url+sep+"start="+params['return'];
+          sep="&";
+        } // else: no URL to return to...
+        
+        // show title banner at top of index.htm?  This option is used by the ExperienceUI website to hide the title area
+        // and make more room for content
+        if(params['banner']) {
+          url=url+sep+"banner="+params['banner'];
+          sep="&";
+        }
+        // for debugging
+        // alert("Returning to: "+url);
+        // end url creation
+        
+        // decide whether to manipulate just current frame or parent window
+        if(params['parent']) {
+          parent.window.location=url;
+        } else {
+          window.location=url;
+        }
+      }
+      
+      function returnTo(page) {
+        // function for returning to the page from which this came
+        // This is the base URL
+        var url="../index.htm"
+        // separator; value is "?" (first param) or "&" (later params)
+        var sep="?";
+        if(page) {
+          // we do have a url to return to
+          url=url+sep+"start="+page;
+          sep="&";
+        } // else: no URL to return to...
+        
+        // show title banner at top of index.htm?  This option is used by the ExperienceUI website to hide the title area
+        // and make more room for content
+        if(params['banner']) {
+          url=url+sep+"banner="+params['banner'];
+          sep="&";
+        }
+        // for debugging
+        // alert("Returning to: "+url);
+        // end url creation
+        
+        // decide whether to manipulate just current frame or parent window
+        if(params['parent']) {
+          parent.window.location=url;
+        } else {
+          window.location=url;
+        }
+      }
+  </script>
+    
+  </head>
+  
+  <body bgcolor="#B0B0B0" style="background-color:#FFFFFF;margin:0px;padding:0px" onload=checkURL();>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr height=22>
+      
+        <td bgcolor=#B0B0B0 valign=middle unselectable=on>
+          <form action="javascript:url(document.getElementById('adrbar').value)">
+          <a href="javascript:exit();"><img border=0 alt=Exit src=browser/exit.bmp id=exit onmouseup="on('exit')" onmousedown="off('exit')" onmouseover="on('exit')" onmouseout="off('exit')"></a>
+          <a href="javascript:history.back(1)" target=main_frame><img border=0 alt=Back src=browser/back.bmp id=back onmouseup="on('back')" onmousedown="off('back')" onmouseover="on('back')" onmouseout="off('back')"></a>
+          <a href="javascript:history.forward(1)" target=main_frame><img border=0 alt=Forward src=browser/forward.bmp id=forward onmouseup="on('forward')" onmousedown="off('forward')" onmouseover="on('forward')" onmouseout="off('forward')"></a>
+          <a href="javascript:location.reload()" target=main_frame><img border=0 alt=Refresh src=browser/refresh.bmp id=refresh onmouseup="on('refresh')" onmousedown="off('refresh')" onmouseover="on('refresh')" onmouseout="off('refresh')"></a>
+          <a href="javascript:url('http://xpui.sourceforge.net')"><img border=0 alt=Home src=browser/home.bmp id=home onmouseup="on('home')" onmousedown="off('home')" onmouseover="on('home')" onmouseout="off('home')"></a>
+          <input type=text id=adrbar value="about:blank" style=width:500px>
+          <a href="javascript:url(document.getElementById('adrbar').value)"><img border=0 alt=Go src=browser/go.bmp id=go onmouseup="on('go')" onmousedown="off('go')" onmouseover="on('go')" onmouseout="off('go')"></a>
+          </form>
+        </td>
+      
+      </tr>
+    
+      <tr>
+      
+        <td valign=top style=margin:0px;padding:0px bgcolor=#FFFFFF>
+        
+          <iframe src="about:blank" id=main_frame name=main_frame width=100% height=100% frameborder=0 onclick="document.getElementById('adrbar').value=this.src;">
+          </iframe>
+    
+        </td>          
+        
+      </tr>
+      
+      <tr height=16>
+      
+        <td valign=bottom style=margin:0px;padding:0px bgcolor=#B0B0B0>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href="javascript:returnTo('license_agreement.htm');" style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

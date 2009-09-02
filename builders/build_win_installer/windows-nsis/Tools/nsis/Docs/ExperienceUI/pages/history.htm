@@ -1,0 +1,267 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+    <script language="JavaScript" type="text/javascript">
+      var parentparams=new Object();var aParams=parent.window.location.search.substr(1).split('&');for (i=0;i<aParams.length;i++) {var aParam=aParams[i].split('=');var sParamName=aParam[0];var sParamValue=aParam[1];parentparams[sParamName]=sParamValue;}
+      
+      function url(uri) {
+        target="browser.htm?url="+uri+"&return=history.htm";
+        if(parentparams['banner']) {
+          target+="&banner=no"
+        }
+        parent.window.location=target;
+      }
+    </script>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+          <p style="margin-left: 0.00in">
+          
+            <h1>Version History</h1>
+            
+              <h2 style=margin-left:0.2in>1.1</h2>
+            
+              <p style="margin-left: 0.40in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              Added:<br>
+              </p>
+              <ul style=margin-left:0.60in>
+                <li>Support for Modern UI, UltraModernUI, and InstallSpider UI scripts</li>
+                <li>WAnsis-compatible skinning system</li>
+                <li>InstallOptions Automization</li>
+                <li>Abort Warnings</li>
+                <li>Language selection page</li>
+                <li>Modern UI language file support</li>
+                <li>Right-to-left language support</li><br><br>
+              </ul>
+              </font>
+              </p>
+              
+              <p style="margin-left: 0.40in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              Changed:<br>
+              </p>
+              <ul style=margin-left:0.60in>
+                <li>XPUI.nsh is now a single file again, instead of "Components" folder</li>
+                <li>Left Logo size change: new recommended size is 240x349px.</li><br><br>
+              </ul>
+              </font>
+              </p>
+              
+              <p style="margin-left: 0.40in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              Fixed:<br>
+              </p>
+              <ul style=margin-left:0.60in>
+                <li>Fixed a nasty bug on the Components page that caused the tree view to be blacked out when a SectionGroup was expanded and multiple InstTypes were used &ndash; see <a href="javascript:url(escape('http://xpui.sourceforge.net/forum/viewtopic.php?t=14'));">this forum thread</a> for more information.</li>
+              </ul>
+              </font>
+              </p>
+            
+              <h2 style=margin-left:0.2in>1.08</h2>
+            
+              <p style="margin-left: 0.40in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              Added:<br>
+              </p>
+              <ul style=margin-left:0.60in>
+              <li>Nav Bar, Tutorial, and Dynamic Browser in readme</li>
+              <li>New Left Logo by ZmAn3</li>
+              <li>The "Left Branding Image" is now the "Left Logo"</li>
+              <li>Various readme layout changes</li><br><br>
+              </ul>
+              </font>
+              </p>
+              
+              <h2 style=margin-left:0.2in>1.07</h2>
+            
+              <p style="margin-left: 0.40in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              Fixed:<br>
+              </p>
+              <ul style=margin-left:0.60in>
+              <li>Start Menu Page: Page did not show when the user clicked "Back"</li>
+              <li>Installation wizard: various bugs were fixed</li>
+              <li>Finish Page: Link did not work in the uninstaller</a><br><br>
+              </li>
+              </ul>
+              </font>
+              </p>
+              
+              <h2 style=margin-left:0.2in>1.06</h2>
+              
+              <p style="margin-left: 0.20in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              <b>Note:</b> A new version "1.06b" was released shortly after 1.06 (3 hours later); this update contained a new automatic download wizard.
+              </font>
+              </p>
+              
+              <p style="margin-left: 0.40in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              Added:<br>
+              <br>
+              <ul style=margin-left:0.60in>
+              <li>Update Wizard</li>
+              <li>Finish Page</li>
+              </ul>
+              <p style="margin-left: 0.40in">
+              Changed:<br>
+              <br>
+              <ul style=margin-left:0.60in>
+              <li>XPUI.nsh script structure: there is now a "Components" folder in which all of the ExperienceUI's code is (easier editing for me <font face=Wingdings>J</font>)
+              </ul>
+              </font>
+              </p>
+              
+              <h2 style=margin-left:0.2in>1.05</h2>
+            
+              <p style="margin-left: 0.40in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              Added:<br>
+              </p>
+              <ul style=margin-left:0.60in>
+              <li>Start Menu Page<br>
+              <li>Abort Page</a><br><br>
+              </li>
+              </ul>
+              <p style="margin-left: 0.40in">
+              Changed:<br>
+              </p>
+              <ul style=margin-left:0.60in>
+              <li>README REDONE (YAY!)</li>
+              <li>The readme will always be done by hand from now on; harder to edit, easier to understand</li>
+              <li>Installers finally delete temp files automatically</li>
+              </ul>
+              <p style="margin-left: 0.40in">
+              Removed:<br>
+              </p>
+              <ul style=margin-left:0.60in>
+              <li>XPUI_TEMPFILES_DELETE - now integrated into .onGUIEnd</li>
+              </ul>
+              <p style="margin-left: 0.40in">
+              Fixed:<br>
+              </p>
+              <ul style=margin-left:0.60in>
+              <li>XPUI.NSH verbose bug</li>
+              </ul>
+              </font>
+              </p>
+              
+              <h2 style=margin-left:0.2in>1.04</h2>
+            
+              <p style="margin-left: 0.40in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              Added:<br>
+              <br>
+              <ul style=margin-left:0.60in>
+              <li><a>Multi-language support</a><br>
+              <li><a>Page-mode support</a>
+              </ul>
+              </font><br>
+              </p>
+              
+              <a name=history103 id=history103></a>
+              <h2 style=margin-left:0.2in>1.03</h2>
+            
+              <p style="margin-left: 0.40in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              Changed:<br><br>
+              <ul style=margin-left:0.60in>
+              <li>Readme and Setup MIDI pages: both are now HTA<br>
+              <li>More visual FX in the readme<br>
+              <li>Patching engine updates<br>
+              <li>Moved the "Patching System" section in the readme up above the Version History section<br>
+              </ul>
+              <br>
+              <p style="margin-left: 0.40in">
+              Fixed:<br>
+              </p>
+              <ul style=margin-left:0.60in>
+              <li>The NotifyIcon "bug" (yay!)<br>
+              <li>Internet Explorer kill bug (finally!) (fixed by killing mshta.exe instead :) )<br>
+              <li>The Internet Explorer Readme Compatibility bug<br>
+              <li>Various script bugfixes<br>
+              </ul>
+              </font><br>
+              </p>
+            
+              <h2 style=margin-left:0.2in>1.02</h2>
+            
+              <p style="margin-left: 0.40in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              Added:<br><br>
+              <ul style=margin-left:0.60in>
+              <li>Patch/Skin Installing Engine<br>
+              <li>Visual FX on text.html section expand/collapse buttons<br>
+              </ul>
+              <br>
+              <p style="margin-left: 0.40in">
+              Fixed:<br></p>
+              <ul style=margin-left:0.60in>
+              <li>Some LeftBranding Images<br>
+              <li>XPUI.NSH Updates<br>
+              </ul>
+              </font><br>
+              </p>
+            
+              <h2 style=margin-left:0.2in>1.01</h2>
+            
+              <p style="margin-left: 0.20in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              <p style="margin-left: 0.40in">
+              Added:<br></p>
+              <ul style=margin-left:0.60in>
+              <li>Reserve File Macros<br>
+              <li>Delete File Macros<br>
+              <li>Header File Bugfixes<br>
+              <li>Faster Installer<br>
+              <li>The version history list you're reading right now
+              </ul>
+              </font><br>
+              </p>
+            
+              <h2 style=margin-left:0.2in>1.00</h2>
+            
+              <p style="margin-left: 0.20in">
+              <font face=Verdana style=font-size:8pt color=#000000>
+              Initial Release. Features:<br>
+              <br>
+              <ul style=margin-left:0.60in>
+              <li><b>Very</b> small overhead<br>
+              <li>4 skins (Base, Windows XP, Orange, and Modern-Blue)<br>
+              <li>New pages the the Modern UI simply doesn't have (unless you write them yourself)<br>
+              <li>Left info panel that can show time remaining, messages, you name it!<br>
+              <li>Awesome header image effects<br>
+              <li>Extremely flexible skin support<br>
+              <li>Much, <b>much</b> more
+              </ul>
+              </font>
+              </p>
+          
+        </td>
+        
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

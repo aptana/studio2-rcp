@@ -1,0 +1,102 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+	<h1>Section Descriptions</h1>
+	
+          <font face=Verdana color=#000000 size=2>
+	    <p style=margin-left:0.20in>
+	    Just like the Modern UI, the ExperienceUI allows descriptions for the various sections in your installer.
+	    Here is how to create the cool description-on-mouse-over effect:<br>
+	    <p style=margin-left:0.50in>
+	    <ol type=1>
+	      <li><b>Add index IDs to your sections.</b><br>
+	      <br>
+	      If you haven't done this already, add a unique code to the end of the line with the Section command. Example:<br>
+	      <br>
+	      <code>Section "My Section" <b>SecMySection</b><br>
+	      &lt;your code...&gt;<br>
+	      SectionEnd</code><br>
+	      <br>
+	      Sections must have a name or a "" as the first parameter in order for this to work.<br><br></li>
+	      <li><b>Insert the Section Description header macro.</b><br>
+	      <br>
+	      Insert the macro <b>XPUI_FUNCTION_DESCRIPTION_BEGIN</b> into your script after all of your sections, although you can put the
+	      uninstaller section(s) after this if you wish.<br><br></li>
+	      <li><b>Insert your description text.</b><br>
+	      <br>
+	      <b>XPUI_DESCRIPTION_TEXT</b> <font color=#294F75>Section_index_define "Section Description Text"</font> - Inserts description
+	      text into your installer.  Use only between the <b>XPUI_FUNCTION_DESCRIPTION_BEGIN</b> and <b>XPUI_FUNCTION_DESCRIPTION_END</b>
+	      macros.<br>
+	      <br>
+	      Insert the <b>XPUI_DESCRIPTION_TEXT</b> macro into your installer once for each section you want a description for, using the
+	      syntax given above. Example:<br>
+	      <br>
+	      <code>!insertmacro XPUI_FUNCTION_DESCRIPTION_BEGIN<br>
+	      !insertmacro XPUI_DESCRIPTION_TEXT ${SecMySection} "Description of the section 'My Section'"<br>
+	      &nbsp;...
+	      </code><br>
+	      <br></li>
+	      <li><b>Insert the closing macro.</b><br>
+	      <br>
+	      Insert the macro XPUI_FUNCTION_DESCRIPTION_END macro into your script after all of your description text.  Please note that
+	      if you have custom code for your .onMouseOverSection function, you will need to insert it before this macro.
+	    </ol>
+	    If you are using multiple languages in your installer, use language strings to write descriptions for each language, and
+	    then use the $(LANG_STRING) as the section description text.  Example:<br>
+	    <br>
+	    <font face="Courier New" style=font-size:8pt>
+	    <font color=#0000FF><b>Section</b> <font color=#008080>"Section One" <font color=#000000>Sec1<br>
+	    &nbsp;<font color=#000000>...<br>
+	    <font color=#0000FF><b>SectionEnd</b><br>
+	    <br>
+	    <font color=#0000FF><b>Section</b> <font color=#008080>"Section Two" <font color=#000000>Sec2<br>
+	    &nbsp;<font color=#000000>...<br>
+	    <font color=#0000FF><b>SectionEnd</b><br>
+	    <br>
+	    <font color=#0000FF><b>LangString</b><font color=#000000> DESC_SEC1 1033 <font color=#008080>"One"<br>
+	    <font color=#0000FF><b>LangString</b><font color=#000000> DESC_SEC1 1032 <font color=#008080>"Uno"<br>
+	    <font color=#0000FF><b>LangString</b><font color=#000000> DESC_SEC2 1033 <font color=#008080>"Two"<br>
+	    <font color=#0000FF><b>LangString</b><font color=#000000> DESC_SEC2 1032 <font color=#008080>"Dos"<br>
+	    <br>
+	    <font color=#008000>!insertmacro <font color=#000000>XPUI_FUNCTION_DESCRIPTION_BEGIN<br>
+	    &nbsp;&nbsp;<font color=#008000>!insertmacro<font color=#000000> XPUI_DESCRIPTION_TEXT <font color=#800000>${Sec1} <font color=#008080>"<font color=#800000>$<font color=#008080>(DESC_SEC1)"<br>
+	    &nbsp;&nbsp;<font color=#008000>!insertmacro<font color=#000000> XPUI_DESCRIPTION_TEXT <font color=#800000>${Sec2} <font color=#008080>"<font color=#800000>$<font color=#008080>(DESC_SEC2)"<br>
+	    <font color=#008000>!insertmacro <font color=#000000>XPUI_FUNCTION_DESCRIPTION_END
+	    </font>
+	    <font face=Verdana size=2 color=#000000>
+	    <br><br>
+	    The section description code for the ExperienceUI was based on the code from the Modern UI, written by <b>Joost Verburg</b>.
+	    Two thumbs up to him for writing this awesome code.
+	    </p>
+	    </font>
+	  
+	</td>
+	
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+	
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

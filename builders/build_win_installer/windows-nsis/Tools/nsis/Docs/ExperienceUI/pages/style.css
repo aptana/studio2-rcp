@@ -1,0 +1,185 @@
+body
+        {
+        padding: 10px;
+        background-color: #000000;
+        font-size: 13px;
+        font-family: Verdana, Tahoma, Segoe UI, Arial, Helvetica, sans-serif;
+        font-weight: normal;
+        text-align: left;
+        scrollbar-face-color:#EA7500;
+        scrollbar-highlight-color:#FF9520;
+        scrollbar-3dlight-color:#FFFFFF;
+        scrollbar-darkshadow-color:#000000;
+        scrollbar-shadow-color:# 0A2254;
+        scrollbar-arrow-color:#FFFFFF;
+        scrollbar-track-color:#1C3977;
+        }
+        
+p, li
+        {
+        font-size: 8pt;
+        }
+
+h1
+        {
+	font-family: Verdana;
+        font-size: 14pt;
+        color: #7A7272;
+        font-weight: normal;
+        }
+
+h2
+        {
+	font-family: Verdana;
+        font-size: 12pt;
+        font-weight: normal;
+        color: #7A7272;
+        }
+
+h3
+        {
+	font-family: Verdana;
+        font-size: 10pt;
+        font-weight: normal;
+        color: #3E6097;
+        }
+	
+m1
+        {
+	font-family: Verdana;
+        font-size: 14pt;
+        color: #7A7272;
+        font-weight: normal;
+        }
+
+m2
+        {
+	font-family: Verdana;
+        font-size: 10pt;
+        font-weight: normal;
+        color: #000000;
+        }
+
+m3
+        {
+	font-family: Verdana;
+        font-size: 10pt;
+        font-weight: normal;
+        color: #294F75;
+        }	
+
+tahead
+        {
+        font-family: "Verdana";
+        font-size: 12pt;
+        color: #000000;
+        font-weight: bold;
+        }
+
+tabold
+        {
+        font-family: "Verdana";
+        font-size: 10pt;
+        color: #000000;
+        font-weight: bold;
+        }
+
+tanorm
+        {
+        font-family: "Verdana";
+        font-size: 10pt;
+        color: #000000;
+        font-weight: medium;
+        }
+
+.nsis1-reservedword
+         {
+         font-size: 8pt;
+         font-family: "Courier New";
+         color: #0000FF;
+         font-weight: bold;
+         }
+	 
+.nsis1-function
+         {
+         font-size: 8pt;
+         font-family: "Courier New";
+         color: #0000FF;
+         font-weight: bold;
+         }	 
+
+.nsis1-parameter
+         {
+         font-size: 8pt;
+         font-family: "Courier New";
+         color: #FF8040;
+         font-weight: normal;
+         }
+
+.nsis1-directive
+         {
+         font-size: 8pt;
+         font-family: "Courier New";
+         color: #008000;
+         font-weight: normal;
+         }
+
+.nsis1-space
+         {
+         font-size: 8pt;
+         font-family: "Courier New";
+         color: #000000;
+         font-weight: normal;
+         }
+
+.nsis1-string
+         {
+         font-size: 8pt;
+         font-family: "Courier New";
+         color: #4A9595;
+         font-weight: normal;
+         }
+.nsis1-comment
+         {
+         font-size: 8pt;
+         font-family: "Courier New";
+         color: #000080;
+         font-weight: bold;
+         }
+.nsis1-variable
+         {
+         font-size: 8pt;
+         font-family: "Courier New";
+         color: #800000;
+         font-weight: normal;
+         }
+
+.footer
+        {
+        font-size: 10px;
+        text-align: right;
+        color: #909090;
+        margin: 5px;
+	font-family: verdana, sans-serif;
+        }
+
+a:link, a:visited, a:active
+        {
+        color: #294F75;
+        text-decoration: none;
+        }
+
+a:hover
+        {
+        color: #E76400;
+        text-decoration: none;
+        }
+
+toptext  {
+        font-size : 28pt;
+        font-family : Verdana;
+        font-weight : bold;
+        color : #004687;
+        line-height : 100%;
+        filter: shadow(color=#808080, direction=115, strength=4); height: 40px; width: 100%; color: FFFFFF;
+        }

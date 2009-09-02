@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+          <h1>ExperienceUI for NSIS</h1>
+          
+            <p style=margin-left:0.2in>
+            
+              <font face=Verdana style=font-size:8pt>
+              
+                <b>Welcome to the ExperienceUI.</b><br>
+                </p>
+                <p style=margin-left:0.4in>
+                The ExperienceUI is a new user interface for NSIS that looks like
+                the latest and greatest InstallShield® setups.  The ExperienceUI supports
+                skinning the main installer window with several new picture areas,
+                and it also adds a few features to NSIS.<br>
+                <br>
+                You may think that because of the graphical effects, the ExperienceUI
+                requires a lot more space.  If you think that, you're dead wrong.  A typical
+                InstallShield® installer requires 1.43MB.  Wait...if you still believe in
+                floppy disks, you definitely don't use InstallShield to install your programs,
+                unless they're under 1KB...not likely.  An ExperienceUI-based installer, with
+                Welcome, License, Components, Directory, Install Confirm, File Copy, and Finish
+                pages, uses 90.9KB of space.  That's under 1/10th of an identical InstallShield®
+                installer, except this one is faster, smarter, and much more friendly to dial-up
+                users.<br>
+                <br>
+                One of the biggest features of the ExperienceUI is the information panel
+                on the left side of the installer window.  Every version of Windows Setup since 98
+                has a counter on the left side of the screen that shows an estimated count of how
+                much time it will be until Setup completes.  With the ExperienceUI, this info panel
+                can be blank, it can show an "estimated time remaining" window, and it can display
+                interactive notifications.<br>
+                <br>
+                All this can be accomplished with code that has already been written (and rewritten)
+                for you, so using the ExperienceUI requires very little programming experience.<br>
+                <br>
+                The ExperienceUI also resembles the Modern UI in the way of the symbol
+                defining method, except many of the defines are shortened, others are
+                eliminated, and many new ones have been added. Also, the ExperienceUI has
+                multi-language support that is largely based on the Modern UI's multi-language system.
+                </p>
+                
+                <a name=why id=why></a>
+                
+                <p style=margin-left:0.2in>
+                  <b>Why it was created</b>
+                </p>
+                
+                <p style=margin-left:0.4in>
+                <font face=Verdana style=font-size:8pt>
+                Simply put, I created the ExperienceUI because NSIS needed a makeover.  The classic NSIS look works for Winamp plugins,
+                but what about when you need to create an installer for your user experience-aimed firewall?  The Modern UI provided many
+                visual enhancements for NSIS, but it was still missing something.<br>
+                <br>
+                I was upgrading the drivers for my NVIDIA video card one day, and I noticed that the installer used a fully skinned UI.
+                I thought to myself, "If InstallShield can look this good, NSIS can certainly look better."  So, I set to work.<br>
+                <br>
+                At first, I modified the Modern UI.  While this made scripts very easily portable, my new InstallShield-style user interface
+                seemed limited because I had started with a skinning system that did not support skinning the entire installer window.
+                Finally, I decided that I had to re-write NSIS's idea of skinning completely.  The first few tests proved to be cool, but
+                there were still improvements to be made.  After a lot of hard work, the InstallShield UI for NSIS (as it was called back
+                then) was ready for release.<br>
+                <br>
+                I posted my new UI on the forums, and within 3 hours I received replies saying, "For the design and implementation, I give
+                you 10/10! This is truly amazing!" (Afrow UK)  There was a lot of work still to be done, but the first release had done its
+                job and then some.<br>
+                <br>
+                Because of copyright concerns (using "InstallShield" in the product title) I decided to rename the whole thing to the
+                ExperienceUI for NSIS.  I named it the ExperienceUI because it aims to redefine user experience and make software 
+                installation lose its bad reputation as slow and often unsuccessful.<br>
+                <br>
+                Today, the ExperienceUI is a complete user experience solution, with support for multiple languages and extremely easy
+                implementation.  It includes a language selection page, native support for Saivert's WAnsis skinning plugin, and other
+                enhancements too numerous to name here.  All that, and it's open source.<br>
+                <br>
+                For a complete list of features included with the basic ExperienceUI package,
+                <a href="javascript:parent.window.location='browser.htm?url=http://xpui.sourceforge.net/index.php&sec=about&return=intro.htm%23why'">click here</a>.  <font size=1>(Internet connection
+                required)</font>
+                </p>
+                
+              </font>
+            
+            </p>
+            
+        </td>
+        
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+        
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>

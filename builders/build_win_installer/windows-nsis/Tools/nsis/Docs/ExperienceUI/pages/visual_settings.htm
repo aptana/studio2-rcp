@@ -1,0 +1,172 @@
+<html>
+  <head>
+    <title>ExperienceUI Documentation Content Frame</title>
+    <link rel=stylesheet href=style.css type=text/css>
+    <script type=text/javascript src=cmd.js></script>
+  </head>
+  
+  <body bgcolor=#FFFFFF style=background-color:#FFFFFF style=margin:0px;padding:0px>
+  
+    <table border=0 width=100% height=100%>
+    
+      <tr>
+      
+        <td valign=top style=margin:10px;padding:10px>
+    
+	     <a name=basic id=basic></a>
+	     
+	     <h1>Basic Settings</h1>
+	  
+		<font face=Verdana style=font-size:8pt>
+                
+                <script type="text/javascript">
+                  define("XPUI_SKIN", "skinfilename_nodir_noext", "Sets the skin used for your installer.  The skins included with the ExperienceUI are Windows XP, Orange, and Modern-blue.  Behind the scenes, the ExperienceUI includes a skin file with:<br><code>!include ${NSISDIR}\\Contrib\\ExperienceUI\\Skins\\${XPUI_SKIN}.xpuiskin</code>", "undefined<br>Example: <code>!define XPUI_SKIN \"Windows XP\"</code>");
+                  define("XPUI_BRANDINGTEXT", "\"Text\"", "Sets the text at the bottom of the installer.","\" \" [blank string]");
+                  document.write("<div style='margin-left:0.2in'>");
+                    define("XPUI_BRANDINGTEXT_COLOR_FG", "hex_color", "The foreground color of the branding text.", "606060");
+                    define("XPUI_BRANDINGTEXT_COLOR_BG", "hex_color", "The drop shadow color of the branding text.", "808080");
+                  document.write("<\/div>");
+                  define("XPUI_UI", "Path_to_uifile", "Sets the NSIS dialog file used for all of the installer dialogs except IDD_INST (not IDD_INSTFILES).  To create custom UI files, use Resource Hacker or another resource editor.", "<code>${NSISDIR}\\Contrib\\ExperienceUI\\UIs\\UI.exe</code>");
+                  define("XPUI_UI_IDDINST", "Path_to_uifile", "The UI file used for dialog 105 (the wrapper dialog for all of the other \"child\" windows.) It is recommended that you leave this at the default setting.", "<code>${NSISDIR}\\Contrib\\ExperienceUI\\UIs\\HeaderUI.exe</code>");
+                  define("XPUI_DISABLEBG", "<i>No parameters</i> (true/false value)", "Define this to disable all of the background effects.  Use this if you want to save a little space if you are distributing your program over the web.  This define also disables any custom backgrounds that skins may have.", "true/<b>false</b>");
+                  define("XPUI_LEFTLOGO", "Image_file", "The Left Logo is the image on the left of the installer, usually an XP-style \"computer\" graphic.  Recommended size: <b>240</b>x<b>349</b> pixels.", "<code>${NSISDIR}\\Contrib\\ExperienceUI\\Skins\\Default\\LeftBranding.bmp</code>");
+                </script>
+  
+	  <a name=abort id=abort></a>                                                                                                                                                                           
+	  <h1>Abort Warning</h1>
+	  <p style=margin-left:0.2in>
+          
+            <font face=Verdana style=font-size:8pt>
+              An abort warning is a message that shows when you click Cancel.  If you don't use an abort warning, the installer will close
+              as soon as you click Cancel.
+            </font>
+          
+                <script type="text/javascript">
+                  define("XPUI_ABORTWARNING", "No parameters (true/false value)", "Define this to make the installer show a confirmation screen when the user clicks Cancel.", "true/<b>false<\/b>");
+                  define("XPUI_ABORTWARNING_TEXT", "String", "The text used on the confirmation message box.", "<div style=margin-left:0.6in;>You are about to quit &lt;NAME&gt; Setup.$\\n<br>$\\n<br>If you quit now, &lt;NAME&gt; will not be installed.$\\n<br>$\\n<br>Do you want to continue?</div>"); 
+                </script>
+                
+                <div style="border: 1px solid #709080; background-color: #C0F0D0; padding: 10px; margin-left: 0.2in">
+                  <b>If you don't use an Abort Warning</b><br>
+                  <br>
+                  If you have an Abort Page in your installer, you may want to use an automatic abort warning in order to make the Abort page
+                  trigger properly.  If you aren't using the ExperienceUI's built-in abort warning system, you can insert the following
+                  function to properly invoke the Abort page.<br>
+                  <br>
+                  <script type="text/javascript">
+                    function expandAbortFunction() {
+                      if(document.getElementById("abortFunction").style.display=="block") {
+                        document.getElementById("abortFunction").style.display="none";
+                        document.getElementById("abortToggle").src="../Images/plus.gif";
+                        document.getElementById("abortTrigger").innerText=unescape("Expand Abort function");
+                      } else {
+                        document.getElementById("abortFunction").style.display="block";
+                        document.getElementById("abortToggle").src="../Images/minus.gif";
+                        document.getElementById("abortTrigger").innerText=unescape("Collapse Abort function");
+                      }
+                    }
+                  </script>
+                  <a href="javascript:expandAbortFunction();"><img id=abortToggle border="0" hspace=3 src="../Images/plus.gif"></a><a href="javascript:expandAbortFunction();" id=abortTrigger>Expand Abort function</a><br>
+                  <div style="margin-left:0.2in;display:none" id=abortFunction><br>
+                    <font face="Courier New" style="font-size: 8pt">
+                  <font color=#0000FF><b>Function&nbsp;</b></font><font color=#000000>.onUserAbort</font><br>
+                  &nbsp;&nbsp;<font color=#0000FF><b>StrCmp</b>&nbsp;</font><font color=#800000><i>$NOABORTWARNING</i></font>&nbsp;<font color=#008080>1</font>&nbsp;<font color=#000000>CloseMe</font><br>
+                  &nbsp;&nbsp;<font color=#0000FF><b>MessageBox&nbsp;</b><font color=#FF8040>MB_YESNO</font><font color=#000000>|</font><font color=#FF8040>MB_ICONQUESTION</font>&nbsp;<font color=#008080>"Are&nbsp;you&nbsp;sure&nbsp;you&nbsp;want&nbsp;to&nbsp;cancel&nbsp;Setup?"</font>&nbsp;<font color=#FF8040>IDNO</font>&nbsp;<font color=#000000>NoAbort</font><br>
+                  &nbsp;&nbsp;<font color=#000080><b># any custom code you want before the Abort page is called here...</b></font><br>
+                  &nbsp;&nbsp;<font color=#008000>!insertmacro&nbsp;</font><font color=#000000>XPUI_USERABORT</font><br>
+                  &nbsp;&nbsp;<font color=#000000>NoAbort:<br>
+                  &nbsp;&nbsp;<font color=#0000FF><b>Abort</b></font><br>
+                  &nbsp;&nbsp;<font color=#000000>CloseMe:</font><br>
+                  &nbsp;&nbsp;<font color=#000080><b># any custom code you want before the installer exits here...</b></font><br>
+                  <font color=#0000FF><b>FunctionEnd</b></font>
+                </font>
+                </font>
+                </font>
+                  </div>
+                  
+                </div>
+                
+	    	</p>
+                
+          <a name=colors id=colors></a>                                                                                                                                                                           
+	  <h1>Dialog Colors</h1>
+	  <p style=margin-left:0.2in>
+          
+                <script type="text/javascript">
+                  define("XPUI_TEXT_COLOR", "HEX_COLOR", "The color used for all of the text in the installer.", "0xB4D3EA");
+                  define("XPUI_TEXT_BGCOLOR", "HEX_COLOR", "The color used for the background of the installer.", "0x566978");
+                  define("XPUI_TEXT_LIGHTCOLOR", "HEX_COLOR", "The color used on accented text.", "0xFFFFFF");
+                </script>
+                
+	    	</p>
+		
+		<a name=buttons id=buttons></a>
+		
+		<h1>Navigation Buttons</h1>
+	  
+		<script type="text/javascript">
+                  define("XPUI_BUTTONTEXT_NEXT", "Text", "The text used on the Next button.", "Next");
+                  define("XPUI_BUTTONTEXT_BACK", "Text", "The text used on the Back button.", "Back");
+                  define("XPUI_BUTTONTEXT_CANCEL", "Text", "The text used on the Cancel button.", "Cancel");
+                  define("XPUI_BUTTONTEXT_CLOSE", "Text", "The text used on the Finish button.  Usually \"Done,\" \"Finish,\" or \"Close.\"", "Close");
+                </script>
+                
+                <p style=margin-left:0.2in>
+	    	  After defining custom text for buttons, that text will be used in the next language inserted.  Defining any custom button
+                  text after inserting the last language will have no effect in the final installer.
+		</p>
+		
+		<a name=header id=header></a>
+		
+		<h1>Header Image</h1>
+                
+                <script type="text/javascript">
+                  define("XPUI_HEADERIMAGE_BMP", "Bitmap_file", "The bitmap used for the header background at the top of the installer.", "<code>${NSISDIR}\\Contrib\\ExperienceUI\\Header.bmp</code><br>Recommended size: <b>693</b>x<b>57</b> pixels");
+                  define("XPUI_HEADERIMAGE_NORESIZETOFIT", "No Parameters (true/false value)", "Don't resize the header image to fit the bitmap control.  Avoid using this option if your bitmap fits exactly.", "true/<b>false</b>");
+                  define("XPUI_UNHEADERIMAGE_BMP", "Bitmap_file", "The bitmap used for the header background at the top of the <b>uninstaller</b>.", "<code>${NSISDIR}\\Contrib\\ExperienceUI\\Header.bmp</code><br>Recommended size: <b>693</b>x<b>57</b> pixels");
+                </script>
+	  
+		<a name=bottom id=bottom></a>
+		
+		<h1>Bottom Image</h1>
+                
+                <script type="text/javascript">
+                  define("XPUI_BOTTOMIMAGE", "No parameters (true/false value)", "Use a background image behind the navigation buttons at the bottom of the installer.", "true/<b>false</b>");
+                  define("XPUI_BOTTOMIMAGE_BMP", "Bitmap_file", "The bitmap used for the button background at the bottom of the installer.", "<code>${NSISDIR}\\Contrib\\ExperienceUI\\Bottom.bmp</code><br>Recommended size: <b>693</b>x<b>70</b> pixels");
+                  define("XPUI_UI_BOTTOMIMAGE", "Path_to_uifile.exe", "The IDD_INST dialog file for installers that use bottom images.", "<code>${NSISDIR}\\Contrib\\ExperienceUI\\HeaderUI_BtmImg.exe</code>");
+                  define("XPUI_BOTTOMIMAGE_NORESIZETOFIT", "No Parameters (true/false value)", "Don't resize the bottom image to fit the bitmap control.  Avoid using this option if your bitmap fits exactly.", "true/<b>false</b>");
+                  define("XPUI_UNBOTTOMIMAGE", "No parameters (true/false value)", "Use a background image behind the navigation buttons at the bottom of the <b>uninstaller</b>.", "true/<b>false</b>");
+                  define("XPUI_UNBOTTOMIMAGE_BMP", "Bitmap_file", "The bitmap used for the button background at the bottom of the <b>uninstaller</b>.", "<code>${NSISDIR}\\Contrib\\ExperienceUI\\Bottom.bmp</code><br>Recommended size: <b>693</b>x<b>70</b> pixels");
+                </script>
+		
+		<a name=gradient id=gradient></a>
+		
+		<h1>Background Gradient</h1>
+		
+                <script type="text/javascript">
+                  define("XPUI_BGGRADIENT", "No parameters (true/false value)", "Use an NSIS-Standard background gradient for the installer.", "true/<b>false</b>");
+                  define("XPUI_BGGRADIENT_CUSTOMCOLORS", "No parameters (true/false value)", "Use customized colors for the background gradient.  Usually, the ExperienceUI sets the text color as the top part, the background color as the bottom gradient, and the light text color as the background text.", "");
+                  define("XPUI_BGGRADIENT_CUSTOMCOLORS_TOP", "HEX_COLOR", "Your own color for the top of the background gradient.", "&lt;XPUI text color&gt;");
+                  define("XPUI_BGGRADIENT_CUSTOMCOLORS_BOTTOM", "HEX_COLOR", "Your own color for the bottom of the background gradient.", "&lt;XPUI text BG color&gt;");
+                  define("XPUI_BGGRADIENT_CUSTOMCOLORS_TEXT", "HEX_COLOR", "Your own color for the text that is usually the product name at the top of the background gradient.", "&lt;XPUI light text color&gt;");
+                </script>
+                
+	</td>
+	
+      </tr>
+      
+      <tr>
+      
+        <td valign=bottom style=margin:0px;padding:0px>
+    
+          <p class=footer>Copyright &copy; 2005 Dan Fuhry.  All rights except those explicitly given in the <a href=license_agreement.htm style=color:#A0A0D0 onmouseover="this.style.color='#A0A0A0'" onmouseout="this.style.color='#A0A0D0'">license agreement</a> reserved.</p>
+  
+        </td>
+	
+      </tr>
+      
+    </table>
+  
+  </body>
+  
+</html>
