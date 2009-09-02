@@ -65,9 +65,10 @@
 		</delete>
 		<delete dir="${buildDirectory}/${buildLabel}" failonerror="false" />
 		<delete dir="${p2.repo.dir}" failonerror="false" />
-		<!-- Do an svn revert of the build directory -->
-		<exec executable="svn">
-			<arg line="revert -R ${buildDirectory}" />
+		<!-- Do an git checkout of the build directory -->
+		<exec executable="/bin/bash" dir="${buildDirectory}">
+			<arg value="-c" />
+			<arg value="${git.executable} checkout -f" />
 		</exec>
 	</target>
 
