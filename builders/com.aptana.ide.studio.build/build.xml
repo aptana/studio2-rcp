@@ -132,10 +132,6 @@
 				<include name="org.eclipse.equinox.p2.*.repository.prefs" />
 			</fileset>
 		</delete>
-		<antcall target="run.director">
-			<param name="p2.installIU" value="org.eclipse.gef.feature.group" />
-			<param name="p2.repo" value="${gef.p2.repo}" />
-		</antcall>
 		<!-- Copy the features and plugins over into a dropins folder. Installing makes it so that non-linux plugins/features won't be there! -->
 		<mkdir dir="${baseLocation}/dropins/eclipse" />
 		<copy todir="${baseLocation}/dropins/eclipse">
