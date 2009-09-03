@@ -259,7 +259,7 @@
 		</antcall>
 		<script description="Install specified additional features" language="javascript">
 			<![CDATA[
-					if (project.getProperty("feature.repos") && project.getProperty("feature.IUs") {
+					if (project.getProperty("feature.repos") && project.getProperty("feature.IUs")) {
 			            // "AptanaStandalone" is the project name defined in "project"'s attribute "name"
 			            var antcall = project.createTask("antcall");  
 						var tmpDir = project.getProperty("tmp.dir");
