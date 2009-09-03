@@ -257,32 +257,33 @@
 			<param name="p2.ws" value="${product.ws}" />
 			<param name="p2.arch" value="${product.arch}" />
 		</antcall>
-		<!--
 		<script description="Install specified additional features" language="javascript">
-			<![CDATA[      
-		            // "AptanaStandalone" is the project name defined in "project"'s attribute "name"   
-		            var antcall = project.createTask("antcall");  
-					var tmpDir = project.getProperty("tmp.dir");
-					var collectingFolder = project.getProperty("collectingFolder");
-		            var repos = project.getProperty("feature.repos").split(","); // defined in property file  
-					var ius = project.getProperty("feature.IUs").split(","); // defined in property file  
-		            for(var i = 0; i < repos.length; i ++) {  
-		                antcall.setTarget("install.feature.external");
-						// Configure the parameters for the "antcall" task
-						var repoParam = antcall.createParam();
-						repoParam.setName("p2.repo");
-						repoParam.setValue(repos[i]);
-						var iuParam = antcall.createParam();
-						iuParam.setName("p2.IU");
-						iuParam.setValue(ius[i]);						
-						var pathParam = antcall.createParam();
-						pathParam.setName("p2.director.install.path");
-						pathParam.setValue(tmpDir + "/" + collectingFolder);
-		                antcall.execute();     
-		            }     
+			<![CDATA[
+					if (project.getProperty("feature.repos") && project.getProperty("feature.IUs") {
+			            // "AptanaStandalone" is the project name defined in "project"'s attribute "name"
+			            var antcall = project.createTask("antcall");  
+						var tmpDir = project.getProperty("tmp.dir");
+						var collectingFolder = project.getProperty("collectingFolder");
+					
+			            var repos = project.getProperty("feature.repos").split(","); // defined in property file  
+						var ius = project.getProperty("feature.IUs").split(","); // defined in property file  
+			            for(var i = 0; i < repos.length; i ++) {  
+			                antcall.setTarget("install.feature.external");
+							// Configure the parameters for the "antcall" task
+							var repoParam = antcall.createParam();
+							repoParam.setName("p2.repo");
+							repoParam.setValue(repos[i]);
+							var iuParam = antcall.createParam();
+							iuParam.setName("p2.IU");
+							iuParam.setValue(ius[i]);						
+							var pathParam = antcall.createParam();
+							pathParam.setName("p2.director.install.path");
+							pathParam.setValue(tmpDir + "/" + collectingFolder);
+			                antcall.execute();     
+			            }
+					}
 		            ]]>
 		</script>
-		-->
 	</target>
 
 	<!-- - - - - - - - - - - - - - - - - - 
