@@ -272,7 +272,7 @@
 			
 					echo.setMessage("before if");
 					echo.perform();
-
+					try {
 					if ( featureRepos.length > 0 && featureIUs.length > 0) {
     					echo.setMessage("inside if");
 						echo.perform();
@@ -302,6 +302,13 @@
 							pathParam.setValue(tmpDir + "/" + collectingFolder);
 			                antcall.execute();     
 			            }
+					} else {
+						echo.setMessage("in else");
+						echo.perform();
+					}
+					} catch (e) {
+						echo.setMessage("execption " + e);
+						echo.perform();
 					}
 		            ]]>
 		</script>
