@@ -261,29 +261,9 @@
 		<echo message="feature.IUs is ${feature.IUs}" />
 		<script description="Install specified additional features" language="javascript">
 			<![CDATA[
-			        echo = project.createTask("echo");
-	        		echo.setMessage("feature.repos is " + project.getProperty("feature.repos"));
-					echo.perform();
-    				echo.setMessage("feature.IUs is " + project.getProperty("feature.IUs"));
-					echo.perform();
-			
 					var featureRepos =  project.getProperty("feature.repos");
 					var featureIUs = project.getProperty("feature.IUs");
-			
-					echo.setMessage("before if");
-					echo.perform();
-			
-		    		echo.setMessage("featureRepos.length is " + featureRepos.length());
-					echo.perform();
-    		
-					echo.setMessage("featureIUs.length is " + featureIUs.length());
-					echo.perform();
-			
-					try {
 					if ( featureRepos.length() > 0 && featureIUs.length() > 0) {
-    					echo.setMessage("inside if");
-						echo.perform();
-			
 			            // "AptanaStandalone" is the project name defined in "project"'s attribute "name"
 			            var antcall = project.createTask("antcall");  
 						var tmpDir = project.getProperty("tmp.dir");
@@ -309,13 +289,6 @@
 							pathParam.setValue(tmpDir + "/" + collectingFolder);
 			                antcall.execute();     
 			            }
-					} else {
-						echo.setMessage("in else");
-						echo.perform();
-					}
-					} catch (e) {
-						echo.setMessage("execption " + e);
-						echo.perform();
 					}
 		            ]]>
 		</script>
