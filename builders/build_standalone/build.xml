@@ -272,6 +272,13 @@
 			
 					echo.setMessage("before if");
 					echo.perform();
+			
+		    		echo.setMessage("featureRepos.length is " + featureRepos.length);
+					echo.perform();
+    		
+					echo.setMessage("featureIUs.length is " + featureIUs.length);
+					echo.perform();
+			
 					try {
 					if ( featureRepos.length > 0 && featureIUs.length > 0) {
     					echo.setMessage("inside if");
