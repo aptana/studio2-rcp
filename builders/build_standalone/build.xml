@@ -257,6 +257,8 @@
 			<param name="p2.ws" value="${product.ws}" />
 			<param name="p2.arch" value="${product.arch}" />
 		</antcall>
+		<echo message="feature.repos is ${feature.repos}" />
+		<echo message="feature.IUs is ${feature.IUs}" />
 		<script description="Install specified additional features" language="javascript">
 			<![CDATA[
 					var featureRepos =  project.getProperty("feature.repos");
