@@ -268,13 +268,8 @@
 			            var antcall = project.createTask("antcall");  
 						var tmpDir = project.getProperty("tmp.dir");
 						var collectingFolder = project.getProperty("collectingFolder");
-					
 			            var repos = project.getProperty("feature.repos").split(","); // defined in property file
-						echo.setMessage("repos " + repos);
-						echo.perform();
 						var ius = project.getProperty("feature.IUs").split(","); // defined in property file
-						echo.setMessage("ius " + ius);
-						echo.perform();
 			            for(var i = 0; i < repos.length; i ++) {  
 			                antcall.setTarget("install.feature.external");
 							// Configure the parameters for the "antcall" task
