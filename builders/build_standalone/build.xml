@@ -269,11 +269,12 @@
 			
 					var featureRepos =  project.getProperty("feature.repos");
 					var featureIUs = project.getProperty("feature.IUs");
-					echo.setMessage("before if"));
+			
+					echo.setMessage("before if");
 					echo.perform();
 
 					if ( featureRepos.length > 0 && featureIUs.length > 0) {
-    					echo.setMessage("inside if"));
+    					echo.setMessage("inside if");
 						echo.perform();
 			
 			            // "AptanaStandalone" is the project name defined in "project"'s attribute "name"
@@ -282,10 +283,10 @@
 						var collectingFolder = project.getProperty("collectingFolder");
 					
 			            var repos = project.getProperty("feature.repos").split(","); // defined in property file
-						echo.setMessage("repos " + repos));
+						echo.setMessage("repos " + repos);
 						echo.perform();
 						var ius = project.getProperty("feature.IUs").split(","); // defined in property file
-						echo.setMessage("ius " + ius));
+						echo.setMessage("ius " + ius);
 						echo.perform();
 			            for(var i = 0; i < repos.length; i ++) {  
 			                antcall.setTarget("install.feature.external");
