@@ -261,6 +261,12 @@
 		<echo message="feature.IUs is ${feature.IUs}" />
 		<script description="Install specified additional features" language="javascript">
 			<![CDATA[
+			        echo = project.createTask("echo");
+	        		echo.setMessage("feature.repos is " + project.getProperty("feature.repos"));
+					echo.perform();
+    				echo.setMessage("feature.IUs is " + project.getProperty("feature.IUs"));
+					echo.perform();
+			
 					var featureRepos =  project.getProperty("feature.repos");
 					var featureIUs = project.getProperty("feature.IUs");
 					if ( featureRepos.length > 0 && featureIUs.length > 0) {
