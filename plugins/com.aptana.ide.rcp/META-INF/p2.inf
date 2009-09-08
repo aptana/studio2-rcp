@@ -1,14 +1,6 @@
 instructions.install = \
     addRepository(location:http${#58}//update.aptana.com/update/studio-rcp,type:0,enabled:true);\
     addRepository(location:http${#58}//update.aptana.com/update/studio-rcp,type:1,enabled:true);\
-    addRepository(location:http${#58}//update.aptana.com/update/studio-pro,type:0,enabled:true);\
-    addRepository(location:http${#58}//update.aptana.com/update/studio-pro,type:1,enabled:true);\
-    addRepository(location:http${#58}//update.aptana.com/update/db-tools,type:0,enabled:true);\
-    addRepository(location:http${#58}//update.aptana.com/update/db-tools,type:1,enabled:true);\
-    addRepository(location:http${#58}//update.aptana.com/update/cloud,type:0,enabled:true);\
-    addRepository(location:http${#58}//update.aptana.com/update/cloud,type:1,enabled:true);\
-    addRepository(location:http${#58}//update.aptana.com/update/svn,type:0,enabled:true);\
-    addRepository(location:http${#58}//update.aptana.com/update/svn,type:1,enabled:true);\
     addRepository(location:http${#58}//update.aptana.com/update/rails,type:0,enabled:true);\
     addRepository(location:http${#58}//update.aptana.com/update/rails,type:1,enabled:true);\
     addRepository(location:http${#58}//update.aptana.com/update/php,type:0,enabled:true);\
@@ -21,5 +13,4 @@ instructions.install = \
     addRepository(location:http${#58}//update.aptana.com/update/jaxer,type:1,enabled:true);\
     addRepository(location:http${#58}//download.eclipse.org/releases/galileo,type:0,enabled:true);\
     addRepository(location:http${#58}//download.eclipse.org/releases/galileo,type:1,enabled:true);
-
-
+    
