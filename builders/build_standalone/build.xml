@@ -332,11 +332,13 @@
 	                     match="(org.eclipse.ui/defaultPerspectiveId=).*"
 	                     replace="\1${org.eclipse.ui/defaultPerspectiveId}"
 	                     byline="true" />
+		<!--
 		<loadfile property="preference_customization.ini"
 		      srcFile="${tmp.dir}/com.aptana.ide.rcp/preference_customization.ini"/>
 		<echo message="preference_customization.ini contents" />
 		<echo message="${preference_customization.ini}" />
-		<echo message="-------------------------------------" />
+		<echo message="=====================================" />
+		-->
 		<zip basedir="${tmp.dir}/com.aptana.ide.rcp" destfile="${p2.director.install.path}/plugins/${com.aptana.ide.rcp.jar.name}" />
   		<delete dir="${tmp.dir}/com.aptana.ide.rcp" />
 	</target>
