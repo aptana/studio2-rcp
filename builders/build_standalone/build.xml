@@ -327,7 +327,7 @@
 			<flattenmapper/>
 		</pathconvert>
 		<mkdir dir="${tmp.dir}/com.aptana.ide.rcp"/>
-		<unzip src="${p2.director.install.path}/plugins/${com.aptana.ide.rcp.jar}" dest="/Users/schitale/tmp/com.aptana.ide.rcp" />
+		<unzip src="${p2.director.install.path}/plugins/${com.aptana.ide.rcp.jar}" dest="${tmp.dir}/com.aptana.ide.rcp" />
 		<replaceregexp file="${tmp.dir}/com.aptana.ide.rcp/preference_customization.ini"
 	                     match="(org.eclipse.ui/defaultPerspectiveId=).*"
 	                     replace="\1${org.eclipse.ui/defaultPerspectiveId}"
