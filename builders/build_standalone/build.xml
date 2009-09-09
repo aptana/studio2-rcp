@@ -13,6 +13,12 @@
     </description>
 
 	<property file="build_local.properties" />
+	
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="ant-contrib/ant-contrib.jar" />
+		</classpath>
+	</taskdef>
 
 	<!-- ================================= 
           target: main              
@@ -321,26 +327,31 @@
 		<!-- Make sure there's a dropins folder in case it failed due to same bug above -->
 		<mkdir dir="${p2.director.install.path}/dropins" />
 		<!-- Now use the value of org.eclipse.ui/defaultPerspectiveId -->
-		<echo message="Setting default perspective to ${org.eclipse.ui/defaultPerspectiveId}" />
-		<pathconvert property="com.aptana.ide.rcp.jar.name">
-			<fileset dir="${p2.director.install.path}/plugins" includes="com.aptana.ide.rcp_*.jar" />
-			<flattenmapper/>
-		</pathconvert>
-		<mkdir dir="${tmp.dir}/com.aptana.ide.rcp"/>
-		<unzip src="${p2.director.install.path}/plugins/${com.aptana.ide.rcp.jar.name}" dest="${tmp.dir}/com.aptana.ide.rcp" />
-		<replaceregexp file="${tmp.dir}/com.aptana.ide.rcp/preference_customization.ini"
-	                     match="(org.eclipse.ui/defaultPerspectiveId=).*"
-	                     replace="\1${org.eclipse.ui/defaultPerspectiveId}"
-	                     byline="true" />
-		<!--
-		<loadfile property="preference_customization.ini"
-		      srcFile="${tmp.dir}/com.aptana.ide.rcp/preference_customization.ini"/>
-		<echo message="preference_customization.ini contents" />
-		<echo message="${preference_customization.ini}" />
-		<echo message="=====================================" />
-		-->
-		<zip basedir="${tmp.dir}/com.aptana.ide.rcp" destfile="${p2.director.install.path}/plugins/${com.aptana.ide.rcp.jar.name}" />
-  		<delete dir="${tmp.dir}/com.aptana.ide.rcp" />
+		<if>
+			<isset property="org.eclipse.ui/defaultPerspectiveId" />
+		<then>
+			<echo message="Setting default perspective to ${org.eclipse.ui/defaultPerspectiveId}" />
+			<pathconvert property="com.aptana.ide.rcp.jar.name">
+				<fileset dir="${p2.director.install.path}/plugins" includes="com.aptana.ide.rcp_*.jar" />
+				<flattenmapper/>
+			</pathconvert>
+			<mkdir dir="${tmp.dir}/com.aptana.ide.rcp"/>
+			<unzip src="${p2.director.install.path}/plugins/${com.aptana.ide.rcp.jar.name}" dest="${tmp.dir}/com.aptana.ide.rcp" />
+			<replaceregexp file="${tmp.dir}/com.aptana.ide.rcp/preference_customization.ini"
+		                     match="(org.eclipse.ui/defaultPerspectiveId=).*"
+		                     replace="\1${org.eclipse.ui/defaultPerspectiveId}"
+		                     byline="true" />
+			<!--
+			<loadfile property="preference_customization.ini"
+			      srcFile="${tmp.dir}/com.aptana.ide.rcp/preference_customization.ini"/>
+			<echo message="preference_customization.ini contents" />
+			<echo message="${preference_customization.ini}" />
+			<echo message="=====================================" />
+			-->
+			<zip basedir="${tmp.dir}/com.aptana.ide.rcp" destfile="${p2.director.install.path}/plugins/${com.aptana.ide.rcp.jar.name}" />
+	  		<delete dir="${tmp.dir}/com.aptana.ide.rcp" />
+		</then>
+		</if>
 	</target>
 
 	<!-- - - - - - - - - - - - - - - - - - 
