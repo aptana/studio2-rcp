@@ -334,7 +334,7 @@
 	                     byline="true" />
 		<loadfile property="preference_customization.ini"
 		      srcFile="${tmp.dir}/com.aptana.ide.rcp/preference_customization.ini"/>
-		<echo message="preference_customization.ini" />
+		<echo message="${preference_customization.ini}" />
 		<!-- zip basedir="${tmp.dir}/com.aptana.ide.rcp" destfile="${p2.director.install.path}/plugins/${com.aptana.ide.rcp.jar}" / -->
   		<delete dir="${tmp.dir}/com.aptana.ide.rcp" />
 	</target>
