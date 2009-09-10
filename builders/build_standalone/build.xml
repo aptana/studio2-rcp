@@ -181,7 +181,7 @@
 	<!-- - - - - - - - - - - - - - - - - - 
 	      target: win_64.standalone                      
 	     - - - - - - - - - - - - - - - - - -->
-	<target name="win_64.standalone">
+	<target name="win_64.standalone" unless="dont.build.win_64.standalone">
 		<!-- Win 64-bit RCP P2 Build -->
 		<mkdir dir="${tmp.dir}" />
 		<antcall target="generate.product">
