@@ -1,7 +1,7 @@
 
 SetCompressor /FINAL /SOLID lzma
 
-Name "Aptana Studio Trunk"
+Name "$(ProductName)"
 
 # Defines
 !define REGKEY "SOFTWARE\$(^Name)"
