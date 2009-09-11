@@ -39,7 +39,6 @@
 !define JRE_ROOT "${java.home}"</echo>
 		<echo message="Calling makensis.exe" />
 		<exec executable="${makensis}" failonerror="true">			
-			<arg value="/V4" />
 			<arg value='/XName ""${ProductName}""' />
 			<arg value="${basedir}\windows-nsis\Aptana Studio.nsi" />
 		</exec>
