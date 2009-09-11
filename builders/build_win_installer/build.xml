@@ -40,7 +40,7 @@
 		<echo message="Calling makensis.exe" />
 		<exec executable="${makensis}" failonerror="true">			
 			<arg value="/V4" />
-			<arg value="/DProductName=${ProductName}" />
+			<arg value="/X&quot;!define ProductName ${ProductName}&quot;" />
 			<arg value="${basedir}\windows-nsis\Aptana Studio.nsi" />
 		</exec>
 	</target>
