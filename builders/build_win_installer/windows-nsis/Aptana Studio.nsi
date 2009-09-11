@@ -1,8 +1,6 @@
 
 SetCompressor /FINAL /SOLID lzma
 
-#Name "$ProductName"
-
 # Defines
 !define REGKEY "SOFTWARE\$(^Name)"
 !define VERSION 2.0.0
