@@ -1,7 +1,7 @@
 
 SetCompressor /FINAL /SOLID lzma
 
-Name "$ProductName"
+#Name "$ProductName"
 
 # Defines
 !define REGKEY "SOFTWARE\$(^Name)"
