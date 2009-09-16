@@ -2,7 +2,7 @@
 <feature
       id="com.aptana.ide.feature.rcp"
       label="%featureName"
-      version="1.5.1.qualifier"
+      version="1.6.0.qualifier"
       provider-name="%providerName"
       plugin="com.aptana.ide.rcp">
 
@@ -50,7 +50,7 @@
    <includes
          id="com.aptana.ide.feature.xul"
          version="0.0.0"/>
-         
+
    <includes
          id="com.aptana.ide.feature.secureftp"
          version="0.0.0"/>
