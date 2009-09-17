@@ -12,6 +12,7 @@
             Builds the Studio RCP feature
     </description>
 
+	<property environment="env" />
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
 		<classpath>
 			<pathelement location="lib/ant-contrib-0.6.jar" />
@@ -204,4 +205,17 @@
 		</for>
 	</target>
 	
+	<target name="touch-info">
+		<touch file="build_number.${env.BUILD_NUMBER}"/>
+	    <touch file="build_id.${env.BUILD_ID}"/>
+	    <touch file="build_tag.${env.BUILD_TAG}"/>
+	</target>
+	
+	<target name="create-artifact-symlink">
+		<exec executable="unlink">
+	    	<arg value="${env.WORKSPACE}/build-artifacts" />
+	    </exec>
+	    <symlink link="${env.WORKSPACE}/build-artifacts" resource="${deploy.dir}" failonerror="false"/>
+	</target>
+
 </project>
