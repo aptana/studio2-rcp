@@ -12,8 +12,8 @@
             Builds win32, Mac OSX and Linux GTK x86 P2-enabled RCP Aptana IDE standalone apps.
     </description>
 
+	<property environment="env" />
 	<property file="build_local.properties" />
-	
 	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
 		<classpath>
 			<pathelement location="ant-contrib/ant-contrib.jar" />
@@ -383,5 +383,12 @@
 				<include name="*.zip" />
 			</fileset>
 		</move>
+	</target>
+	
+	<target name="create-artifact-symlink">
+		<exec executable="unlink">
+	    	<arg value="${env.WORKSPACE}/build-artifacts" />
+	    </exec>
+	    <symlink link="${env.WORKSPACE}/build-artifacts" resource="${deploy.dir}" failonerror="false"/>
 	</target>
 </project>
