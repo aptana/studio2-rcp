@@ -4,7 +4,7 @@ set :application, "studio" # Which project are we pushing (this controls folder 
 set :branch, "master" # which branch was it built on?
 set :bucket_name, 'download.aptana.org' # Which bucket are we pushing it to?
 set :containing_folder_name, "#{application}"
-set :bucket_path_prefix, "tools/radrails/plugin/update"
+set :bucket_path_prefix, "tools/studio/plugin/update"
 set :build_artifact_path, "/var/update-site/update/#{branch}" # Where does it live on the build file server?
 set :compressed_filename, "#{application}.tar.gz"
 
