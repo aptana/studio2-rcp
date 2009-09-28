@@ -7,17 +7,6 @@
    </extension>
 
    <extension
-         point="org.eclipse.ui.preferencePages">
-
-    <page
-          category="com.aptana.ide.core.ui.preferences.GeneralPreferencePage"
-          class="com.aptana.ide.rcp.main.preferences.StartupShutdownPreferencePage"
-          id="com.aptana.ide.rcp.main.preferences.StartupShutdownPreferencePage"
-          name="%startupShutdownPreferencePage"/>
-          
-    
-   </extension>
-   <extension
         point="org.eclipse.ui.ide.resourceFilters">
         <filter pattern="CVS" selected="true" />
         <filter pattern="*.DS_Store" selected="true" />

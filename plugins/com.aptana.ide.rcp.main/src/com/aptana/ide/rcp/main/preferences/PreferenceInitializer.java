@@ -39,7 +39,6 @@ public class PreferenceInitializer extends AbstractPreferenceInitializer
 		store.setDefault(getOpenInEditorKey(), true);
 
 		store = MainPlugin.getDefault().getPluginPreferences();
-		store.setDefault(IPreferenceConstants.REOPEN_EDITORS_ON_STARTUP, true);
 
 		if (store.getBoolean(IPreferenceConstants.WORKSPACE_ENCODING_SET) == false)
 		{

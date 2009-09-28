@@ -10,11 +10,11 @@
  *******************************************************************************/
 package com.aptana.ide.rcp;
 
-import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -48,11 +48,6 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.application.IWorkbenchConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
@@ -78,13 +73,8 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.ServiceReference;
 import org.osgi.framework.Version;
 
-import com.aptana.ide.core.BaseFileEditorInput;
 import com.aptana.ide.core.FileUtils;
-import com.aptana.ide.core.IdeLog;
 import com.aptana.ide.core.PlatformUtils;
-import com.aptana.ide.core.StringUtils;
-import com.aptana.ide.core.ui.WorkbenchHelper;
-import com.aptana.ide.rcp.main.MainPlugin;
 import com.ibm.icu.text.Collator;
 
 /**
@@ -96,6 +86,7 @@ import com.ibm.icu.text.Collator;
  * 
  * @since 3.0
  */
+@SuppressWarnings("restriction")
 public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 
 	private static final String WORKBENCH_PREFERENCE_CATEGORY_ID = "org.eclipse.ui.preferencePages.Workbench"; //$NON-NLS-1$
@@ -109,8 +100,6 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 	private static IDEWorkbenchAdvisor workbenchAdvisor = null;
 	
 	private WorkbenchWindowAdvisor workbenchWindowAdvisor;
-	private static final String PREFERENCE_OPEN_FILES = "com.aptana.ide.rcp.PREFERENCE_OPEN_FILES"; //$NON-NLS-1$
-	private static final String PREFERENCE_FILE_DELIMETER = ";;;"; //$NON-NLS-1$
 
 	/**
 	 * Contains the workspace location if the -showlocation command line
@@ -123,7 +112,7 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 	 * session; <code>null</code> if uninitialized. Key type:
 	 * <code>String</code>, Value type: <code>AboutInfo</code>.
 	 */
-	private Map newlyAddedBundleGroups;
+	private Map<String, AboutInfo> newlyAddedBundleGroups;
 
 	/**
 	 * Array of <code>AboutInfo</code> for all new installed features that
@@ -219,13 +208,10 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 		Policy.setComparator(Collator.getInstance());
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see org.eclipse.ui.application.WorkbenchAdvisor#preStartup()
 	 */
 	public void preStartup() {
-
 		// Suspend background jobs while we startup
 		Job.getJobManager().suspend();
 
@@ -240,46 +226,11 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 				ResourcesPlugin.FAMILY_AUTO_BUILD);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see org.eclipse.ui.application.WorkbenchAdvisor#postStartup()
 	 */
 	public void postStartup() {
 		tearDownSplash32Workaround();
-		try
-		{
-			IPreferenceStore prefStore = MainPlugin.getDefault().getPreferenceStore();
-			if(prefStore != null && prefStore.getBoolean(com.aptana.ide.rcp.main.preferences.IPreferenceConstants.REOPEN_EDITORS_ON_STARTUP))
-			{
-				IWorkbenchWindow[] windows = PlatformUI.getWorkbench().getWorkbenchWindows();
-				ArrayList openFiles = getOpenEditors(windows);
-	
-				IPreferenceStore store = IdePlugin.getDefault().getPreferenceStore();
-				String fileString = store.getString(PREFERENCE_OPEN_FILES);
-				if (fileString != null)
-				{
-					String[] files = fileString.split(PREFERENCE_FILE_DELIMETER);
-					for (int i = 0; i < files.length; i++)
-					{
-						String file = files[i];
-						if (!StringUtils.EMPTY.equals(file))
-						{
-							File f = new File(file);
-							if (f.exists() && !openFiles.contains(file))
-							{
-								WorkbenchHelper.openFile(f, PlatformUI.getWorkbench().getActiveWorkbenchWindow());
-							}
-						}
-					}
-				}
-			}
-		}
-		catch (Exception ex)
-		{
-			IdeLog.logError(IdePlugin.getDefault(), Messages.ApplicationWorkbenchAdvisor_ErrorPostStartup, ex);
-		}
-
 		try {
 			refreshFromLocal();
 			activateProxyService();
@@ -338,12 +289,9 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 				}
 			}
 		};
-
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see org.eclipse.ui.application.WorkbenchAdvisor#postShutdown
 	 */
 	public void postShutdown() {
@@ -364,33 +312,16 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see org.eclipse.ui.application.WorkbenchAdvisor#preShutdown()
 	 */
 	public boolean preShutdown() {
-		try
-		{
-			IPreferenceStore store = IdePlugin.getDefault().getPreferenceStore();
-			IWorkbenchWindow[] windows = PlatformUI.getWorkbench().getWorkbenchWindows();
-			ArrayList openFiles = getOpenEditors(windows);
-			String fileList = StringUtils.join(PREFERENCE_FILE_DELIMETER, (String[]) openFiles.toArray(new String[0]));
-			store.setValue(PREFERENCE_OPEN_FILES, fileList);
-		}
-		catch (Exception ex)
-		{
-			IdeLog.logError(IdePlugin.getDefault(), Messages.ApplicationWorkbenchAdvisor_ErrorPreShutdown, ex);
-		}
-
 		Display.getCurrent().removeListener(SWT.Settings,
 				settingsChangeListener);
 		return super.preShutdown();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see org.eclipse.ui.application.WorkbenchAdvisor#createWorkbenchWindowAdvisor(org.eclipse.ui.application.IWorkbenchWindowConfigurer)
 	 */
 	public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(
@@ -483,18 +414,14 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see org.eclipse.ui.application.WorkbenchAdvisor#getDefaultPageInput
 	 */
 	public IAdaptable getDefaultPageInput() {
 		return ResourcesPlugin.getWorkspace().getRoot();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see org.eclipse.ui.application.WorkbenchAdvisor
 	 */
 	public String getInitialWindowPerspectiveId() {
@@ -518,11 +445,10 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 	 * 
 	 * @return map of versioned feature ids -> info object (key type:
 	 *         <code>String</code>, value type: <code>AboutInfo</code>)
-	 * @since 3.0
 	 */
-	private Map computeBundleGroupMap() {
+	private Map<String, AboutInfo> computeBundleGroupMap() {
 		// use tree map to get predicable order
-		Map ids = new TreeMap();
+		Map<String, AboutInfo> ids = new TreeMap<String, AboutInfo>();
 
 		IBundleGroupProvider[] providers = Platform.getBundleGroupProviders();
 		for (int i = 0; i < providers.length; ++i) {
@@ -551,7 +477,7 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 	 *         <code>String</code>) -> infos (value type:
 	 *         <code>AboutInfo</code>).
 	 */
-	public Map getNewlyAddedBundleGroups() {
+	public Map<String, AboutInfo> getNewlyAddedBundleGroups() {
 		if (newlyAddedBundleGroups == null) {
 			newlyAddedBundleGroups = createNewBundleGroupsMap();
 		}
@@ -561,7 +487,7 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 	/**
 	 * Updates the old features setting and returns a map of new features.
 	 */
-	private Map createNewBundleGroupsMap() {
+	private Map<String, AboutInfo> createNewBundleGroupsMap() {
 		// retrieve list of installed bundle groups from last session
 		IDialogSettings settings = IDEWorkbenchPlugin.getDefault()
 				.getDialogSettings();
@@ -569,7 +495,7 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 
 		// get a map of currently installed bundle groups and store it for next
 		// session
-		Map bundleGroups = computeBundleGroupMap();
+		Map<String, AboutInfo> bundleGroups = computeBundleGroupMap();
 		String[] currentFeaturesArray = new String[bundleGroups.size()];
 		bundleGroups.keySet().toArray(currentFeaturesArray);
 		settings.put(INSTALLED_FEATURES, currentFeaturesArray);
@@ -592,28 +518,19 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 	 * @see IWorkbenchConfigurer#declareImage
 	 */
 	private void declareWorkbenchImages() {
-
 		final String ICONS_PATH = "$nl$/icons/full/";//$NON-NLS-1$
 		final String PATH_ELOCALTOOL = ICONS_PATH + "elcl16/"; // Enabled //$NON-NLS-1$
 
-		// toolbar
-		// icons.
-		final String PATH_DLOCALTOOL = ICONS_PATH + "dlcl16/"; // Disabled //$NON-NLS-1$
-		// //$NON-NLS-1$
-		// toolbar
-		// icons.
-		final String PATH_ETOOL = ICONS_PATH + "etool16/"; // Enabled toolbar //$NON-NLS-1$
-		// //$NON-NLS-1$
-		// icons.
-		final String PATH_DTOOL = ICONS_PATH + "dtool16/"; // Disabled toolbar //$NON-NLS-1$
-		// //$NON-NLS-1$
-		// icons.
-		final String PATH_OBJECT = ICONS_PATH + "obj16/"; // Model object //$NON-NLS-1$
-		// //$NON-NLS-1$
-		// icons
-		final String PATH_WIZBAN = ICONS_PATH + "wizban/"; // Wizard //$NON-NLS-1$
-		// //$NON-NLS-1$
-		// icons
+		// Disabled toolbar icons
+		final String PATH_DLOCALTOOL = ICONS_PATH + "dlcl16/"; //$NON-NLS-1$
+		// Enabled toolbar icons
+		final String PATH_ETOOL = ICONS_PATH + "etool16/"; //$NON-NLS-1$
+		// Disabled toolbar icons
+		final String PATH_DTOOL = ICONS_PATH + "dtool16/"; //$NON-NLS-1$
+		// Model object icons
+		final String PATH_OBJECT = ICONS_PATH + "obj16/"; //$NON-NLS-1$
+		// Wizard icons
+		final String PATH_WIZBAN = ICONS_PATH + "wizban/"; //$NON-NLS-1$
 
 		Bundle ideBundle = Platform.getBundle(IDEWorkbenchPlugin.IDE_WORKBENCH);
 
@@ -640,7 +557,6 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 		declareWorkbenchImage(ideBundle,
 				IDEInternalWorkbenchImages.IMG_ETOOL_NEXT_NAV, PATH_ETOOL
 						+ "next_nav.gif", false); //$NON-NLS-1$
-
 		declareWorkbenchImage(ideBundle,
 				IDEInternalWorkbenchImages.IMG_ETOOL_PREVIOUS_NAV, PATH_ETOOL
 						+ "prev_nav.gif", false); //$NON-NLS-1$
@@ -779,9 +695,7 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 		getWorkbenchConfigurer().declareImage(symbolicName, desc, shared);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see org.eclipse.ui.application.WorkbenchAdvisor#getMainPreferencePageId
 	 */
 	public String getMainPreferencePageId() {
@@ -805,10 +719,10 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 		if (welcomePerspectiveInfos == null) {
 			// support old welcome perspectives if intro plugin is not present
 			if (!hasIntro()) {
-				Map m = getNewlyAddedBundleGroups();
-				ArrayList list = new ArrayList(m.size());
-				for (Iterator i = m.values().iterator(); i.hasNext();) {
-					AboutInfo info = (AboutInfo) i.next();
+				Map<String, AboutInfo> m = getNewlyAddedBundleGroups();
+				List<AboutInfo> list = new ArrayList<AboutInfo>(m.size());
+				for (Iterator<AboutInfo> i = m.values().iterator(); i.hasNext();) {
+					AboutInfo info = i.next();
 					if (info != null && info.getWelcomePerspectiveId() != null
 							&& info.getWelcomePageURL() != null) {
 						list.add(info);
@@ -821,9 +735,7 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 		return welcomePerspectiveInfos;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/**
 	 * @see org.eclipse.ui.application.WorkbenchAdvisor#getWorkbenchErrorHandler()
 	 */
 	public AbstractStatusHandler getWorkbenchErrorHandler() {
@@ -833,83 +745,7 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 		}
 		return ideWorkbenchErrorHandler;
 	}
-	
-	
-	/**
-	 * Returns a list of all open editors
-	 * 
-	 * @param windows
-	 * @return ArrayList
-	 */
-	public ArrayList getOpenEditors(IWorkbenchWindow[] windows)
-	{
-		ArrayList openFiles = new ArrayList();
-		for (int i = 0; i < windows.length; i++)
-		{
-			ArrayList files = getOpenEditors(windows[i].getPages());
-			openFiles.addAll(files);
-		}
-		return openFiles;
-	}
 
-	/**
-	 * Returns a list of all open editors
-	 * 
-	 * @param pages
-	 * @return ArrayList
-	 */
-	public ArrayList getOpenEditors(IWorkbenchPage[] pages)
-	{
-		ArrayList openFiles = new ArrayList();
-		for (int i = 0; i < pages.length; i++)
-		{
-			ArrayList files = getEditorReferences(pages[i]);
-			openFiles.addAll(files);
-		}
-		return openFiles;
-	}
-
-	/**
-	 * Returns a list of all open files in the current workbench page
-	 * 
-	 * @param page
-	 * @return ArrayList
-	 */
-	public ArrayList getEditorReferences(IWorkbenchPage page)
-	{
-		IEditorReference[] refs = page.getEditorReferences();
-		if (refs == null)
-		{
-			return null;
-		}
-
-		ArrayList openFiles = new ArrayList();
-		for (int i = 0; i < refs.length; i++)
-		{
-			IEditorInput input;
-			try
-			{
-
-				input = refs[i].getEditorInput();
-				if (input instanceof BaseFileEditorInput)
-				{
-					String path = ((BaseFileEditorInput) input).getPath().toOSString();
-					if(path.startsWith(FileUtils.systemTempDir) == false)
-					{
-						openFiles.add(path);
-					}
-				}
-			}
-			catch (PartInitException e)
-			{
-				IdeLog.logError(IdePlugin.getDefault(), Messages.ApplicationWorkbenchAdvisor_ErrorGettingCurrentEditorReferences, e);
-			}
-		}
-
-		return openFiles;
-
-	}
-	
 	private static void tearDownSplash32Workaround() {
 		String launcherName = null;
 		IPath launcher = FileUtils.getApplicationLauncher(true); /* true for splash launcher */
@@ -926,5 +762,4 @@ public class IDEWorkbenchAdvisor extends WorkbenchAdvisor {
 			}
 		}
 	}
-
 }

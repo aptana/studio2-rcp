@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2005-2006 Aptana, Inc.
+ * Copyright (c) 2005-2009 Aptana, Inc.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -29,16 +29,6 @@ public final class Messages extends NLS
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
 	}
-
-	/**
-	 * ApplicationWorkbenchAdvisor_ErrorPostStartup
-	 */
-	public static String ApplicationWorkbenchAdvisor_ErrorPostStartup;
-
-	/**
-	 * ApplicationWorkbenchAdvisor_ErrorPreShutdown
-	 */
-	public static String ApplicationWorkbenchAdvisor_ErrorPreShutdown;
 
 	/**
 	 * ApplicationWorkbenchAdvisor_ErrorGettingCurrentEditorReferences
