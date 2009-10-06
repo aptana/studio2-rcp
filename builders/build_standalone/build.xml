@@ -377,10 +377,12 @@
 	     - - - - - - - - - - - - - - - - - -->
 	<target name="deploy">
 		<delete dir="${deploy.dir}" />
+		<echo>${deploy.dir}</echo>
 		<mkdir dir="${deploy.dir}" />
 		<move todir="${deploy.dir}">
 			<fileset dir="${output.dir}">
 				<include name="*.zip" />
+				<include name="index.html"/>
 			</fileset>
 		</move>
 	</target>
