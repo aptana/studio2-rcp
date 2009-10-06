@@ -41,6 +41,7 @@
 		<antcall target="regenerate.base" />
 		<antcall target="linux_64.standalone" />
 		<antcall target="deploy" />
+		<antcall target="create-index-html" />
 	</target>
 
 	<!-- ================================= 
@@ -54,7 +55,6 @@
 			<arg value="-c" />
 			<arg value="${git.executable} checkout -f" />
 		</exec>
-
 	</target>
 
 	<!-- - - - - - - - - - - - - - - - - - 
@@ -377,11 +377,19 @@
 	     - - - - - - - - - - - - - - - - - -->
 	<target name="deploy">
 		<delete dir="${deploy.dir}" />
-		<echo>${deploy.dir}</echo>
 		<mkdir dir="${deploy.dir}" />
 		<move todir="${deploy.dir}">
 			<fileset dir="${output.dir}">
 				<include name="*.zip" />
+				<include name="index.html"/>
+			</fileset>
+		</move>
+	</target>
+	
+	<target name="create-index-html"  depends="generate.build.properties">
+		<echo>${buildDirectory}</echo>
+		<move todir="${buildDirectory}">
+			<fileset dir="${output.dir}">
 				<include name="index.html"/>
 			</fileset>
 		</move>
