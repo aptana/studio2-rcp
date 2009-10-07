@@ -41,7 +41,7 @@
 		<antcall target="regenerate.base" />
 		<antcall target="linux_64.standalone" />
 		<antcall target="deploy" />
-		<antcall target="create-index-html" />
+		<!-- <antcall target="create-index-html" /> -->
 	</target>
 
 	<!-- ================================= 
