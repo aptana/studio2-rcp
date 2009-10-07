@@ -55,7 +55,16 @@
 			<arg value="-c" />
 			<arg value="${git.executable} checkout -f" />
 		</exec>
+		<exec executable="/bin/ls" dir="${buildDirectory}">
+		</exec>
+		<move todir="${buildDirectory}">
+			<fileset dir="${output.dir}">
+				<include name="index.html"/>
+			</fileset>
+		</move>
 	</target>
+	
+
 
 	<!-- - - - - - - - - - - - - - - - - - 
 		  target: generate.base                      
@@ -381,19 +390,10 @@
 		<move todir="${deploy.dir}">
 			<fileset dir="${output.dir}">
 				<include name="*.zip" />
-				<include name="index.html"/>
 			</fileset>
 		</move>
 	</target>
-	
-	<target name="create-index-html"  depends="generate.build.properties">
-		<echo>${buildDirectory}</echo>
-		<move todir="${buildDirectory}">
-			<fileset dir="${output.dir}">
-				<include name="index.html"/>
-			</fileset>
-		</move>
-	</target>
+
 	
 	<target name="create-artifact-symlink">
 		<exec executable="unlink">
