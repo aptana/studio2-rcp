@@ -55,13 +55,6 @@
 			<arg value="-c" />
 			<arg value="${git.executable} checkout -f" />
 		</exec>
-		<exec executable="/bin/ls" dir="${buildDirectory}">
-		</exec>
-		<move todir="${buildDirectory}">
-			<fileset dir="${output.dir}">
-				<include name="index.html"/>
-			</fileset>
-		</move>
 	</target>
 	
 
