@@ -41,7 +41,7 @@
 		<antcall target="regenerate.base" />
 		<antcall target="linux_64.standalone" />
 		<antcall target="deploy" />
-		<!-- <antcall target="create-index-html" /> -->
+		<antcall target="create-index-html" />
 	</target>
 
 	<!-- ================================= 
@@ -383,11 +383,14 @@
 		<move todir="${deploy.dir}">
 			<fileset dir="${output.dir}">
 				<include name="*.zip" />
-				<include name="index.html"/>
 			</fileset>
 		</move>
 	</target>
 
+	<target name="create-index-html">
+		<copyfile dest="${builder}/index.html" src="${deploy.dir}"/>
+	</target>
+	
 	
 	<target name="create-artifact-symlink">
 		<exec executable="unlink">
