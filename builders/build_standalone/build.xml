@@ -381,6 +381,7 @@
 		<move todir="${deploy.dir}">
 			<fileset dir="${output.dir}">
 				<include name="*.zip" />
+				<include name="index.html"/>
 			</fileset>
 		</move>
 	</target>
