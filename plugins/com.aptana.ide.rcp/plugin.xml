@@ -18,7 +18,7 @@
             name="Aptana Studio">
          <property
                name="aboutText"
-               value="Welcome to Aptana Studio."/>
+               value="%aboutText"/>
          <property
                name="aboutImage"
                value="content/about.gif"/>
