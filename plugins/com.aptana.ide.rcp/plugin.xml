@@ -15,7 +15,7 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="com.aptana.ide.rcp.application"
-            name="%product.name.AptanaStudio">
+            name="Aptana Studio">
          <property
                name="aboutText"
                value="%aboutText"/>
