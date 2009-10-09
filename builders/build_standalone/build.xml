@@ -388,18 +388,19 @@
 	</target>
 
 	<target name="create-index-html">
+		<echo message="Append date to index.html"/>
+		<tstamp/>
+		<echo file="${builder}/index.html" append="true">
+			<b>These binaries were created on ${TODAY}.</b>
+		</echo>
+		
 		<echo message="Copy index.html to directory that links to contents."/>
 		<copy todir="${deploy.dir}">
 			<fileset dir="${builder}">
 				<include name="index.html" />
 			</fileset>
 		</copy>
-		
-		<echo message="Append date to index.html"/>
-		<tstamp/>
-		<echo file="${deploy.dir}/index.html" append="true">
-			<b>These binaries were created on ${TODAY}.</b>
-		</echo>
+
 	</target>
 	
 	
