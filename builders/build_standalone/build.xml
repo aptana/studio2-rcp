@@ -393,6 +393,10 @@
 				<include name="index.html" />
 			</fileset>
 		</copy>
+		<tstamp/>
+		<echo file="${deploy.dir}/index.html" append="true">
+			<b>These binaries were created on ${TODAY}.</b>
+		</echo>
 	</target>
 	
 	
