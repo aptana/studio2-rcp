@@ -388,7 +388,11 @@
 	</target>
 
 	<target name="create-index-html">
-		<copyfile dest="${builder}/index.html" src="${deploy.dir}"/>
+		<copy todir="${deploy.dir}">
+			<fileset dir="${builder}">
+				<include name="index.html" />
+			</fileset>
+		</copy>
 	</target>
 	
 	
