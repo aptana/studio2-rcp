@@ -391,7 +391,7 @@
 		<echo message="Append date of ${TSTAMP} to index.html"/>
 		<tstamp/>
 		<echo file="${builder}/index.html" append="true">
-			These binaries were created on ${TSTAMP} PST.
+			These binaries were created on ${TODAY} at ${TSTAMP} PST.
 		</echo>
 		
 		<echo message="Copy index.html to directory that links to contents. "/>
