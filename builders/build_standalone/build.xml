@@ -388,7 +388,7 @@
 	</target>
 
 	<target name="create-index-html">
-		<echo message="Append date of ${TSTAMP} to index.html"/>
+		<echo message="Append date of ${TODAY} at ${TSTAMP} to index.html"/>
 		<tstamp/>
 		<echo file="${builder}/index.html" append="true">
 			These binaries were created on ${TODAY} at ${TSTAMP} PST.
