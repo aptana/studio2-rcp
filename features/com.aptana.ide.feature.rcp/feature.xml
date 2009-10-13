@@ -19,11 +19,9 @@
    </license>
 
    <url>
-      <update label="%updateSiteName" url="http://update.aptana.com/update/studio-rcp/"/>
-      <discovery label="Aptana: RadRails Development Environment" url="http://update.aptana.com/install/rails/"/>
-      <discovery label="Aptana: PHP Development Environment" url="http://update.aptana.com/install/php/"/>
-      <discovery label="Aptana: Support for Adobe AIR" url="http://update.aptana.com/install/air/"/>
-      <discovery label="Subclipse" url="http://update.aptana.com/install/svn/"/>
+      <update label="%updateSiteName" url="http://download.aptana.org/tools/studio/plugin/update/studio-rcp/"/>
+      <discovery label="Aptana: RadRails Development Environment" url="http://download.aptana.com/tools/radrails/plugin/install/radrails-studio/"/>
+      <discovery label="Aptana: Support for Adobe AIR" url="http://download.aptana.org/tools/studio/plugin/install/air/"/>
    </url>
 
    <includes
