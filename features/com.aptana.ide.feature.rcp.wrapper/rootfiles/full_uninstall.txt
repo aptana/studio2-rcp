@@ -1,46 +1,7 @@
 Uninstalling/Re-installing Aptana
 ====================================================================================================
-If you need to fully uninstall and reinstall aptana, you must delete a few folders that are not automatically
-deleted by the uninstaller.
+If you need to fully uninstall and reinstall aptana, you must delete a few folders that are not
+automatically deleted by the uninstaller. Please see the instructions entitled 'How do I repair my
+Aptana Studio installation?' at:
 
-You will know if you did not fully delete the proper folders if you get an error like the following:
-
-!SESSION 2007-06-05 18:03:17.484 -----------------------------------------------
-eclipse.buildId=unknown
-java.version=1.6.0_01
-java.vendor=Sun Microsystems Inc.
-BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_GB
-Framework arguments: C:\Program Files\Aptana\Aptana Studio\AptanaStudio.exe
-Command-line arguments: -os win32 -ws win32 -arch x86 C:\Program Files\Aptana\Aptana Studio\AptanaStudio.exe
-
-!ENTRY org.eclipse.core.runtime 2007-06-05 18:03:19.640
-!MESSAGE Product com.aptana.ide.rcp.product could not be found.
-
-!ENTRY org.eclipse.osgi 4 0 2007-06-05 18:03:19.671
-!MESSAGE Application error
-!STACK 1
-java.lang.RuntimeException: No application id has been found. 
-
-To repair your Aptana installation:
-
-Windows:
-   1. Use the Windows control panel Add/Remove Programs utility to uninstall Aptana.
-   2. Navigate to where the Aptana application was installed, and delete your old plugins
-   		and features folder (and all of its contents).
-   3. Re-install Aptana. 
-
-OSX:
-   1. Navigate to where the Aptana application was installed, and delete your old plugins
-   		and features folder (and all of its contents).
-   2. Re-install Aptana. 
-   
-Linux:
-   1. Navigate to where the Aptana application was installed, and delete your old plugins
-   		and features folder (and all of its contents).
-   2. Re-install Aptana. 
-
-====================================================================================================
-This information can also be found at:
 http://www.aptana.com/docs/index.php/Tips_and_Tricks#Repair_your_Aptana_installation
-
-   
