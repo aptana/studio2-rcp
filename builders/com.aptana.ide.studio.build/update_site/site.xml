@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site digestURL="site.xml.digest">
-   <description url="http://update.aptana.com/update">
+   <description url="http://download.aptana.org/tools/studio/plugin/update/studio/">
       Aptana Update Central. Version {version.full}
    </description>
    <feature url="features/com.aptana.ide.feature.studio_{version.full}.jar" id="com.aptana.ide.feature.studio" version="{version.full}">
