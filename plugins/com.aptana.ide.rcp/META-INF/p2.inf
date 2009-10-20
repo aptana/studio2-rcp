@@ -1,8 +1,8 @@
 instructions.install = \
-	addRepository(location:http${#58}//http://download.aptana.org/tools/studio/plugin/install/xul/,type:0,enabled:true);\			  
-	addRepository(location:http${#58}//http://download.aptana.org/tools/studio/plugin/install/xul/,type:1,enabled:true);\
-	addRepository(location:http${#58}//http://download.aptana.org/tools/studio/plugin/install/xul-eclipse/,type:0,enabled:true);\			  
-	addRepository(location:http${#58}//http://download.aptana.org/tools/studio/plugin/install/xul-eclipse/,type:1,enabled:true);\
+	addRepository(location:http${#58}//download.aptana.org/tools/studio/plugin/install/xul/,type:0,enabled:true);\			  
+	addRepository(location:http${#58}//download.aptana.org/tools/studio/plugin/install/xul/,type:1,enabled:true);\
+	addRepository(location:http${#58}//download.aptana.org/tools/studio/plugin/install/xul-eclipse/,type:0,enabled:true);\			  
+	addRepository(location:http${#58}//download.aptana.org/tools/studio/plugin/install/xul-eclipse/,type:1,enabled:true);\
 	addRepository(location:http${#58}//download.aptana.org/tools/studio/plugin/update/studio-rcp,type:0,enabled:true);\
 	addRepository(location:http${#58}//download.aptana.org/tools/studio/plugin/update/studio-rcp,type:1,enabled:true);\
     addRepository(location:http${#58}//download.eclipse.org/releases/galileo,type:0,enabled:true);\
