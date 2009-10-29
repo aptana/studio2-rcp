@@ -311,7 +311,19 @@ FunctionEnd
 ################################################################################
 # Uninstaller sections
 Section /o -un.Main UNSEC0000
-    RmDir /r /REBOOTOK "$INSTDIR"
+    RmDir /r /REBOOTOK "$INSTDIR\configuration"
+    RmDir /r /REBOOTOK "$INSTDIR\dropins"
+    RmDir /r /REBOOTOK "$INSTDIR\features"
+    RmDir /r /REBOOTOK "$INSTDIR\Icons"
+    RmDir /r /REBOOTOK "$INSTDIR\jre"
+    RmDir /r /REBOOTOK "$INSTDIR\p2"
+    RmDir /r /REBOOTOK "$INSTDIR\plugins"
+    Delete /REBOOTOK "$INSTDIR\.eclipseproduct"
+    Delete /REBOOTOK "$INSTDIR\AptanaStudio.exe"
+    Delete /REBOOTOK "$INSTDIR\AptanaStudio.ini"
+    Delete /REBOOTOK "$INSTDIR\artifacts.xml"
+    Delete /REBOOTOK "$INSTDIR\full_uninstall.txt"
+    Delete /REBOOTOK "$INSTDIR\version.txt"
 
     ; Get the local time
     ${GetTime} "" "L" $0 $1 $2 $3 $4 $5 $6
