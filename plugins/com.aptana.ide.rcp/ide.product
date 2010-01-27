@@ -19,7 +19,7 @@
 -application
 com.aptana.ide.desktop.integration.Application</programArgs>
       <vmArgs>-Xms40m
--Xmx384m</vmArgs>
+-Xmx512m</vmArgs>
       <vmArgsLin>-Djava.awt.headless=true</vmArgsLin>
       <vmArgsMac>-Xdock:icon=../Resources/aptana.icns
 -XstartOnFirstThread
