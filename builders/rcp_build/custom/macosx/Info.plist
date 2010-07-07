@@ -5,7 +5,7 @@
 	<key>CFBundleExecutable</key>
 	<string>AptanaStudio</string>
 	<key>CFBundleGetInfoString</key>
-	<string>Aptana Studio for Mac OS X, Copyright Aptana, Inc. 2009. All rights reserved.</string>
+	<string>Aptana Studio for Mac OS X, Copyright Aptana, Inc. 2010. All rights reserved.</string>
 	<key>CFBundleIconFile</key>
 	<string>aptana.icns</string>
 	<key>CFBundleIdentifier</key>
