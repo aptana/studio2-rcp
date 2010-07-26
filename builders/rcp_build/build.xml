@@ -193,6 +193,7 @@
 				<dirset dir="${buildDirectory}" defaultexcludes="true">
 					<include name="plugins/*" />
 					<include name="features/*" />
+					<exclude name="plugins/com.aptana.ide.rcp" />
 					<exclude name="features/com.aptana.ide.feature.rcp" />
 					<exclude name="${topLevelElementType}s/${topLevelElementId}" />
 				</dirset>
