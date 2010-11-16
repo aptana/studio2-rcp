@@ -110,20 +110,33 @@
 		<concat destfile="${tmp.dir}/${collectingFolder}/configuration/config.ini" append="yes" eol="mac">
 			<filelist dir="${builder}/custom/macosx/" files="config.ini" />
 		</concat>
-		<delete file="${tmp.dir}/${collectingFolder}/AptanaStudio.app/Contents/MacOS/AptanaStudio.ini" />
+		<delete file="${tmp.dir}/${collectingFolder}/${product.name}.app/Contents/MacOS/${product.name}.ini" />
+		<antcall target="clean.old.profiles" />
 		<echo message="**  Rezipping Mac ZIP File  **" level="info" />
 		<zip destfile="${output.dir}/${archivePrefix}.macosx.carbon.zip" filesonly="false">
 			<zipfileset dir="${tmp.dir}/${collectingFolder}/" includes="**/**" prefix="${zipFolder}">
-				<exclude name="AptanaStudio" />
-				<exclude name="AptanaStudio.app/Contents/MacOS/AptanaStudio" />
+				<exclude name="${product.name}" />
+				<exclude name="${product.name}.app/Contents/MacOS/${product.name}" />
 			</zipfileset>
 			<zipfileset dir="${tmp.dir}/${collectingFolder}" filemode="755" defaultexcludes="true" prefix="${zipFolder}">
-				<include name="AptanaStudio" />
-				<include name="AptanaStudio.app/Contents/MacOS/AptanaStudio" />
+				<include name="${product.name}" />
+				<include name="${product.name}.app/Contents/MacOS/${product.name}" />
 			</zipfileset>
 		</zip>
 		<delete dir="${tmp.dir}" />
 	</target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: clean.old.profiles                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="clean.old.profiles">
+    	<!-- Clean up old p2 profiles that eat up some space -->
+   		<purge keep="1">
+   			<fileset dir="${tmp.dir}/${collectingFolder}/p2/org.eclipse.equinox.p2.engine/profileRegistry/AptanaProfile.profile">
+   	    		<include name="*.profile"/>
+   			</fileset>
+   		</purge>
+    </target>
 
 	<!-- - - - - - - - - - - - - - - - - - 
 	          target: mac.cocoa.standalone                      
@@ -142,16 +155,17 @@
 		<concat destfile="${tmp.dir}/${collectingFolder}/configuration/config.ini" append="yes" eol="mac">
 			<filelist dir="${builder}/custom/macosx/" files="config.ini" />
 		</concat>
-		<delete file="${tmp.dir}/${collectingFolder}/AptanaStudio.app/Contents/MacOS/AptanaStudio.ini" />
+		<delete file="${tmp.dir}/${collectingFolder}/${product.name}.app/Contents/MacOS/${product.name}.ini" />
+		<antcall target="clean.old.profiles" />
 		<echo message="**  Rezipping Mac ZIP File  **" level="info" />
 		<zip destfile="${output.dir}/${archivePrefix}.macosx.cocoa.x86.zip" filesonly="false">
 			<zipfileset dir="${tmp.dir}/${collectingFolder}/" includes="**/**" prefix="${zipFolder}">
-				<exclude name="AptanaStudio" />
-				<exclude name="AptanaStudio.app/Contents/MacOS/AptanaStudio" />
+				<exclude name="${product.name}" />
+				<exclude name="${product.name}.app/Contents/MacOS/${product.name}" />
 			</zipfileset>
 			<zipfileset dir="${tmp.dir}/${collectingFolder}" filemode="755" defaultexcludes="true" prefix="${zipFolder}">
-				<include name="AptanaStudio" />
-				<include name="AptanaStudio.app/Contents/MacOS/AptanaStudio" />
+				<include name="${product.name}" />
+				<include name="${product.name}.app/Contents/MacOS/${product.name}" />
 			</zipfileset>
 		</zip>
 		<delete dir="${tmp.dir}" />
@@ -174,6 +188,7 @@
 			<filelist dir="${tmp.dir}/" files="config.ini" />
 			<filelist dir="${builder}/custom/win32/" files="config_xp.ini" />
 		</concat>
+		<antcall target="clean.old.profiles" />
 		<zip destfile="${output.dir}/${archivePrefix}.win32.x86.zip">
 			<zipfileset dir="${tmp.dir}/${collectingFolder}" includes="**/**" prefix="${zipFolder}" />
 		</zip>
@@ -197,6 +212,7 @@
 			<filelist dir="${tmp.dir}/" files="config.ini" />
 			<filelist dir="${builder}/custom/win32/" files="config_xp.ini" />
 		</concat>
+		<antcall target="clean.old.profiles" />
 		<zip destfile="${output.dir}/${archivePrefix}.win32.x86_64.zip">
 			<zipfileset dir="${tmp.dir}/${collectingFolder}" includes="**/**" prefix="${zipFolder}" />
 		</zip>
@@ -217,13 +233,14 @@
 		<concat destfile="${tmp.dir}/${collectingFolder}/configuration/config.ini" append="yes" eol="unix">
 			<filelist dir="${builder}/custom/linux/" files="config.ini" />
 		</concat>
+		<antcall target="clean.old.profiles" />
 		<!-- Update linux zip file -->
 		<zip destfile="${output.dir}/${archivePrefix}.linux.gtk.x86.zip" filesonly="false">
 			<zipfileset dir="${tmp.dir}/${collectingFolder}" includes="**/**" prefix="${zipFolder}">
-				<exclude name="AptanaStudio" />
+				<exclude name="${product.name}" />
 			</zipfileset>
 			<zipfileset dir="${tmp.dir}/${collectingFolder}" filemode="755" defaultexcludes="true" prefix="${zipFolder}">
-				<include name="AptanaStudio" />
+				<include name="${product.name}" />
 			</zipfileset>
 		</zip>
 		<delete dir="${tmp.dir}" />
@@ -243,13 +260,14 @@
 		<concat destfile="${tmp.dir}/${collectingFolder}/configuration/config.ini" append="yes" eol="unix">
 			<filelist dir="${builder}/custom/linux/" files="config.ini" />
 		</concat>
+		<antcall target="clean.old.profiles" />
 		<!-- Update linux zip file -->
 		<zip destfile="${output.dir}/${archivePrefix}.linux.gtk.x86_64.zip" filesonly="false">
 			<zipfileset dir="${tmp.dir}/${collectingFolder}" includes="**/**" prefix="${zipFolder}">
-				<exclude name="AptanaStudio" />
+				<exclude name="${product.name}" />
 			</zipfileset>
 			<zipfileset dir="${tmp.dir}/${collectingFolder}" filemode="755" defaultexcludes="true" prefix="${zipFolder}">
-				<include name="AptanaStudio" />
+				<include name="${product.name}" />
 			</zipfileset>
 		</zip>
 		<delete dir="${tmp.dir}" />
@@ -334,24 +352,24 @@
 		<then>
 			<echo message="Setting default perspective to ${org.eclipse.ui/defaultPerspectiveId}" />
 			<pathconvert property="com.aptana.ide.rcp.jar.name">
-				<fileset dir="${p2.director.install.path}/plugins" includes="com.aptana.ide.rcp_*.jar" />
+				<fileset dir="${p2.director.install.path}/plugins" includes="${rcp.plugin.name}_*.jar" />
 				<flattenmapper/>
 			</pathconvert>
-			<mkdir dir="${tmp.dir}/com.aptana.ide.rcp"/>
-			<unzip src="${p2.director.install.path}/plugins/${com.aptana.ide.rcp.jar.name}" dest="${tmp.dir}/com.aptana.ide.rcp" />
-			<replaceregexp file="${tmp.dir}/com.aptana.ide.rcp/preference_customization.ini"
+			<mkdir dir="${tmp.dir}/${rcp.plugin.name}"/>
+			<unzip src="${p2.director.install.path}/plugins/${com.aptana.ide.rcp.jar.name}" dest="${tmp.dir}/${rcp.plugin.name}" />
+			<replaceregexp file="${tmp.dir}/${rcp.plugin.name}/preference_customization.ini"
 		                     match="(org.eclipse.ui/defaultPerspectiveId=).*"
 		                     replace="\1${org.eclipse.ui/defaultPerspectiveId}"
 		                     byline="true" />
 			<!--
 			<loadfile property="preference_customization.ini"
-			      srcFile="${tmp.dir}/com.aptana.ide.rcp/preference_customization.ini"/>
+			      srcFile="${tmp.dir}/${rcp.plugin.name}/preference_customization.ini"/>
 			<echo message="preference_customization.ini contents" />
 			<echo message="${preference_customization.ini}" />
 			<echo message="=====================================" />
 			-->
-			<zip basedir="${tmp.dir}/com.aptana.ide.rcp" destfile="${p2.director.install.path}/plugins/${com.aptana.ide.rcp.jar.name}" />
-	  		<delete dir="${tmp.dir}/com.aptana.ide.rcp" />
+			<zip basedir="${tmp.dir}/${rcp.plugin.name}" destfile="${p2.director.install.path}/plugins/${com.aptana.ide.rcp.jar.name}" />
+	  		<delete dir="${tmp.dir}/${rcp.plugin.name}" />
 		</then>
 		</if>
 	</target>

@@ -170,7 +170,7 @@
 		<!-- carbon -->
 		<pathconvert property="mac.launcher">
 			<fileset dir="${p2.repo.dir}/binary">
-				<include name="com.aptana.ide.rcp.product.launcher.carbon.macosx.ppc_*" />
+				<include name="${topLevelElementId}.launcher.carbon.macosx.ppc_*" />
 			</fileset>
 			<mapper>
 				<flattenmapper />
@@ -184,8 +184,8 @@
 		<concat destfile="${mac.launcher.dir}/configuration/config.ini" append="yes" eol="mac">
 			<filelist dir="${builder}/custom/macosx/" files="config.ini" />
 		</concat>
-		<copy file="${builder}/custom/macosx/Info.plist" tofile="${mac.launcher.dir}/AptanaStudio.app/Contents/Info.plist" overwrite="true" />
-		<copy file="${builder}/custom/macosx/AptanaStudio" tofile="${mac.launcher.dir}/AptanaStudio.app/Contents/MacOS/AptanaStudio" overwrite="true" />
+		<copy file="${builder}/custom/macosx/Info.plist" tofile="${mac.launcher.dir}/${product.name}.app/Contents/Info.plist" overwrite="true" />
+		<copy file="${builder}/custom/macosx/${product.name}" tofile="${mac.launcher.dir}/${product.name}.app/Contents/MacOS/${product.name}" overwrite="true" />
 		<!-- ...then re-zip and delete the temp dir -->
 		<zip destfile="${p2.repo.dir}/binary/${mac.launcher}">
 			<fileset dir="${mac.launcher.dir}" defaultexcludes="false" />
@@ -195,7 +195,7 @@
 		<!-- cocoa -->
 		<pathconvert property="mac.launcher">
 			<fileset dir="${p2.repo.dir}/binary">
-				<include name="com.aptana.ide.rcp.product.launcher.cocoa.macosx.x86_*" />
+				<include name="${topLevelElementId}.launcher.cocoa.macosx.x86_*" />
 			</fileset>
 			<mapper>
 				<flattenmapper />
@@ -209,8 +209,8 @@
 		<concat destfile="${mac.launcher.dir}/configuration/config.ini" append="yes" eol="mac">
 			<filelist dir="${builder}/custom/macosx/" files="config.ini" />
 		</concat>
-		<copy file="${builder}/custom/macosx/Info.plist" tofile="${mac.launcher.dir}/AptanaStudio.app/Contents/Info.plist" overwrite="true" />
-		<copy file="${builder}/custom/macosx/AptanaStudio" tofile="${mac.launcher.dir}/AptanaStudio.app/Contents/MacOS/AptanaStudio" overwrite="true" />
+		<copy file="${builder}/custom/macosx/Info.plist" tofile="${mac.launcher.dir}/${product.name}.app/Contents/Info.plist" overwrite="true" />
+		<copy file="${builder}/custom/macosx/${product.name}" tofile="${mac.launcher.dir}/${product.name}.app/Contents/MacOS/${product.name}" overwrite="true" />
 		<!-- ...then re-zip and delete the temp dir -->
 		<zip destfile="${p2.repo.dir}/binary/${mac.launcher}">
 			<fileset dir="${mac.launcher.dir}" defaultexcludes="false" />
@@ -221,7 +221,7 @@
 		<!-- Unzip the launcher to a temp dir... -->
 		<pathconvert property="win32.launcher">
 			<fileset dir="${p2.repo.dir}/binary">
-				<include name="com.aptana.ide.rcp.product.launcher.win32.win32.x86_2*" />
+				<include name="${topLevelElementId}.launcher.win32.win32.x86_2*" />
 			</fileset>
 			<mapper>
 				<flattenmapper />
@@ -245,7 +245,7 @@
 		<!-- Unzip the launcher to a temp dir... -->
 		<pathconvert property="win64.launcher">
 			<fileset dir="${p2.repo.dir}/binary">
-				<include name="com.aptana.ide.rcp.product.launcher.win32.win32.x86_64_*" />
+				<include name="${topLevelElementId}.launcher.win32.win32.x86_64_*" />
 			</fileset>
 			<mapper>
 				<flattenmapper />
@@ -269,7 +269,7 @@
 		<!-- Unzip the launcher to a temp dir... -->
 		<pathconvert property="linux.launcher">
 			<fileset dir="${p2.repo.dir}/binary">
-				<include name="com.aptana.ide.rcp.product.launcher.gtk.linux.x86_2*" />
+				<include name="${topLevelElementId}.launcher.gtk.linux.x86_2*" />
 			</fileset>
 			<mapper>
 				<flattenmapper />
@@ -293,7 +293,7 @@
 		<!-- Unzip the launcher to a temp dir... -->
 		<pathconvert property="linux_64.launcher">
 			<fileset dir="${p2.repo.dir}/binary">
-				<include name="com.aptana.ide.rcp.product.launcher.gtk.linux.x86_64_*" />
+				<include name="${topLevelElementId}.launcher.gtk.linux.x86_64_*" />
 			</fileset>
 			<mapper>
 				<flattenmapper />
@@ -322,10 +322,10 @@
 		<!-- Add the Mac launcher metadata to content.xml -->
 		<!-- Only needed for Eclipse 3.4
 		<replace summary="yes" file="${p2.repo.dir}/content.xml">
-					<replacetoken><![CDATA[<unit id='com.aptana.ide.rcp.product.launcher.win32.win32.x86.AptanaStudio.exe']]></replacetoken>
-					<replacevalue><![CDATA[<unit id='com.aptana.ide.rcp.product.launcher.carbon.macosx.ppc.AptanaStudio' version='{version.full}' singleton='false'>
+					<replacetoken><![CDATA[<unit id='${topLevelElementId}.launcher.win32.win32.x86.${product.name}.exe']]></replacetoken>
+					<replacevalue><![CDATA[<unit id='${topLevelElementId}.launcher.carbon.macosx.ppc.${product.name}' version='{version.full}' singleton='false'>
 		  <provides size='1'>
-		    <provided namespace='org.eclipse.equinox.p2.iu' name='com.aptana.ide.rcp.product.launcher.carbon.macosx.ppc.AptanaStudio' version='{version.full}' />
+		    <provided namespace='org.eclipse.equinox.p2.iu' name='${topLevelElementId}.launcher.carbon.macosx.ppc.${product.name}' version='{version.full}' />
 		  </provides>
 		  <filter>
 		    (&amp; (osgi.os=macosx)(osgi.ws=carbon)(osgi.arch=ppc))
@@ -337,21 +337,21 @@
 		        setLauncherName()
 		      </instruction>
 		      <instruction key='configure'>
-		        setLauncherName(name:AptanaStudio)
+		        setLauncherName(name:${product.name})
 		      </instruction>
 		    </instructions>
 		  </touchpointData>
 		</unit>
-		<unit id='com.aptana.ide.rcp.product.launcher.win32.win32.x86.AptanaStudio.exe']]></replacevalue>
+		<unit id='${topLevelElementId}.launcher.win32.win32.x86.${product.name}.exe']]></replacevalue>
 	  </replace>		
 		<replace summary="yes" file="${p2.repo.dir}/content.xml">
-				<replacetoken><![CDATA[<required namespace='org.eclipse.equinox.p2.iu' name='com.aptana.ide.rcp.product.launcher.gtk.linux.x86_64.AptanaStudio']]></replacetoken>
-				<replacevalue><![CDATA[<required namespace='org.eclipse.equinox.p2.iu' name='com.aptana.ide.rcp.product.launcher.carbon.macosx.ppc.AptanaStudio' range='[{version.full},{version.full}]'>
+				<replacetoken><![CDATA[<required namespace='org.eclipse.equinox.p2.iu' name='${topLevelElementId}.launcher.gtk.linux.x86_64.${product.name}']]></replacetoken>
+				<replacevalue><![CDATA[<required namespace='org.eclipse.equinox.p2.iu' name='${topLevelElementId}.launcher.carbon.macosx.ppc.${product.name}' range='[{version.full},{version.full}]'>
           <filter>
             (&amp; (osgi.os=macosx)(osgi.ws=carbon)(osgi.arch=ppc))
           </filter>
 		</required>
-        <required namespace='org.eclipse.equinox.p2.iu' name='com.aptana.ide.rcp.product.launcher.gtk.linux.x86_64.AptanaStudio']]></replacevalue>
+        <required namespace='org.eclipse.equinox.p2.iu' name='com.aptana.ide.rcp.product.launcher.gtk.linux.x86_64.${product.name}']]></replacevalue>
 			</replace>
 		<replace summary="yes" file="${p2.repo.dir}/content.xml" token="{version.full}" value="${version.full}" />
 		-->
