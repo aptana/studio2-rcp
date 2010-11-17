@@ -19,6 +19,11 @@
 			<pathelement location="ant-contrib/ant-contrib.jar" />
 		</classpath>
 	</taskdef>
+	<taskdef name="purge" classname="com.dallaway.ant.Purge">
+		<classpath>
+			<pathelement location="ant-contrib/purge.jar" />
+		</classpath>
+	</taskdef>
 
 	<!-- ================================= 
           target: main              
